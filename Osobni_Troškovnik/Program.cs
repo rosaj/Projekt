@@ -1,6 +1,6 @@
 ﻿using System;
 using Gtk;
-
+using System.Collections.Generic;
 namespace Osobni_Troškovnik
 {
 	class MainClass
@@ -9,6 +9,10 @@ namespace Osobni_Troškovnik
 		{
 			Application.Init();
 			MainWindow win = new MainWindow();
+			Console.Write("nesto");
+
+
+
 
 			win.SetSizeRequest(400, 400);
 			win.Show();
