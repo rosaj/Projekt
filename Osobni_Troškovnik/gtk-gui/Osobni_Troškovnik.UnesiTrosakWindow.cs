@@ -92,7 +92,7 @@ namespace Osobni_Troškovnik
 			this.comboboxentry3.AppendText(global::Mono.Unix.Catalog.GetString("Zdravlje"));
 			this.comboboxentry3.AppendText(global::Mono.Unix.Catalog.GetString("Ostalo"));
 			this.comboboxentry3.Name = "comboboxentry3";
-			this.comboboxentry3.Active = 1;
+			this.comboboxentry3.Active = 0;
 			this.table5.Add(this.comboboxentry3);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table5[this.comboboxentry3]));
 			w2.LeftAttach = ((uint)(1));
