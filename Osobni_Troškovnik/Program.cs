@@ -9,7 +9,7 @@ namespace Osobni_Troškovnik
 		{
 			Application.Init();
 			MainWindow win = new MainWindow();
-			win.Maximize();
+
 			win.SetSizeRequest(400, 400);
 			win.Show();
 			Application.Run();
