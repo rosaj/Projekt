@@ -81,6 +81,7 @@
     <Compile Include="Baza.cs" />
     <Compile Include="NovaKategorijaWidow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.NovaKategorijaWidow.cs" />
+    <Compile Include="MessageBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

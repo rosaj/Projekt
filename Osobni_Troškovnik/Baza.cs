@@ -40,15 +40,24 @@ namespace Osobni_Troškovnik
 			}
 		}
 
-		public void insertKategorija(string s)
+		public bool insertKategorija(string s)
 		{
-			executeNonQuery(String.Format("insert into kategorija(ime) values('{0}')", s));
-
+			string sql = String.Format("select COUNT(*) from kategorija where LOWER(ime) LIKE LOWER('{0}')",s);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			int br = Int32.Parse( reader[0].ToString());
+			if (br == 0)
+			{
+				executeNonQuery(String.Format("insert into kategorija(ime) values('{0}')", s));
+				return true;
+			}
+			return false;
 		}
 
 		public void insertTrosak(string kategorija, float cijena, DateTime datum, string opis)
 		{
-			string sql =string.Format( "select id from kategorija where ime='{0}'",kategorija);
+			string sql =string.Format( "select id from kategorija where LOWER(ime) LIKE LOWER('{0}')",kategorija);
 			SQLiteCommand command = new SQLiteCommand(sql, con);
 			SQLiteDataReader reader = command.ExecuteReader();
 			reader.Read();
@@ -78,12 +87,12 @@ namespace Osobni_Troškovnik
 				con = new SQLiteConnection(connectionString);
 				con.Open();
 
-				string sql = "create table kategorija(id INTEGER PRIMARY KEY NOT NULL, ime varchar2(60))";
+				string sql = "create table kategorija(id INTEGER PRIMARY KEY NOT NULL, ime varchar2(60) NOT NULL)";
 				executeNonQuery(sql);
 				sql = "create table trosak(id INTEGER PRIMARY KEY NOT NULL," +
 					"id_kategorija INTEGER NOT NULL," +
-					"cijena NUMERIC," +
-					"datum DATE," +
+					"cijena NUMERIC NOT NULL," +
+					"datum DATE NOT NULL," +
 					"opis TEXT," +
 					"FOREIGN KEY(id_kategorija) REFERENCES kategorija(id));";
 				executeNonQuery(sql);
@@ -118,13 +127,27 @@ namespace Osobni_Troškovnik
 			Console.WriteLine("");
 			while (reader.Read())
 			{
-				
 
-				Console.WriteLine("{0} {1} {2} {3} {4}", reader[0],reader[1],reader[2], reader[3], reader[4]);
+				DateTime d = (DateTime)reader[3];
+				string s = d.ToString("dd/MM/yyyy");
+
+				sql = string.Format("select ime from kategorija where id='{0}'", Int32.Parse(reader[1].ToString()));
+				command = new SQLiteCommand(sql, con);
+				SQLiteDataReader readerK = command.ExecuteReader();
+				readerK.Read();
+
+				Console.WriteLine("Id: {0} Kategorija: {1} Cijena: {2} Datum: {3} Opis: {4}", reader[0],readerK[0],reader[2], s, reader[4]);
 
 			}
 
 
+		}
+		public void ispisiKategorije()
+		{
+			string sql = "select ime from kategorija";
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			while (reader.Read()) Console.WriteLine(reader[0]);
 		}
 
 	}

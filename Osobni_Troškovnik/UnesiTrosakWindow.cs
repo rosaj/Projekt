@@ -17,6 +17,7 @@ namespace Osobni_Troškovnik
 			List<String> lista = Baza.getInstance.getKategorije();
 			foreach (string s in lista) listaKategorija.AppendText(s);
 			listaKategorija.Active = 0;
+			cijena.Text = "";
 		}
 
 
@@ -27,11 +28,16 @@ namespace Osobni_Troškovnik
 
 		protected void spremiAndNoviClicked(object sender, EventArgs e)
 		{
+			spremi();
+			cijena.Text = "";
+			opis.Buffer.Text = "";
+
 		}
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
-			Baza.getInstance.insertTrosak(listaKategorija.ActiveText,Int32.Parse(cijena.Text), kalendar.GetDate(), opis.Buffer.Text);
+			spremi();
+			Baza.getInstance.ispis();
 		}
 
 		protected void novaKategorijaClicked(object sender, EventArgs e)
@@ -42,8 +48,23 @@ namespace Osobni_Troškovnik
 		}
 		public void dodajKategoriju(string e)
 		{
-			Baza.getInstance.insertKategorija(e);
-			listaKategorija.AppendText(e);
+			e = e.Trim();
+
+			if(Baza.getInstance.insertKategorija(e))
+							listaKategorija.AppendText(e);
+		}
+		private void spremi()
+		{
+			float broj;
+			if (!float.TryParse(cijena.Text, out broj))
+			{	 
+					MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti prazna");
+			}
+			else if (broj.CompareTo(0) == 0)
+					MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti nula");
+
+			else 
+					Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(), opis.Buffer.Text);
 		}
 	}
 }
