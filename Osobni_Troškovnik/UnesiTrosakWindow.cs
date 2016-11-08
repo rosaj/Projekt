@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gtk;
 namespace Osobni_Troškovnik
 {
 
@@ -7,23 +8,26 @@ namespace Osobni_Troškovnik
 
 	public partial class UnesiTrosakWindow : Gtk.Window
 	{
+		public delegate void eventHandler();
+		public event eventHandler signaliziraj;
 		
 		public UnesiTrosakWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
 
 			this.Resizable = false;
-			var b =	Baza.getInstance;
 			List<String> lista = Baza.getInstance.getKategorije();
 			foreach (string s in lista) listaKategorija.AppendText(s);
 			listaKategorija.Active = 0;
 			cijena.Text = "";
+	
 		}
 
 
 		protected void odustaniClicked(object sender, EventArgs e)
 		{
 			this.Destroy();
+			signaliziraj();
 		}
 
 		protected void spremiAndNoviClicked(object sender, EventArgs e)
@@ -37,7 +41,8 @@ namespace Osobni_Troškovnik
 		protected void spremiClicked(object sender, EventArgs e)
 		{
 			spremi();
-			Baza.getInstance.ispis();
+			signaliziraj();
+
 		}
 
 		protected void novaKategorijaClicked(object sender, EventArgs e)
@@ -66,5 +71,13 @@ namespace Osobni_Troškovnik
 			else 
 					Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(), opis.Buffer.Text);
 		}
+
+
+		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
+		{
+			signaliziraj();
+
+		}
+
 	}
 }

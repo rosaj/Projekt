@@ -11,9 +11,6 @@ namespace Osobni_Troškovnik
 			MainWindow win = new MainWindow();
 			Console.Write("nesto");
 
-
-
-			win.SetSizeRequest(400, 400);
 			win.Show();
 			Application.Run();
 		}

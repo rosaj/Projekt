@@ -22,7 +22,7 @@ namespace Osobni_Troškovnik
 
 		private global::Gtk.Label label19;
 
-		private global::Gtk.ComboBoxEntry listaKategorija;
+		private global::Gtk.ComboBox listaKategorija;
 
 		private global::Gtk.VBox vbox15;
 
@@ -143,8 +143,7 @@ namespace Osobni_Troškovnik
 			w8.XOptions = ((global::Gtk.AttachOptions)(4));
 			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
-			this.listaKategorija = global::Gtk.ComboBoxEntry.NewText();
-			w1.SetTip(this.listaKategorija, "Odaberite kategoriju troška", "Odaberite kategoriju troška");
+			this.listaKategorija = global::Gtk.ComboBox.NewText();
 			this.listaKategorija.Name = "listaKategorija";
 			this.table5.Add(this.listaKategorija);
 			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table5[this.listaKategorija]));
@@ -256,6 +255,7 @@ namespace Osobni_Troškovnik
 			this.DefaultWidth = 371;
 			this.DefaultHeight = 457;
 			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.dodajKategorijuButton.Clicked += new global::System.EventHandler(this.novaKategorijaClicked);
 			this.odustaniButton.Clicked += new global::System.EventHandler(this.odustaniClicked);
 			this.spremiAndNovi.Clicked += new global::System.EventHandler(this.spremiAndNoviClicked);
