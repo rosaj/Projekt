@@ -13,7 +13,7 @@ namespace Osobni_Troškovnik
 
 
 
-
+			Baza.getInstance.ispis();
 			win.SetSizeRequest(400, 400);
 			win.Show();
 			Application.Run();

@@ -79,6 +79,8 @@
     <Compile Include="UnesiTrosakWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.UnesiTrosakWindow.cs" />
     <Compile Include="Baza.cs" />
+    <Compile Include="NovaKategorijaWidow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.NovaKategorijaWidow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

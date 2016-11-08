@@ -8,21 +8,21 @@ namespace Osobni_Troškovnik
 
 		private global::Gtk.Table table5;
 
-		private global::Gtk.Calendar calendar3;
+		private global::Gtk.SpinButton cijena;
 
 		private global::Gtk.Button dodajKategorijuButton;
 
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
-		private global::Gtk.TextView textview1;
+		private global::Gtk.TextView opis;
+
+		private global::Gtk.Calendar kalendar;
 
 		private global::Gtk.Label label18;
 
 		private global::Gtk.Label label19;
 
 		private global::Gtk.ComboBoxEntry listaKategorija;
-
-		private global::Gtk.SpinButton spinbutton4;
 
 		private global::Gtk.VBox vbox15;
 
@@ -60,17 +60,19 @@ namespace Osobni_Troškovnik
 			this.table5.RowSpacing = ((uint)(6));
 			this.table5.ColumnSpacing = ((uint)(6));
 			// Container child table5.Gtk.Table+TableChild
-			this.calendar3 = new global::Gtk.Calendar();
-			this.calendar3.CanFocus = true;
-			this.calendar3.Name = "calendar3";
-			this.calendar3.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
-			this.table5.Add(this.calendar3);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table5[this.calendar3]));
-			w1.TopAttach = ((uint)(2));
-			w1.BottomAttach = ((uint)(3));
+			this.cijena = new global::Gtk.SpinButton(0D, 999999999999D, 1D);
+			this.cijena.CanFocus = true;
+			this.cijena.Name = "cijena";
+			this.cijena.Adjustment.PageIncrement = 10D;
+			this.cijena.ClimbRate = 1D;
+			this.cijena.Numeric = true;
+			this.table5.Add(this.cijena);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table5[this.cijena]));
+			w1.TopAttach = ((uint)(1));
+			w1.BottomAttach = ((uint)(2));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
-			w1.YPadding = ((uint)(5));
+			w1.YPadding = ((uint)(6));
 			w1.XOptions = ((global::Gtk.AttachOptions)(4));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
@@ -90,10 +92,10 @@ namespace Osobni_Troškovnik
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.textview1 = new global::Gtk.TextView();
-			this.textview1.CanFocus = true;
-			this.textview1.Name = "textview1";
-			this.GtkScrolledWindow.Add(this.textview1);
+			this.opis = new global::Gtk.TextView();
+			this.opis.CanFocus = true;
+			this.opis.Name = "opis";
+			this.GtkScrolledWindow.Add(this.opis);
 			this.table5.Add(this.GtkScrolledWindow);
 			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table5[this.GtkScrolledWindow]));
 			w4.TopAttach = ((uint)(3));
@@ -102,48 +104,46 @@ namespace Osobni_Troškovnik
 			w4.RightAttach = ((uint)(2));
 			w4.XOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
+			this.kalendar = new global::Gtk.Calendar();
+			this.kalendar.CanFocus = true;
+			this.kalendar.Name = "kalendar";
+			this.kalendar.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
+			this.table5.Add(this.kalendar);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table5[this.kalendar]));
+			w5.TopAttach = ((uint)(2));
+			w5.BottomAttach = ((uint)(3));
+			w5.LeftAttach = ((uint)(1));
+			w5.RightAttach = ((uint)(2));
+			w5.YPadding = ((uint)(5));
+			w5.XOptions = ((global::Gtk.AttachOptions)(4));
+			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table5.Gtk.Table+TableChild
 			this.label18 = new global::Gtk.Label();
 			this.label18.Name = "label18";
 			this.label18.Xpad = 10;
 			this.label18.LabelProp = global::Mono.Unix.Catalog.GetString("Kategorija:");
 			this.table5.Add(this.label18);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table5[this.label18]));
-			w5.XOptions = ((global::Gtk.AttachOptions)(4));
-			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table5[this.label18]));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.label19 = new global::Gtk.Label();
 			this.label19.Name = "label19";
 			this.label19.LabelProp = global::Mono.Unix.Catalog.GetString("Cijena:      ");
 			this.table5.Add(this.label19);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table5[this.label19]));
-			w6.TopAttach = ((uint)(1));
-			w6.BottomAttach = ((uint)(2));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table5[this.label19]));
+			w7.TopAttach = ((uint)(1));
+			w7.BottomAttach = ((uint)(2));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.listaKategorija = global::Gtk.ComboBoxEntry.NewText();
 			this.listaKategorija.Name = "listaKategorija";
 			this.table5.Add(this.listaKategorija);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table5[this.listaKategorija]));
-			w7.LeftAttach = ((uint)(1));
-			w7.RightAttach = ((uint)(2));
-			w7.YPadding = ((uint)(5));
-			w7.XOptions = ((global::Gtk.AttachOptions)(4));
-			w7.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table5.Gtk.Table+TableChild
-			this.spinbutton4 = new global::Gtk.SpinButton(0D, 100D, 1D);
-			this.spinbutton4.CanFocus = true;
-			this.spinbutton4.Name = "spinbutton4";
-			this.spinbutton4.Adjustment.PageIncrement = 10D;
-			this.spinbutton4.ClimbRate = 1D;
-			this.spinbutton4.Numeric = true;
-			this.table5.Add(this.spinbutton4);
-			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table5[this.spinbutton4]));
-			w8.TopAttach = ((uint)(1));
-			w8.BottomAttach = ((uint)(2));
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table5[this.listaKategorija]));
 			w8.LeftAttach = ((uint)(1));
 			w8.RightAttach = ((uint)(2));
-			w8.YPadding = ((uint)(6));
+			w8.YPadding = ((uint)(5));
 			w8.XOptions = ((global::Gtk.AttachOptions)(4));
 			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild

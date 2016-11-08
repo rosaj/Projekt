@@ -15,7 +15,7 @@ namespace Osobni_Troškovnik
 		private Baza()
 		{
 			path = System.IO.Path.Combine(Environment.CurrentDirectory, imeBaze);
-			connectionString = string.Format("Data Source={0};version=3;",path);	
+			connectionString = string.Format("Data Source={0};version=3;datetimeformat=CurrentCulture",path);	
 			connectToDb();
 		}
 
@@ -45,6 +45,20 @@ namespace Osobni_Troškovnik
 			executeNonQuery(String.Format("insert into kategorija(ime) values('{0}')", s));
 
 		}
+
+		public void insertTrosak(string kategorija, float cijena, DateTime datum, string opis)
+		{
+			string sql =string.Format( "select id from kategorija where ime='{0}'",kategorija);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			int id = Int32.Parse(reader[0].ToString());
+			executeNonQuery(string.Format(" insert into trosak(id_kategorija, cijena,datum,opis) " +
+			                              "values('{0}','{1}','{2}','{3}')",id,cijena,datum,opis));
+		
+		}
+
+
 		public List<String> getKategorije()
 		{
 			string sql = "select ime from kategorija";
@@ -52,7 +66,7 @@ namespace Osobni_Troškovnik
 			SQLiteDataReader reader = command.ExecuteReader();
 			var list = new List<string>();
 
-			while (reader.Read()) list.Add(reader["name"].ToString());
+			while (reader.Read()) list.Add(reader[0].ToString());
 			return list;
 		}
 
@@ -93,6 +107,24 @@ namespace Osobni_Troškovnik
 		{
 			SQLiteCommand command = new SQLiteCommand(sql, con);
 			command.ExecuteNonQuery();
+		}
+
+		public void ispis()
+		{
+			string sql = "select * from trosak";
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+
+			Console.WriteLine("");
+			while (reader.Read())
+			{
+				
+
+				Console.WriteLine("{0} {1} {2} {3} {4}", reader[0],reader[1],reader[2], reader[3], reader[4]);
+
+			}
+
+
 		}
 
 	}
