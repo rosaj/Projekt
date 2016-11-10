@@ -11,6 +11,42 @@ namespace Stetic
 			if ((Stetic.Gui.initialized == false))
 			{
 				Stetic.Gui.initialized = true;
+				global::Gtk.IconFactory w1 = new global::Gtk.IconFactory();
+				global::Gtk.IconSet w2 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.r.png"));
+				w1.Add("r", w2);
+				global::Gtk.IconSet w3 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Automobil.png"));
+				w1.Add("Automobil", w3);
+				global::Gtk.IconSet w4 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Internet.png"));
+				w1.Add("Internet", w4);
+				global::Gtk.IconSet w5 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Telefon.png"));
+				w1.Add("Telefon", w5);
+				global::Gtk.IconSet w6 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Struja.png"));
+				w1.Add("Struja", w6);
+				global::Gtk.IconSet w7 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Računalna oprema.png"));
+				w1.Add("Računalna oprema", w7);
+				global::Gtk.IconSet w8 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Zdravlje.png"));
+				w1.Add("Zdravlje", w8);
+				global::Gtk.IconSet w9 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Shopping.png"));
+				w1.Add("Shopping", w9);
+				global::Gtk.IconSet w10 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Odjeća.png"));
+				w1.Add("Odjeća", w10);
+				global::Gtk.IconSet w11 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Nakit.png"));
+				w1.Add("Nakit", w11);
+				global::Gtk.IconSet w12 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.TV.png"));
+				w1.Add("TV", w12);
+				global::Gtk.IconSet w13 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Hrana.png"));
+				w1.Add("Hrana", w13);
+				global::Gtk.IconSet w14 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Stanarina.png"));
+				w1.Add("Stanarina", w14);
+				global::Gtk.IconSet w15 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Namještaj.png"));
+				w1.Add("Namještaj", w15);
+				global::Gtk.IconSet w16 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Gorivo.png"));
+				w1.Add("Gorivo", w16);
+				global::Gtk.IconSet w17 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Skolovanje.png"));
+				w1.Add("Školovanje", w17);
+				global::Gtk.IconSet w18 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Voda.png"));
+				w1.Add("Voda", w18);
+				w1.AddDefault();
 			}
 		}
 	}

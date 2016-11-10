@@ -8,10 +8,12 @@ namespace Osobni_Troškovnik
 		public static void Main(string[] args)
 		{
 			Application.Init();
+			Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
 			MainWindow win = new MainWindow();
-			Console.Write("nesto");
 
+			Baza.getInstance.ispis();
 			win.Show();
+
 			Application.Run();
 		}
 	}

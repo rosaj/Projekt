@@ -97,7 +97,7 @@ namespace Osobni_Troškovnik
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.opis = new global::Gtk.TextView();
-			w1.SetTip(this.opis, "Kratak opis troška(pr. Kupnja mobitela IPhone 7)-opcionalno", "Kratak opis troška(pr. Kupnja mobitela IPhone 7)-opcionalno");
+			w1.SetTip(this.opis, "Kratak opis troška(pr. Kupnja mobitela IPhone 7) max 100 znakova.", "Kratak opis troška(pr. Kupnja mobitela IPhone 7) max 100 znakova.");
 			this.opis.CanFocus = true;
 			this.opis.Name = "opis";
 			this.GtkScrolledWindow.Add(this.opis);

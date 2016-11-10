@@ -17,6 +17,7 @@ namespace Osobni_Troškovnik
 			path = System.IO.Path.Combine(Environment.CurrentDirectory, imeBaze);
 			connectionString = string.Format("Data Source={0};version=3;datetimeformat=CurrentCulture",path);	
 			connectToDb();
+		
 		}
 
 		public static Baza getInstance
@@ -79,6 +80,39 @@ namespace Osobni_Troškovnik
 			return list;
 		}
 
+
+
+		public List<Trosak> getTroskove(string kategorija)
+		{
+			var lista = new List<Trosak>();
+
+
+			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			int id = Int32.Parse(reader[0].ToString());
+
+			sql = string.Format("select cijena, datum, opis from trosak " +
+			                    "where id_kategorija= '{0}'" +
+			                    "order by datum asc", id);
+			command = new SQLiteCommand(sql, con);
+			reader = command.ExecuteReader();
+
+
+			while (reader.Read()) 
+			{
+				
+				var t = new Trosak(kategorija,float.Parse(reader[0].ToString()),
+				                   DateTime.Parse( reader[1].ToString()) , 
+				                   reader[2].ToString());
+				lista.Add(t);
+			}
+
+
+			return lista;
+		}
+
 		private void createDatabase()
 		{
 			SQLiteConnection.CreateFile(path);
@@ -93,14 +127,12 @@ namespace Osobni_Troškovnik
 					"id_kategorija INTEGER NOT NULL," +
 					"cijena NUMERIC NOT NULL," +
 					"datum DATE NOT NULL," +
-					"opis TEXT," +
+					"opis TEXT NOT NULL," +
 					"FOREIGN KEY(id_kategorija) REFERENCES kategorija(id));";
 				executeNonQuery(sql);
 				Console.WriteLine("Tablice kreirane");
 
-				var lista = new List<string>() { "Hrana", "Skolovanje", "Gorivo","Automobil", "Namjestaj", "Stanarina",
-					"Računalna oprema", "Struja", "Voda", "Telefon", "Internet", "TV", "Odjeća", "Nakit", "Shopping", "Zdravlje"};
-				foreach (string s in lista)
+				foreach (string s in Props.defultLista)
 				{
 					insertKategorija(s);
 				}

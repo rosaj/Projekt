@@ -7,6 +7,93 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/Osobni_Troškovnik.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="r">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.r.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Automobil">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Automobil.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Internet">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Internet.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Telefon">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Telefon.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Struja">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Struja.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Računalna oprema">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Računalna oprema.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Zdravlje">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Zdravlje.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Shopping">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Shopping.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Odjeća">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Odjeća.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Nakit">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Nakit.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="TV">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.TV.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Hrana">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Hrana.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Stanarina">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Stanarina.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Namještaj">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Namještaj.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Gorivo">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Gorivo.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Školovanje">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Skolovanje.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Voda">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Voda.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="Osobni_Troškovnik.UnesiTrosakWindow" design-size="371 457">
     <property name="MemberName" />
     <property name="Title" translatable="yes">UnesiTrosakWindow</property>
@@ -94,7 +181,7 @@
                 <child>
                   <widget class="Gtk.TextView" id="opis">
                     <property name="MemberName" />
-                    <property name="Tooltip" translatable="yes">Kratak opis troška(pr. Kupnja mobitela IPhone 7)-opcionalno</property>
+                    <property name="Tooltip" translatable="yes">Kratak opis troška(pr. Kupnja mobitela IPhone 7) max 100 znakova.</property>
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
                     <property name="Text" translatable="yes" />
@@ -400,7 +487,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="684 384">
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="618 410">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -408,7 +495,7 @@
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">1</property>
         <property name="ShowBorder">False</property>
         <property name="Scrollable">True</property>
         <child>
@@ -543,6 +630,43 @@
           <widget class="Gtk.Label" id="label1">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">page1</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VBox" id="vbox3">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="label3">
+                <property name="MemberName" />
+                <property name="WidthRequest">72</property>
+                <property name="LabelProp" translatable="yes">label1</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">page2</property>
           </widget>
           <packing>
             <property name="type">tab</property>

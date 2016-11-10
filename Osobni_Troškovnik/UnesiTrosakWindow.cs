@@ -32,16 +32,18 @@ namespace Osobni_Troškovnik
 
 		protected void spremiAndNoviClicked(object sender, EventArgs e)
 		{
-			spremi();
-			cijena.Text = "";
-			opis.Buffer.Text = "";
-
+			if (spremi())
+			{
+				cijena.Text = "";
+				opis.Buffer.Text = "";
+			}
 		}
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
-			spremi();
+			if (spremi()) Destroy();
 			signaliziraj();
+
 
 		}
 
@@ -58,18 +60,29 @@ namespace Osobni_Troškovnik
 			if(Baza.getInstance.insertKategorija(e))
 							listaKategorija.AppendText(e);
 		}
-		private void spremi()
+		private bool spremi()
 		{
 			float broj;
 			if (!float.TryParse(cijena.Text, out broj))
-			{	 
-					MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti prazna");
+			{
+				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti prazna");
+				return false;
 			}
 			else if (broj.CompareTo(0) == 0)
-					MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti nula");
+			{
+				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti nula");
+				return false;
+			}
+			else if (opis.Buffer.Text.Length > 100)
+			{
+				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti duži od \n 100 znakova");
+				return false;
+			}
+			else {
 
-			else 
-					Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(), opis.Buffer.Text);
+				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),StringManipulator.insertBreaks(opis.Buffer.Text, 40));
+				return true;
+			}
 		}
 
 
