@@ -8,89 +8,89 @@
     <widget-library name="../bin/Debug/Osobni_Troškovnik.exe" internal="true" />
   </import>
   <icon-factory>
-    <icon-set id="r">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.r.png</property>
-      </source>
-    </icon-set>
     <icon-set id="Automobil">
       <source>
-        <property name="Image">resource:Osobni_Troškovnik.Automobil.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Internet">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Internet.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Telefon">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Telefon.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Struja">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Struja.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Računalna oprema">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Računalna oprema.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Zdravlje">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Zdravlje.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Shopping">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Shopping.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Odjeća">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Odjeća.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Nakit">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Nakit.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="TV">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.TV.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Hrana">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Hrana.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Stanarina">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Stanarina.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Namještaj">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Namještaj.png</property>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Automobil.png</property>
       </source>
     </icon-set>
     <icon-set id="Gorivo">
       <source>
-        <property name="Image">resource:Osobni_Troškovnik.Gorivo.png</property>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Gorivo.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Hrana">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Hrana.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Internet">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Internet.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Nakit">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Nakit.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Namještaj">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Namještaj.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Shopping">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Shopping.png</property>
       </source>
     </icon-set>
     <icon-set id="Školovanje">
       <source>
-        <property name="Image">resource:Osobni_Troškovnik.Skolovanje.png</property>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Skolovanje.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Stanarina">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Stanarina.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Struja">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Struja.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="TV">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.TV.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Telefon">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Telefon.png</property>
       </source>
     </icon-set>
     <icon-set id="Voda">
       <source>
-        <property name="Image">resource:Osobni_Troškovnik.Voda.png</property>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Voda.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Zdravlje">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Zdravlje.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Odjeća">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Odjeća.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="Računalna oprema">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.Računalna oprema.png</property>
+      </source>
+    </icon-set>
+    <icon-set id="r">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.r.png</property>
       </source>
     </icon-set>
   </icon-factory>
@@ -653,7 +653,14 @@
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.ColorSelection" id="colorselection2">
+                <property name="MemberName" />
+                <property name="HasOpacityControl">True</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
             </child>
             <child>
               <placeholder />
@@ -670,6 +677,112 @@
           </widget>
           <packing>
             <property name="type">tab</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.DatumChooseWindow" design-size="458 277">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">DatumChooseWindow</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="BorderWidth">6</property>
+    <property name="Resizable">False</property>
+    <signal name="DeleteEvent" handler="onDeleteEvent" />
+    <child>
+      <widget class="Gtk.VBox" id="vbox2">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Homogeneous">True</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="label3">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Početak</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label4">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Kraj</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox3">
+            <property name="MemberName" />
+            <property name="Homogeneous">True</property>
+            <property name="Spacing">20</property>
+            <child>
+              <widget class="Gtk.Calendar" id="kalendarOd">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="DisplayOptions">35</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Calendar" id="kalendarDo">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="DisplayOptions">35</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="filtrirajButton">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Filtriraj</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="filtrirajClicked" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

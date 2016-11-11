@@ -79,7 +79,7 @@ namespace Osobni_Troškovnik
 				return false;
 			}
 			else {
-
+				
 				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),StringManipulator.insertBreaks(opis.Buffer.Text, 40));
 				return true;
 			}

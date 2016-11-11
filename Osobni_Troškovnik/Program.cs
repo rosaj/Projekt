@@ -11,7 +11,7 @@ namespace Osobni_Troškovnik
 			Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
 			MainWindow win = new MainWindow();
 
-			Baza.getInstance.ispis();
+
 			win.Show();
 
 			Application.Run();

@@ -24,5 +24,28 @@ namespace Osobni_Troškovnik
 			e.ModifyBg(StateType.Normal, boxColor);
 			return e;
 		}
+
+		public static EventBox add2EventBox(Widget w, Gdk.Color boxColor,Gdk.Color textColor)
+		{
+			
+			var e = new EventBox();
+			e.Add(w);
+			e.ModifyBg(StateType.Normal, boxColor);
+			w.ModifyFg(StateType.Normal, textColor);
+			return e;
+		}
+
+
+
+		public static EventBox add2EventBox(Widget w, Gdk.Color boxColor, Gdk.Color textColor, string font)
+		{
+
+			var e = new EventBox();
+			e.Add(w);
+			e.ModifyBg(StateType.Normal, boxColor);
+			w.ModifyFg(StateType.Normal, textColor);
+			w.ModifyFont(Pango.FontDescription.FromString(font));
+			return e;
+		}
 	}
 }

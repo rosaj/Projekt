@@ -70,23 +70,23 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="r.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Hrana.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Odjeća.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Računalna oprema.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Zdravlje.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Voda.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Telefon.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\TV.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Struja.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Stanarina.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Shopping.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Skolovanje.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Namještaj.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Nakit.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Internet.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Gorivo.png" />
-    <EmbeddedResource Include="..\..\..\..\Desktop\Automobil.png" />
+    <EmbeddedResource Include="Pics\Automobil.png" />
+    <EmbeddedResource Include="Pics\Gorivo.png" />
+    <EmbeddedResource Include="Pics\Hrana.png" />
+    <EmbeddedResource Include="Pics\Internet.png" />
+    <EmbeddedResource Include="Pics\Nakit.png" />
+    <EmbeddedResource Include="Pics\Namještaj.png" />
+    <EmbeddedResource Include="Pics\Shopping.png" />
+    <EmbeddedResource Include="Pics\Skolovanje.png" />
+    <EmbeddedResource Include="Pics\Stanarina.png" />
+    <EmbeddedResource Include="Pics\Struja.png" />
+    <EmbeddedResource Include="Pics\TV.png" />
+    <EmbeddedResource Include="Pics\Telefon.png" />
+    <EmbeddedResource Include="Pics\Voda.png" />
+    <EmbeddedResource Include="Pics\Zdravlje.png" />
+    <EmbeddedResource Include="Pics\Odjeća.png" />
+    <EmbeddedResource Include="Pics\Računalna oprema.png" />
+    <EmbeddedResource Include="Pics\r.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -104,6 +104,9 @@
     <Compile Include="Trosak.cs" />
     <Compile Include="Props.cs" />
     <Compile Include="StringManipulator.cs" />
+    <Compile Include="DatabaseCreator.cs" />
+    <Compile Include="DatumChooseWindow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.DatumChooseWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
