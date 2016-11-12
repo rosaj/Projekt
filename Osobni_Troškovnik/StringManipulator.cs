@@ -36,5 +36,27 @@ namespace Osobni_Troškovnik
 			}
 			return s;
 		}
+
+		public static string formatter(double d)
+		{
+			if (d < 1E3)
+			{
+				return string.Format("{0}", d);
+			}
+			else if (d < 1E6)
+			{
+				return string.Format("{0}K", d / 1E3);
+			}
+			else if (d < 1E9)
+			{
+				return string.Format("{0}M", d / 1E6);
+			}
+			else if (d > 1E9)
+			{
+				return string.Format("{0}B", d / 1E9);
+			}
+			else return string.Format("{0}",d);
+		}
+
 	}
 }

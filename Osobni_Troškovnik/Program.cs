@@ -1,6 +1,10 @@
 ﻿using System;
 using Gtk;
 using System.Collections.Generic;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+
 namespace Osobni_Troškovnik
 {
 	class MainClass

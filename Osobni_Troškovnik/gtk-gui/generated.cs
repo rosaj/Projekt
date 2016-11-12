@@ -46,6 +46,12 @@ namespace Stetic
 				w1.Add("Računalna oprema", w17);
 				global::Gtk.IconSet w18 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.r.png"));
 				w1.Add("r", w18);
+				global::Gtk.IconSet w19 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.pie.png"));
+				w1.Add("Pie", w19);
+				global::Gtk.IconSet w20 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.chart.png"));
+				w1.Add("Line", w20);
+				global::Gtk.IconSet w21 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.bar.png"));
+				w1.Add("Bar", w21);
 				w1.AddDefault();
 			}
 		}

@@ -65,6 +65,12 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="OxyPlot">
+      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.GtkSharp">
+      <HintPath>..\packages\OxyPlot.GtkSharp.1.0.0\lib\net45\OxyPlot.GtkSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -87,6 +93,9 @@
     <EmbeddedResource Include="Pics\Odjeća.png" />
     <EmbeddedResource Include="Pics\Računalna oprema.png" />
     <EmbeddedResource Include="Pics\r.png" />
+    <EmbeddedResource Include="Pics\pie.png" />
+    <EmbeddedResource Include="Pics\chart.png" />
+    <EmbeddedResource Include="Pics\bar.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -107,6 +116,12 @@
     <Compile Include="DatabaseCreator.cs" />
     <Compile Include="DatumChooseWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.DatumChooseWindow.cs" />
+    <Compile Include="PlotWindow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.PlotWindow.cs" />
+    <Compile Include="PieWindow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.PieWindow.cs" />
+    <Compile Include="BarWindow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.BarWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

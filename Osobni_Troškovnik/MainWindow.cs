@@ -15,6 +15,7 @@ namespace Osobni_Troškovnik
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
+			Baza.getInstance.closeCon();
 			Application.Quit();
 			a.RetVal = true;
 		}
@@ -35,16 +36,19 @@ namespace Osobni_Troškovnik
 
 		protected void totalCostClicked(object sender, EventArgs e)
 		{
-			var lista = Baza.getInstance.getTroskove("gorivo");
-			foreach (Trosak s in lista) Console.WriteLine(s.Datum);
+
+			addTotalTroskove(Baza.getInstance.getKategorije(),DateTime.Parse("1/1/2000"),DateTime.Now);
+
 		}
 
 		protected void izvjesceClicked(object sender, EventArgs e)
 		{
+			addStatisticView(Baza.getInstance.getKategorije(),	DateTime.Parse("1/1/2000"), DateTime.Now);
 		}
 
 		protected void izlazClicked(object sender, EventArgs e)
 		{
+			Baza.getInstance.closeCon();
 			Destroy();
 		}
 		private void generirajKategorije()
@@ -121,6 +125,12 @@ namespace Osobni_Troškovnik
 				notebook.CurrentPage = 2;
 			};
 
+			var kategorija = ImageButton.imageButton(ime);
+			var hbox = new HBox(false,6);
+			hbox.PackStart(kategorija, false, true, 0);
+			hbox.PackStart(new Label(ime), false, true, 0);
+			t.Attach(hbox, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
 			var cijenaLab = new Label("Ukupan trošak: ");
 			t.Attach(cijenaLab, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			cijenaLab.SetAlignment(0.8f, 0.5f);
@@ -191,6 +201,207 @@ namespace Osobni_Troškovnik
 
 
 
+		private void addTotalTroskove(List<String> lista, DateTime datumPoc, DateTime datumKraj)
+		{
+			var sW = new ScrolledWindow();
+			var t = new Table((uint)lista.Count + 3, 3, true);
+			sW.AddWithViewport(t);
+			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
+			notebook.Add(sW);
 
+			t.RowSpacing = 10;
+			t.WidthRequest = 800;
+
+			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
+
+			back.SetSizeRequest(400, 50);
+			back.Clicked += (sender, e) =>
+			{
+				notebook.Remove(sW);
+				notebook.CurrentPage = 0;
+			};
+
+
+			var cijenaLab = new Label("Ukupan trošak: ");
+			t.Attach(cijenaLab, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			cijenaLab.SetAlignment(0.8f, 0.5f);
+
+			var rangeButton = new Button();
+			rangeButton.Label = "Filtriraj po datumu";
+			rangeButton.Clicked += (sender, e) =>
+			{
+				if (dCW == null)
+				{
+					dCW = new DatumChooseWindow();
+					dCW.signaliziraj += (odDatum, doDatum) =>
+					{
+						notebook.Remove(sW);
+						addTotalTroskove(Baza.getInstance.getKategorije(),odDatum	, doDatum);
+						dCW = null;
+					};
+				}
+
+			};
+
+			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+
+			var lab = new Label("Kategorija");
+			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			lab.SetAlignment(0.2f, 0.5f);
+			var lab2 = new Label("Ukupna cijena");
+			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			lab2.SetAlignment(0.8f, 0.5f);
+
+			Gdk.Color picked;
+			float cijena = 0;
+
+			for (int i = 3; i < lista.Count + 3; i++)
+			{
+				var kategorija = lista[i - 3];
+
+				var l = new Label(kategorija);
+				float total = Baza.getInstance.getSumuTroskovaURazdoblju(datumPoc, datumKraj, kategorija);
+				var l2 = new Label((total).ToString());
+				l.SetAlignment(0.2f, 0.5f);
+			
+				l2.SetAlignment(0.8f, 0.5f);
+
+				picked = (i % 2 == 0 ? Props.getColor("#FFC398") : Props.getColor("#D798FF"));
+
+
+
+				var e = Props.add2EventBox(l, picked);
+				var e1 = Props.add2EventBox(null, picked);
+				var e2 = Props.add2EventBox(l2, picked);
+
+
+				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				cijena += total;
+			}
+			cijenaLab.Text += cijena;
+			t.BorderWidth = 20;
+			notebook.ShowAll();
+			notebook.CurrentPage = 2;
+
+
+		}
+
+		private void addStatisticView(List<string> lista, DateTime odDatum, DateTime doDatum)
+		{
+
+			var sW = new ScrolledWindow();
+			var t = new Table((uint)lista.Count + 3, 3, true);
+			sW.AddWithViewport(t);
+			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
+			notebook.Add(sW);
+
+			t.RowSpacing = 10;
+			t.WidthRequest = 800;
+
+			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
+
+			back.SetSizeRequest(400, 50);
+			back.Clicked += (sender, e) =>
+			{
+				notebook.Remove(sW);
+				notebook.CurrentPage = 0;
+			};
+
+			var rangeButton = new Button();
+			rangeButton.Label = "Filtriraj po datumu";
+			rangeButton.Clicked += (sender, e) =>
+			{
+				if (dCW == null)
+				{
+					dCW = new DatumChooseWindow();
+					dCW.signaliziraj += (odDat, doDat) =>
+					{
+						notebook.Remove(sW);
+						addStatisticView(Baza.getInstance.getKategorije(), odDat, doDat);
+						dCW = null;
+					};
+				}
+
+			};
+
+			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+
+			var pie = new Button(ImageButton.imageButton("Pie"));
+			var lin = new Button(ImageButton.imageButton("Line"));
+			pie.Clicked += (sender, e) => 
+			{
+				var pieChart = new PieWindow(odDatum, doDatum);	
+			};
+			lin.Clicked += (sender, e) => 
+			{
+				var lineChart = new PlotWindow();
+				lineChart.plotSveKategorije(odDatum, doDatum);
+			};
+			var hbox = new HBox(true, 10);
+			hbox.PackStart(lin, false, false, 5);
+			hbox.PackEnd(pie, false, false, 5);
+			t.Attach(hbox, 2, 3, 2, 3, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+
+
+
+			var lab = new Label("Kategorija");
+			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			lab.SetAlignment(0, 0.5f);
+
+			var date = new Label("Razdoblje: "+odDatum.ToString("dd-MM-yyyy")+" - "+doDatum.ToString("dd-MM-yyyy"));
+			t.Attach(date, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+			Gdk.Color picked;
+
+			for (int i = 3; i < lista.Count + 3; i++)
+			{
+				var kategorija = lista[i - 3];
+
+				var l = new Label(kategorija);
+
+				l.SetAlignment(0.2f, 0.5f);
+
+
+				picked = (i % 2 == 0 ? Props.getColor("#FFC398") : Props.getColor("#D798FF"));
+
+
+
+				var e = Props.add2EventBox(l, picked);
+				var e1 = Props.add2EventBox(null, picked);
+				var b1 = new Button(ImageButton.imageButton("Line"));
+				var b2 = new Button(ImageButton.imageButton("Bar"));
+				var hb = new HBox(true, 10);
+				hb.PackStart(b1, false, true, 0);
+				hb.PackStart(b2, false, true, 0);
+
+				var e2 = Props.add2EventBox(hb, picked);
+
+
+				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+				b1.Clicked += (sender, ev) => 
+				{
+					var line = new PlotWindow();
+					line.plotKategoriju(odDatum, doDatum, kategorija);
+				};
+				b2.Clicked += (sender, ev) => 
+				{
+					var bar = new BarWindow();
+					bar.barPlot(odDatum, doDatum, kategorija);
+				};
+			}
+
+			t.BorderWidth = 50;
+			notebook.ShowAll();
+			notebook.CurrentPage = 2;
+
+
+		}
 	}
 }

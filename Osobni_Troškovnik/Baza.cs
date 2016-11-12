@@ -40,6 +40,10 @@ namespace Osobni_Troškovnik
 				Console.WriteLine("spojeno");
 
 		}
+		public void closeCon()
+		{
+			con.Close();
+		}
 
 		public bool insertKategorija(string s)
 		{
@@ -129,7 +133,6 @@ namespace Osobni_Troškovnik
 		{
 
 			var lista = new List<Trosak>();
-			Console.WriteLine("Od: " + odDatum + " do: " + doDatum);
 
 
 			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
@@ -162,7 +165,33 @@ namespace Osobni_Troškovnik
 
 
 		}
-	
+		public float getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		{
+			
+			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
+			var command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			int id = Int32.Parse(reader[0].ToString());
+
+			var datumOdString = odDatum.ToString("s");
+			var datumDoString = doDatum.ToString("s");
+			sql = string.Format("select SUM(cijena) from trosak " +
+								"where id_kategorija= '{0}'" +
+								" AND datum >= '{1}' AND datum <= '{2}' " +
+								"order by datum DESC", id, datumOdString, datumDoString);
+			command = new SQLiteCommand(sql, con);
+			reader = command.ExecuteReader();
+			float suma = 0;
+			reader.Read();
+			float.TryParse(reader[0].ToString(), out suma);
+
+			return suma;
+				
+			
+
+		}
+
 
 	}
 

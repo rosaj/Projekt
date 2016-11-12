@@ -38,5 +38,6 @@ namespace Osobni_Troškovnik
 			b.Name = label;
 			return b;
 		}
+
 	}
 }

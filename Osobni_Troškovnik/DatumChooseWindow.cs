@@ -18,6 +18,7 @@ namespace Osobni_Troškovnik
 
 		protected void onDeleteEvent(object o, Gtk.DeleteEventArgs args)
 		{
+			signaliziraj(DateTime.Parse("1/1/2000"), DateTime.Now);
 			Destroy();
 		}
 	}
