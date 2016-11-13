@@ -13,6 +13,7 @@ namespace Osobni_Troškovnik
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
+			this.SetSizeRequest(800, 600);
 
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -50,8 +51,7 @@ namespace Osobni_Troškovnik
 
 		protected void izlazClicked(object sender, EventArgs e)
 		{
-			Baza.getInstance.closeCon();
-			Destroy();
+			OnDeleteEvent(sender, new DeleteEventArgs());
 		}
 		private void generirajKategorije()
 		{
@@ -368,7 +368,7 @@ namespace Osobni_Troškovnik
 				l.SetAlignment(0.2f, 0.5f);
 
 
-				picked = (i % 2 == 0 ? Props.getColor("#FFC398") : Props.getColor("#D798FF"));
+				picked = (i % 2 == 0 ? Props.getColor("#FFEAC9") : Props.getColor("#D7D7D7"));
 
 
 

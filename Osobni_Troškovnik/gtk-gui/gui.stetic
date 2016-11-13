@@ -507,7 +507,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="618 410">
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="483 320">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Osobni Troškovnik</property>
     <property name="WindowPosition">CenterOnParent</property>

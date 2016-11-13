@@ -26,7 +26,6 @@ namespace Osobni_Troškovnik
 						"FOREIGN KEY(id_kategorija) REFERENCES kategorija(id));";
 					command = new SQLiteCommand(sql, con);
 					command.ExecuteNonQuery();
-					Console.WriteLine("Tablice kreirane");
 
 					foreach (string s in Props.defultLista)
 					{
@@ -35,7 +34,6 @@ namespace Osobni_Troškovnik
 						command.ExecuteNonQuery();
 
 					}
-					Console.WriteLine("insert kreirane");
 					
 				}
 				catch (SQLiteException e)

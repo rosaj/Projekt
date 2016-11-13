@@ -37,7 +37,6 @@ namespace Osobni_Troškovnik
 
 				con = new SQLiteConnection(connectionString);
 				con.Open();
-				Console.WriteLine("spojeno");
 
 		}
 		public void closeCon()

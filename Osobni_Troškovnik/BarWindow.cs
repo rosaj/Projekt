@@ -65,6 +65,13 @@ namespace Osobni_Troškovnik
 			pv.Model = model;
 			var v = new VBox();
 			v.Add(pv);
+			var save = new Button(ImageButton.imageButton("gtk-save"));
+			save.Clicked += (sender, e) =>
+			{
+				PlotSaver.saveToFile(this, "BarChart_" +kategorija+" "+ odDatum.ToShortDateString() + "_-_" + doDatum.ToShortDateString() + ".png", model);
+			};
+
+			v.PackStart(save, false, false, 10);
 			this.Add(v);
 			this.ShowAll();
 

@@ -53,6 +53,13 @@ namespace Osobni_Troškovnik
 			pv.Model = myModel;
 			var v = new VBox();
 			v.Add(pv);
+			var save = new Button(ImageButton.imageButton("gtk-save"));
+			save.Clicked += (sender, e) =>
+			{
+				PlotSaver.saveToFile(this, "LineChart_" + odDatum.ToShortDateString() + "_-_" + doDatum.ToShortDateString() + ".png", myModel);
+			};
+
+			v.PackStart(save, false, false, 10);
 			this.Add(v);
 			this.ShowAll();
 		}
@@ -61,7 +68,7 @@ namespace Osobni_Troškovnik
 			this.SetSizeRequest(800, 500);
 			var pv = new PlotView();
 
-			var myModel = new PlotModel { Title = "Statistika", LegendTitle = "Legenda" };
+			var myModel = new PlotModel { Title = "Statistika za: "+kategorija, LegendTitle = "Legenda" };
 			var x = new DateTimeAxis() { Title = "Datum", TitleColor = OxyColors.DarkGreen };
 			var y = new LinearAxis() { Position = AxisPosition.Left, Minimum = 0, LabelFormatter = StringManipulator.formatter, Title = "Troskovi" };
 			myModel.Axes.Add(x);
@@ -85,6 +92,13 @@ namespace Osobni_Troškovnik
 			pv.Model = myModel;
 			var v = new VBox();
 			v.Add(pv);
+			var save = new Button(ImageButton.imageButton("gtk-save"));
+			save.Clicked += (sender, e) =>
+			{
+				PlotSaver.saveToFile(this, "LineChart_"+kategorija+"_" + odDatum.ToShortDateString() + "_-_" + doDatum.ToShortDateString() + ".png", myModel);
+			};
+
+			v.PackStart(save, false, false, 10);
 			this.Add(v);
 			this.ShowAll();
 		}
