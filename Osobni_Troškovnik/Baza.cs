@@ -192,6 +192,43 @@ namespace Osobni_Troškovnik
 
 		}
 
+		public List<Trosak> getGrupiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		{
+
+			var lista = new List<Trosak>();
+
+
+			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			int id = Int32.Parse(reader[0].ToString());
+
+			var datumOdString = odDatum.ToString("s");
+			var datumDoString = doDatum.ToString("s");
+			sql = string.Format("select SUM(cijena),datum from trosak " +
+								"where id_kategorija= '{0}'" +
+								" AND datum >= '{1}' AND datum <= '{2}' " +
+			                    "group by datum" , id, datumOdString, datumDoString);
+			command = new SQLiteCommand(sql, con);
+			reader = command.ExecuteReader();
+
+
+			while (reader.Read())
+			{
+				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd-MM-yyyy");
+
+				var t = new Trosak(kategorija, float.Parse(reader[0].ToString()),
+								   dateString,"");
+				lista.Add(t);
+			}
+
+
+			return lista;
+
+
+		}
+
 
 	}
 

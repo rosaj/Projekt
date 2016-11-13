@@ -7,9 +7,9 @@ namespace Osobni_Troškovnik
 		{
 			s = s.Trim();
 			int range = duzina;
-			for (int i = 0; i < s.Length / duzina; i++)
+			for (int i = 0; i < s.Length; i++)
 			{
-				int x = s.IndexOf('\n', 0, range);
+				int x = s.IndexOf('\n');
 				if (x > 0)
 				{
 					s = s.Remove(x, 1);

@@ -78,6 +78,11 @@ namespace Osobni_Troškovnik
 				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti duži od \n 100 znakova");
 				return false;
 			}
+			else if (opis.Buffer.Text.Trim() == "")
+			{
+				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti prazan");
+				return false;
+			}
 			else {
 				
 				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),StringManipulator.insertBreaks(opis.Buffer.Text, 40));

@@ -19,11 +19,11 @@ namespace Osobni_Troškovnik
 		{
 			var items = new List<ColumnItem>();
 			var datums = new List<string>();
-			var list = Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, kategorija);
+			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
 
-			for (int i = list.Count-1; i >= 0; --i)
+			foreach(Trosak t in list)
 			{
-				var t = list[i];
+				
 				var b = new ColumnItem(t.Cijena);
 				items.Add(b);
 				datums.Add(t.Datum);
