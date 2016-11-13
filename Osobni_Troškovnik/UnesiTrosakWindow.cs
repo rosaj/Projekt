@@ -14,6 +14,8 @@ namespace Osobni_Troškovnik
 		public UnesiTrosakWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Novi trošak";
 
 			this.Resizable = false;
 			List<String> lista = Baza.getInstance.getKategorije();

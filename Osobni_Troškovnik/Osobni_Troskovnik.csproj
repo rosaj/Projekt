@@ -96,6 +96,7 @@
     <EmbeddedResource Include="Pics\bar.png" />
     <EmbeddedResource Include="Pics\pie.png" />
     <EmbeddedResource Include="Pics\chart.png" />
+    <EmbeddedResource Include="Pics\winico.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

@@ -12,6 +12,8 @@ namespace Osobni_Troškovnik
 		public BarWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Stupčasti grafikon";
 		}
 
 

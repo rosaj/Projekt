@@ -1,4 +1,5 @@
 ﻿using System;
+using Gtk;
 namespace Osobni_Troškovnik
 {
 	public partial class DatumChooseWindow : Gtk.Window
@@ -8,6 +9,8 @@ namespace Osobni_Troškovnik
 		public DatumChooseWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Odaberi raspon";
 		}
 
 		protected void filtrirajClicked(object sender, EventArgs e)

@@ -12,8 +12,8 @@ namespace Osobni_Troškovnik
 		public PlotWindow() : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
-
-
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Linijski grafikon";
 		}
 
 		public void plotSveKategorije(DateTime odDatum, DateTime doDatum)

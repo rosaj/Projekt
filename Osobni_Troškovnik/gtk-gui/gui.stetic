@@ -108,6 +108,11 @@
         <property name="Image">resource:Osobni_Troškovnik.Pics.chart.png</property>
       </source>
     </icon-set>
+    <icon-set id="Icon">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.winico.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="Osobni_Troškovnik.UnesiTrosakWindow" design-size="371 457">
     <property name="MemberName" />
@@ -504,7 +509,7 @@
   </widget>
   <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="618 410">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="Title" translatable="yes">Osobni Troškovnik</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>

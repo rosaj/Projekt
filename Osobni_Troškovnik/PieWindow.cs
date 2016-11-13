@@ -10,6 +10,9 @@ namespace Osobni_Troškovnik
 		public PieWindow(DateTime odDatum, DateTime doDatum) :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Grafikon pita";
+
 			this.SetSizeRequest(800, 600);
 			var pv = new PlotView();
 			var myModel = new PlotModel { Title = "Statistika" };

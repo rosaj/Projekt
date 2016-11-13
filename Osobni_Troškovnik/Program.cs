@@ -8,7 +8,7 @@ namespace Osobni_Troškovnik
 		{
 			Application.Init();
 			Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
-			MainWindow win = new MainWindow();
+			var win = new MainWindow();
 
 
 			win.Show();

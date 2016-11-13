@@ -10,8 +10,9 @@ namespace Osobni_Troškovnik
 		public MainWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
-
 			notebook.CurrentPage = 0;
+			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Title = "Osobni troškovnik";
 
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -253,8 +254,6 @@ namespace Osobni_Troškovnik
 			var lab2 = new Label("Ukupna cijena");
 			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.8f, 0.5f);
-			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
-			t.Attach(date, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 			Gdk.Color picked;
 			float cijena = 0;
@@ -265,7 +264,7 @@ namespace Osobni_Troškovnik
 
 				var l = new Label(kategorija);
 				float total = Baza.getInstance.getSumuTroskovaURazdoblju(datumPoc, datumKraj, kategorija);
-					var l2 = new Label((total).ToString());
+				var l2 = new Label((total).ToString());
 				l.SetAlignment(0.2f, 0.5f);
 			
 				l2.SetAlignment(0.8f, 0.5f);
@@ -369,7 +368,7 @@ namespace Osobni_Troškovnik
 				l.SetAlignment(0.2f, 0.5f);
 
 
-				picked = (i % 2 == 0 ? Props.getColor("#BEFFEA") : Props.getColor("#D7D7D7"));
+				picked = (i % 2 == 0 ? Props.getColor("#FFC398") : Props.getColor("#D798FF"));
 
 
 
