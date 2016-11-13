@@ -93,6 +93,9 @@
     <EmbeddedResource Include="Pics\Odjeća.png" />
     <EmbeddedResource Include="Pics\Računalna oprema.png" />
     <EmbeddedResource Include="Pics\r.png" />
+    <EmbeddedResource Include="Pics\bar.png" />
+    <EmbeddedResource Include="Pics\pie.png" />
+    <EmbeddedResource Include="Pics\chart.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
