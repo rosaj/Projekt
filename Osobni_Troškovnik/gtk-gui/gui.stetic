@@ -93,21 +93,6 @@
         <property name="Image">resource:Osobni_Troškovnik.Pics.r.png</property>
       </source>
     </icon-set>
-    <icon-set id="Pie">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Pics.pie.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Line">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Pics.chart.png</property>
-      </source>
-    </icon-set>
-    <icon-set id="Bar">
-      <source>
-        <property name="Image">resource:Osobni_Troškovnik.Pics.bar.png</property>
-      </source>
-    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="Osobni_Troškovnik.UnesiTrosakWindow" design-size="371 457">
     <property name="MemberName" />
