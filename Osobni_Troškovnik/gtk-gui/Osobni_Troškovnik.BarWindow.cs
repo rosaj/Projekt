@@ -17,7 +17,7 @@ namespace Osobni_Troškovnik
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
-			this.Show();
+			this.Show(); 
 		}
 	}
 }
