@@ -3,7 +3,7 @@ using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.GtkSharp;
 using Gtk;
-using System.IO;
+using System.Collections.Generic;
 namespace Osobni_Troškovnik
 {
 	public partial class PieWindow : Gtk.Window
@@ -20,10 +20,9 @@ namespace Osobni_Troškovnik
 			var series = new PieSeries
 			{ StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 
-			foreach (string s in Baza.getInstance.getKategorije())
+			foreach (KeyValuePair<string, float> s in Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum))
 			{
-				float suma = Baza.getInstance.getSumuTroskovaURazdoblju(odDatum, doDatum, s);
-				if (suma > 0) series.Slices.Add(new PieSlice(s, suma));
+				series.Slices.Add(new PieSlice(s.Key, s.Value));
 
 			}
 			myModel.Series.Add(series);

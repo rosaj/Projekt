@@ -27,6 +27,7 @@ namespace Osobni_Troškovnik
 				return db;
 			}
 		}
+
 		private void connectToDb()
 		{
 
@@ -130,7 +131,7 @@ namespace Osobni_Troškovnik
 
 
 		}
-		public float getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		/*public float getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
 		{
 
 			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
@@ -155,7 +156,7 @@ namespace Osobni_Troškovnik
 
 
 
-		}
+		}*/
 
 		public List<Trosak> getGrupiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
 		{
@@ -209,7 +210,8 @@ namespace Osobni_Troškovnik
 									   "join kategorija " +
 									   "ON id_kategorija = kategorija.id " +
 									   "where datum >= '{0}' AND datum <= '{1}' " +
-									   "group by ime ", datumOdString, datumDoString);
+									   "group by ime " +
+			                           "order by  sum(cijena) desc ", datumOdString, datumDoString);
 			SQLiteCommand command = new SQLiteCommand(sql, con);
 			SQLiteDataReader reader = command.ExecuteReader();
 

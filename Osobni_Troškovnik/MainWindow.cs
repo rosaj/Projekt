@@ -39,8 +39,9 @@ namespace Osobni_Troškovnik
 
 		protected void totalCostClicked(object sender, EventArgs e)
 		{
-
-			addTotalTroskove(Baza.getInstance.getKategorije(), DateTime.Now.AddMonths(-1), DateTime.Now);
+			var p = DateTime.Now.AddMonths(-1);
+			var k = DateTime.Now;
+			addTotalTroskove(Baza.getInstance.getSumiraneTroskoveURazdoblju(p,k),p,k);
 
 		}
 
@@ -209,7 +210,7 @@ namespace Osobni_Troškovnik
 
 
 
-		private void addTotalTroskove(List<String> lista, DateTime datumPoc, DateTime datumKraj)
+		private void addTotalTroskove(Dictionary<String,float> lista, DateTime datumPoc, DateTime datumKraj)
 		{
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);
@@ -245,7 +246,7 @@ namespace Osobni_Troškovnik
 					dCW.signaliziraj += (odDatum, doDatum) =>
 					{
 						notebook.Remove(sW);
-						addTotalTroskove(Baza.getInstance.getKategorije(), odDatum, doDatum);
+						addTotalTroskove(Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum), odDatum, doDatum);
 						dCW = null;
 					};
 				}
@@ -268,12 +269,17 @@ namespace Osobni_Troškovnik
 			Gdk.Color picked;
 			float cijena = 0;
 
-			for (int i = 3; i < lista.Count + 3; i++)
-			{
-				var kategorija = lista[i - 3];
-
+			//	for (int i = 3; i < lista.Count + 3; i++)
+			//{
+			//var kategorija = lista[i - 3];
+			int i = 3;
+				foreach(KeyValuePair<string,float> dic in lista)
+				{
+					var kategorija = dic.Key;
+					
 				var l = new Label(kategorija);
-				float total = Baza.getInstance.getSumuTroskovaURazdoblju(datumPoc, datumKraj, kategorija);
+					//float total = Baza.getInstance.getSumuTroskovaURazdoblju(datumPoc, datumKraj, kategorija);
+					float total = dic.Value;
 				var l2 = new Label((total).ToString());
 				l.SetAlignment(0.2f, 0.5f);
 
@@ -292,6 +298,7 @@ namespace Osobni_Troškovnik
 				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				cijena += total;
+				i++;
 			}
 			cijenaLab.Text += cijena;
 			t.BorderWidth = 50;
