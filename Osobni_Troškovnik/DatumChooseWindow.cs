@@ -4,8 +4,10 @@ namespace Osobni_Troškovnik
 {
 	public partial class DatumChooseWindow : Gtk.Window
 	{
+		
 		public delegate void eventHandler(DateTime odDatum, DateTime doDatum);
 		public event eventHandler signaliziraj;
+
 		public DatumChooseWindow() : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
