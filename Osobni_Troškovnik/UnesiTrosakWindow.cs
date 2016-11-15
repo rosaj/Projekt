@@ -28,8 +28,8 @@ namespace Osobni_Troškovnik
 
 		protected void odustaniClicked(object sender, EventArgs e)
 		{
+			if(signaliziraj!=null)signaliziraj();
 			this.Destroy();
-			signaliziraj();
 		}
 
 		protected void spremiAndNoviClicked(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace Osobni_Troškovnik
 		protected void spremiClicked(object sender, EventArgs e)
 		{
 			if (spremi()) Destroy();
-			signaliziraj();
+			if (signaliziraj != null)	signaliziraj();
 
 
 		}
@@ -95,7 +95,7 @@ namespace Osobni_Troškovnik
 
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
-			signaliziraj();
+			if (signaliziraj != null) signaliziraj();
 
 		}
 

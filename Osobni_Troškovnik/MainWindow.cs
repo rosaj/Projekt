@@ -153,6 +153,7 @@ namespace Osobni_Troškovnik
 						addTroskove(Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, ime), ime, odDatum, doDatum);
 						dCW = null;
 					};
+					dCW.cancelOdabiranje += () => dCW = null;
 				}
 
 			};
@@ -249,6 +250,8 @@ namespace Osobni_Troškovnik
 						addTotalTroskove(Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum), odDatum, doDatum);
 						dCW = null;
 					};
+					dCW.cancelOdabiranje += () => dCW = null;
+
 				}
 
 			};
@@ -343,6 +346,7 @@ namespace Osobni_Troškovnik
 						addStatisticView(Baza.getInstance.getKategorije(), odDat, doDat);
 						dCW = null;
 					};
+					dCW.cancelOdabiranje += () => dCW = null;
 				}
 
 			};

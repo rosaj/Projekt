@@ -227,38 +227,6 @@ namespace Osobni_Troškovnik
 
 		}
 
-		/*	public List<Trosak> getTroskove(string kategorija)
-			{
-				var lista = new List<Trosak>();
-
-
-				string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-				SQLiteCommand command = new SQLiteCommand(sql, con);
-				SQLiteDataReader reader = command.ExecuteReader();
-				reader.Read();
-				int id = Int32.Parse(reader[0].ToString());
-
-				sql = string.Format("select cijena, date(datum), opis from trosak " +
-									"where id_kategorija= '{0}'" +
-									"order by datum desc", id);
-
-				command = new SQLiteCommand(sql, con);
-				reader = command.ExecuteReader();
-
-
-				while (reader.Read()) 
-				{
-					var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd-MM-yyyy");
-
-					var t = new Trosak(kategorija,float.Parse(reader[0].ToString()),
-									   dateString , reader[2].ToString());
-					lista.Add(t);
-				}
-
-
-				return lista;
-			}
-	*/
 
 
 	}

@@ -17,7 +17,7 @@ namespace Osobni_Troškovnik
 
 		public void spremiKategorijuClicked(object sender, EventArgs e)
 		{
-			resurs(novaKategorija.Text);
+			if (resurs != null)	resurs(novaKategorija.Text);
 			this.Destroy();
 
 		}

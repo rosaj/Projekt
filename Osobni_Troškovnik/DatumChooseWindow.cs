@@ -7,6 +7,8 @@ namespace Osobni_Troškovnik
 
 		public delegate void eventHandler(DateTime odDatum, DateTime doDatum);
 		public event eventHandler signaliziraj;
+		public delegate void cancelHandler();
+		public event cancelHandler cancelOdabiranje;
 
 		public DatumChooseWindow() : base(Gtk.WindowType.Toplevel)
 		{
@@ -17,13 +19,13 @@ namespace Osobni_Troškovnik
 
 		protected void filtrirajClicked(object sender, EventArgs e)
 		{
-			signaliziraj(kalendarOd.GetDate(), kalendarDo.GetDate());
+			if(signaliziraj!=null)signaliziraj(kalendarOd.GetDate(), kalendarDo.GetDate());
 			Destroy();
 		}
 
 		protected void onDeleteEvent(object o, Gtk.DeleteEventArgs args)
 		{
-			signaliziraj(DateTime.Parse("1/1/2000"), DateTime.Now);
+			if(cancelOdabiranje!=null)	cancelOdabiranje();
 			Destroy();
 		}
 	}
