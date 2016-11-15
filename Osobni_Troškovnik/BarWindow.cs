@@ -14,6 +14,7 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Stupčasti grafikon";
+			Console.WriteLine("");
 		}
 
 
