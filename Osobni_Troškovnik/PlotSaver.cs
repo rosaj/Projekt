@@ -12,9 +12,8 @@ namespace Osobni_Troškovnik
 		{
 
 			var desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-			var fullName = System.IO.Path.Combine(desktopFolder, ime);
+			var fullName = Path.Combine(desktopFolder, ime);
 
-			Console.WriteLine(Environment.CurrentDirectory);
 			var fs = new FileStream(fullName, FileMode.Create);
 
 			var pngExporter = new PngExporter { Width = 600, Height = 400, Background = OxyColors.White };

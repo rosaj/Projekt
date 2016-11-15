@@ -14,7 +14,7 @@ namespace Osobni_Troškovnik
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
 			this.SetSizeRequest(800, 600);
-
+			Baza.getInstance.getSumiraneTroskoveURazdoblju(DateTime.Now.AddMonths(-1),DateTime.Now);
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
@@ -40,13 +40,13 @@ namespace Osobni_Troškovnik
 		protected void totalCostClicked(object sender, EventArgs e)
 		{
 
-			addTotalTroskove(Baza.getInstance.getKategorije(),DateTime.Parse("1/1/2000"),DateTime.Now);
+			addTotalTroskove(Baza.getInstance.getKategorije(),DateTime.Now.AddMonths(-1),DateTime.Now);
 
 		}
 
 		protected void izvjesceClicked(object sender, EventArgs e)
 		{
-			addStatisticView(Baza.getInstance.getKategorije(),	DateTime.Parse("1/1/2000"), DateTime.Now);
+			addStatisticView(Baza.getInstance.getKategorije(),	DateTime.Now.AddMonths(-1), DateTime.Now);
 		}
 
 		protected void izlazClicked(object sender, EventArgs e)
@@ -100,11 +100,13 @@ namespace Osobni_Troškovnik
 
 		private void kategorijaClicked(string ime)
 		{
-			addTroskove(Baza.getInstance.getTroskove(ime), ime);
+			var p = DateTime.Now.AddMonths(-1);
+			var k = DateTime.Now;
+			addTroskove(Baza.getInstance.getTroskoveURazdoblju(p,k,ime),ime,p,k);
 
 		}
 
-		private void addTroskove(List<Trosak> lista, string ime)
+		private void addTroskove(List<Trosak> lista, string ime, DateTime datumPoc, DateTime datumKraj)
 		{
 
 
@@ -147,7 +149,7 @@ namespace Osobni_Troškovnik
 					dCW.signaliziraj += (odDatum, doDatum) =>
 					{
 						notebook.Remove(sW);
-						addTroskove(Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, ime), ime);
+						addTroskove(Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, ime), ime,odDatum,doDatum);
 						dCW = null;
 					};
 				}
@@ -165,6 +167,10 @@ namespace Osobni_Troškovnik
 			var lab2 = new Label("Cijena");
 			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.9f, 0.5f);
+
+
+			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
+			t.Attach(date, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 
 			float cijena = 0;
@@ -255,6 +261,10 @@ namespace Osobni_Troškovnik
 			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.8f, 0.5f);
 
+			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
+			t.Attach(date, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+
 			Gdk.Color picked;
 			float cijena = 0;
 
@@ -274,7 +284,7 @@ namespace Osobni_Troškovnik
 
 
 				var e = Props.add2EventBox(l, picked);
-				var e1 = Props.add2EventBox(null, picked);
+				var e1 = Props.add2EventBox(new Label(), picked);
 				var e2 = Props.add2EventBox(l2, picked);
 
 
@@ -284,7 +294,7 @@ namespace Osobni_Troškovnik
 				cijena += total;
 			}
 			cijenaLab.Text += cijena;
-			t.BorderWidth = 20;
+			t.BorderWidth = 50;
 			notebook.ShowAll();
 			notebook.CurrentPage = 2;
 
@@ -293,7 +303,7 @@ namespace Osobni_Troškovnik
 
 		private void addStatisticView(List<string> lista, DateTime odDatum, DateTime doDatum)
 		{
-
+			 
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);
 			sW.AddWithViewport(t);
@@ -334,6 +344,7 @@ namespace Osobni_Troškovnik
 
 			var pie = new Button(ImageButton.imageButton("Pie"));
 			var lin = new Button(ImageButton.imageButton("Line"));
+			var bar = new Button(ImageButton.imageButton("Bar"));
 			pie.Clicked += (sender, e) => 
 			{
 				var pieChart = new PieWindow(odDatum, doDatum);	
@@ -343,9 +354,17 @@ namespace Osobni_Troškovnik
 				var lineChart = new PlotWindow();
 				lineChart.plotSveKategorije(odDatum, doDatum);
 			};
+			bar.Clicked += (sender, e) => 
+			{
+				var barChart = new BarWindow();
+				barChart.barPlot(odDatum, doDatum);
+
+			};
+
 			var hbox = new HBox(true, 10);
 			hbox.PackStart(lin, false, false, 5);
 			hbox.PackEnd(pie, false, false, 5);
+			hbox.PackEnd(bar, false, false, 5);
 			t.Attach(hbox, 2, 3, 2, 3, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 
@@ -373,7 +392,7 @@ namespace Osobni_Troškovnik
 
 
 				var e = Props.add2EventBox(l, picked);
-				var e1 = Props.add2EventBox(null, picked);
+				var e1 = Props.add2EventBox(new Label(), picked);
 				var b1 = new Button(ImageButton.imageButton("Line"));
 				var b2 = new Button(ImageButton.imageButton("Bar"));
 				var hb = new HBox(true, 10);
@@ -394,8 +413,8 @@ namespace Osobni_Troškovnik
 				};
 				b2.Clicked += (sender, ev) => 
 				{
-					var bar = new BarWindow();
-					bar.barPlot(odDatum, doDatum, kategorija);
+					var barC = new BarWindow();
+					barC.barPlotKategorija(odDatum, doDatum, kategorija);
 				};
 			}
 
