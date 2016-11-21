@@ -54,6 +54,7 @@ namespace Osobni_Troškovnik
 			this.DefaultWidth = 274;
 			this.DefaultHeight = 150;
 			this.Show();
+			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);
 			this.spremi.Clicked += new global::System.EventHandler(this.spremiKategorijuClicked);
 		}
 	}

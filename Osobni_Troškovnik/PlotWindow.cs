@@ -103,6 +103,11 @@ namespace Osobni_Troškovnik
 			this.ShowAll();
 		}
 
+		protected void KeyPress(object o, KeyReleaseEventArgs args)
+		{
+			uint keyCode = args.Event.KeyValue;
+			if (keyCode == 65307) this.Destroy();
+		}
 
 	}
 }

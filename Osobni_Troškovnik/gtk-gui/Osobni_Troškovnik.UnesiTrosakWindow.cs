@@ -256,6 +256,7 @@ namespace Osobni_Troškovnik
 			this.DefaultHeight = 457;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);
 			this.dodajKategorijuButton.Clicked += new global::System.EventHandler(this.novaKategorijaClicked);
 			this.odustaniButton.Clicked += new global::System.EventHandler(this.odustaniClicked);
 			this.spremiAndNovi.Clicked += new global::System.EventHandler(this.spremiAndNoviClicked);

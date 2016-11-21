@@ -28,5 +28,10 @@ namespace Osobni_Troškovnik
 			if(cancelOdabiranje!=null)	cancelOdabiranje();
 			Destroy();
 		}
+		protected void KeyPress(object o, KeyReleaseEventArgs args)
+		{
+			uint keyCode = args.Event.KeyValue;
+			if (keyCode == 65307) this.Destroy();
+		}
 	}
 }

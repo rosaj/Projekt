@@ -98,6 +98,11 @@ namespace Osobni_Troškovnik
 			if (signaliziraj != null) signaliziraj();
 
 		}
-
+		protected void KeyPress(object o, KeyReleaseEventArgs args)
+		{
+			uint keyCode = args.Event.KeyValue;
+			if (keyCode == 65307) if (signaliziraj != null) signaliziraj();
+			this.Destroy();
+		}
 	}
 }
