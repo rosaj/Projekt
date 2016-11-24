@@ -41,10 +41,10 @@ namespace Osobni_Troškovnik
 			this.notebook.Name = "notebook";
 			this.notebook.CurrentPage = 0;
 			this.notebook.ShowBorder = false;
-<<<<<<< Updated upstream
-=======
+//<<<<<<< Updated upstream
+//=======
 			this.notebook.ShowTabs = false;
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 			this.notebook.Scrollable = true;
 			// Container child notebook.Gtk.Notebook+NotebookChild
 			this.table1 = new global::Gtk.Table(((uint)(6)), ((uint)(1)), true);

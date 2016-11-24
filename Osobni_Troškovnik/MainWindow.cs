@@ -14,7 +14,6 @@ namespace Osobni_Troškovnik
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
 			this.SetSizeRequest(800, 600);
-			Baza.getInstance.getSumiraneTroskoveURazdoblju(DateTime.Now.AddMonths(-1), DateTime.Now);
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
