@@ -13,7 +13,6 @@ namespace Osobni_Troškovnik
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
-			this.SetSizeRequest(800, 600);
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
@@ -161,7 +160,7 @@ namespace Osobni_Troškovnik
 
 			var lab = new Label("Opis");
 			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-			lab.SetAlignment(0f, 0.5f);
+			lab.SetAlignment(0.1f, 0.5f);
 			var lab1 = new Label("Datum");
 			t.Attach(lab1, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			//lab1.SetAlignment(0.7f, 0.5f);
@@ -183,11 +182,11 @@ namespace Osobni_Troškovnik
 				var l = new Label(trosak.Opis);
 				var l1 = new Label(trosak.Datum);
 				var l2 = new Label(trosak.Cijena.ToString());
-				l.SetAlignment(0, 0.5f);
+				l.SetAlignment(0.1f, 0.5f);
 				//l1.SetAlignment(0.7f, 0.5f);
 				l2.SetAlignment(0.9f, 0.5f);
 
-				picked = (i % 2 == 0 ? Props.getColor("#E7FFB3") : Props.getColor("#C4FFE4"));
+				picked = (i % 2 == 0 ? Props.getColor("#B3BBFF") : Props.getColor("#CCD8E0"));
 
 
 
@@ -287,7 +286,7 @@ namespace Osobni_Troškovnik
 
 				l2.SetAlignment(0.8f, 0.5f);
 
-				picked = (i % 2 == 0 ? Props.getColor("#FFC398") : Props.getColor("#D798FF"));
+				picked = (i % 2 == 0 ? Props.getColor("#C4FAFF") : Props.getColor("#FCF1FF"));
 
 
 

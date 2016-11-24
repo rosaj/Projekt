@@ -53,6 +53,9 @@ namespace Osobni_Troškovnik
 			this.Name = "Osobni_Troškovnik.MainWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString("Osobni Troškovnik");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.BorderWidth = ((uint)(6));
+			this.DefaultWidth = 719;
+			this.DefaultHeight = 569;
 			// Container child Osobni_Troškovnik.MainWindow.Gtk.Container+ContainerChild
 			this.notebook = new global::Gtk.Notebook();
 			this.notebook.CanFocus = true;
@@ -185,6 +188,7 @@ namespace Osobni_Troškovnik
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox();
 			this.hbox3.Name = "hbox3";
+			this.hbox3.Spacing = 6;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.button5 = new global::Gtk.Button();
 			this.button5.CanFocus = true;
@@ -203,7 +207,6 @@ namespace Osobni_Troškovnik
 			w19.Position = 2;
 			w19.Expand = false;
 			w19.Fill = false;
-			w19.Padding = ((uint)(8));
 			this.notebook.Add(this.vbox1);
 			// Notebook tab
 			this.label1 = new global::Gtk.Label();
@@ -246,8 +249,6 @@ namespace Osobni_Troškovnik
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 780;
-			this.DefaultHeight = 597;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.button2.Clicked += new global::System.EventHandler(this.noviTrosakClicked);
