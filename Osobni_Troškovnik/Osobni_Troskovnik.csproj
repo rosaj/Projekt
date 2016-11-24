@@ -70,7 +70,6 @@
     <EmbeddedResource Include="Pics\Namještaj.png" />
     <EmbeddedResource Include="Pics\Shopping.png" />
     <EmbeddedResource Include="Pics\Skolovanje.png" />
-    <EmbeddedResource Include="Pics\Stanarina.png" />
     <EmbeddedResource Include="Pics\Struja.png" />
     <EmbeddedResource Include="Pics\TV.png" />
     <EmbeddedResource Include="Pics\Telefon.png" />
@@ -89,6 +88,8 @@
     <EmbeddedResource Include="Pics\popisTroskova.png" />
     <EmbeddedResource Include="Pics\statistika.png" />
     <EmbeddedResource Include="Pics\izlaz.png" />
+    <EmbeddedResource Include="Pics\back.png" />
+    <EmbeddedResource Include="Pics\Stanarina.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

@@ -62,9 +62,14 @@ namespace Osobni_Troškovnik
 			notebook.Add(sW);
 
 			t.RowSpacing = 10;
-			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+
+			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
+
+			var w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
 			t.Attach(back, 0, 1, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
-			back.SetSizeRequest(400, 50);
+		//	back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
 				notebook.Remove(sW);
@@ -118,10 +123,16 @@ namespace Osobni_Troškovnik
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
 
-			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+		//	var back = new Button(ImageButton.imageButton("gtk-go-back"));
+		
+			var w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
+
+
 			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 
-			back.SetSizeRequest(400, 50);
+			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
 				notebook.Remove(sW);
@@ -220,10 +231,15 @@ namespace Osobni_Troškovnik
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
 
-			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
+			var w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
+
+
 			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 
-			back.SetSizeRequest(400, 50);
+			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
 				notebook.Remove(sW);
@@ -321,10 +337,15 @@ namespace Osobni_Troškovnik
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
 
-			var back = new Button(ImageButton.imageButton("gtk-go-back"));
+	//		var back = new Button(ImageButton.imageButton("gtk-go-back"));
+	
+			var w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
+
 			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 
-			back.SetSizeRequest(400, 50);
+			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
 				notebook.Remove(sW);

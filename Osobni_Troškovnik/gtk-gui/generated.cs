@@ -54,8 +54,6 @@ namespace Stetic
 				w1.Add("Line", w21);
 				global::Gtk.IconSet w22 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.winico.png"));
 				w1.Add("Icon", w22);
-				global::Gtk.IconSet w23 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.dodajTrosak.png"));
-				w1.Add("dodajTrosak", w23);
 				w1.AddDefault();
 			}
 		}
