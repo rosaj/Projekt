@@ -47,5 +47,26 @@ namespace Osobni_Troškovnik
 			w.ModifyFont(Pango.FontDescription.FromString(font));
 			return e;
 		}
+
+
+		public static EventBox add2EventBox(Widget w, Gdk.Color textColor, string font)
+		{
+
+			var e = new EventBox();
+			e.Add(w);
+			w.ModifyFg(StateType.Normal, textColor);
+			w.ModifyFont(Pango.FontDescription.FromString(font));
+			return e;
+		}
+
+
+		public static EventBox add2EventBoxWithTextColor(Widget w, Gdk.Color textColor)
+		{
+
+			var e = new EventBox();
+			e.Add(w);
+			w.ModifyFg(StateType.Normal, textColor);
+			return e;
+		}
 	}
 }

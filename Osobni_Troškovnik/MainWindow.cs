@@ -142,15 +142,24 @@ namespace Osobni_Troškovnik
 			var kategorija = ImageButton.imageButton(ime);
 			var hbox = new HBox(false, 6);
 			hbox.PackStart(kategorija, false, true, 0);
-			hbox.PackStart(new Label(ime), false, true, 0);
+
+			var katBoja = Props.add2EventBox(new Label(ime), Props.getColor("#0017FF"), "Kristen ITC 14");
+			hbox.PackStart(katBoja, false, true, 0);
 			t.Attach(hbox, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 			var cijenaLab = new Label("Ukupan trošak: ");
-			t.Attach(cijenaLab, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			cijenaLab.SetAlignment(0.8f, 0.5f);
+			var cijenaBoja = Props.add2EventBox(cijenaLab, Props.getColor("#0017FF"),"Kristen ITC 14");
+			t.Attach(cijenaBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
-			var rangeButton = new Button();
-			rangeButton.Label = "Filtriraj po datumu";
+
+		//	var rangeButton = new Button();
+		//	rangeButton.Label = "Filtriraj po datumu";
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
+			var rangeButton = new Button(w3);
+
+
 			rangeButton.Clicked += (sender, e) =>
 			{
 				if (dCW == null)
@@ -167,21 +176,28 @@ namespace Osobni_Troškovnik
 
 			};
 
+
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Opis");
-			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var opisBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(opisBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab.SetAlignment(0.1f, 0.5f);
+
 			var lab1 = new Label("Datum");
-			t.Attach(lab1, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-			//lab1.SetAlignment(0.7f, 0.5f);
+			var datumBoja = Props.add2EventBox(lab1, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(datumBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
 			var lab2 = new Label("Cijena");
-			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var cijenaFg = Props.add2EventBox(lab2, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(cijenaFg, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.9f, 0.5f);
 
 
 			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
-			t.Attach(date, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 14");
+
+			t.Attach(dateBoja, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 
 			float cijena = 0;
@@ -220,7 +236,7 @@ namespace Osobni_Troškovnik
 
 
 
-		private void addTotalTroskove(Dictionary<String,float> lista, DateTime datumPoc, DateTime datumKraj)
+		private void addTotalTroskove(Dictionary<string,float> lista, DateTime datumPoc, DateTime datumKraj)
 		{
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);

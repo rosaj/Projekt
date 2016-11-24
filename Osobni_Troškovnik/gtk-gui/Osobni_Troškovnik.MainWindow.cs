@@ -62,7 +62,6 @@ namespace Osobni_Troškovnik
 			this.notebook.Name = "notebook";
 			this.notebook.CurrentPage = 0;
 			this.notebook.ShowBorder = false;
-			this.notebook.ShowTabs = false;
 			this.notebook.Scrollable = true;
 			// Container child notebook.Gtk.Notebook+NotebookChild
 			this.vbox1 = new global::Gtk.VBox();
