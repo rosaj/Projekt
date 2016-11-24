@@ -30,7 +30,7 @@ namespace Osobni_Troškovnik
 				uT.signaliziraj += () => uT = null;
 			}
 		}
-		protected void statistikaClicked(object sender, EventArgs e)
+		protected void popisClicked(object sender, EventArgs e)
 		{
 			notebook.CurrentPage = 1;
 			generirajKategorije();
@@ -44,7 +44,7 @@ namespace Osobni_Troškovnik
 
 		}
 
-		protected void izvjesceClicked(object sender, EventArgs e)
+		protected void statistikaClicked(object sender, EventArgs e)
 		{
 			addStatisticView(Baza.getInstance.getKategorije(), DateTime.Now.AddMonths(-1), DateTime.Now);
 		}

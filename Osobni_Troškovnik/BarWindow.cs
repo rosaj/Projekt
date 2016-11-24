@@ -36,7 +36,7 @@ namespace Osobni_Troškovnik
 			var barSeries = new ColumnSeries()
 			{
 				ItemsSource = items,
-				LabelPlacement = LabelPlacement.Inside,
+				LabelPlacement = LabelPlacement.Base,
 				LabelFormatString = "{0:.00} kn"
 
 			};
@@ -91,7 +91,7 @@ namespace Osobni_Troškovnik
 			var barSeries = new ColumnSeries()
 			{
 				ItemsSource = items,
-				LabelPlacement = LabelPlacement.Inside,
+				LabelPlacement = LabelPlacement.Base,
 				LabelFormatString = "{0:.00} kn"
 
 			};
