@@ -15,6 +15,10 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Odaberi raspon";
+			var datum = DateTime.Now.AddMonths(-2);
+			kalendarOd.SelectMonth((uint)datum.Month, (uint)datum.Year);
+
+
 		}
 
 		protected void filtrirajClicked(object sender, EventArgs e)
@@ -31,7 +35,7 @@ namespace Osobni_Troškovnik
 		protected void KeyPress(object o, KeyReleaseEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
-			if (keyCode == 65307) this.Destroy();
+			if (keyCode == 65307) onDeleteEvent(o,new DeleteEventArgs());
 		}
 	}
 }

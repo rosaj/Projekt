@@ -32,6 +32,8 @@ namespace Osobni_Troškovnik
 
 		private global::Gtk.Fixed fixed3;
 
+		private global::Gtk.VBox vbox4;
+
 		private global::Gtk.HBox hbox3;
 
 		private global::Gtk.Button button5;
@@ -60,7 +62,7 @@ namespace Osobni_Troškovnik
 			this.notebook = new global::Gtk.Notebook();
 			this.notebook.CanFocus = true;
 			this.notebook.Name = "notebook";
-			this.notebook.CurrentPage = 0;
+			this.notebook.CurrentPage = 1;
 			this.notebook.ShowBorder = false;
 			this.notebook.Scrollable = true;
 			// Container child notebook.Gtk.Notebook+NotebookChild
@@ -185,6 +187,13 @@ namespace Osobni_Troškovnik
 			w16.Expand = false;
 			w16.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
+			this.vbox4 = new global::Gtk.VBox();
+			this.vbox4.Name = "vbox4";
+			this.vbox4.Spacing = 6;
+			this.vbox1.Add(this.vbox4);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.vbox4]));
+			w17.Position = 2;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox();
 			this.hbox3.Name = "hbox3";
 			this.hbox3.Spacing = 6;
@@ -193,19 +202,19 @@ namespace Osobni_Troškovnik
 			this.button5.CanFocus = true;
 			this.button5.Name = "button5";
 			this.button5.UseUnderline = true;
-			global::Gtk.Image w17 = new global::Gtk.Image();
-			w17.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.izlaz.png");
-			this.button5.Image = w17;
+			global::Gtk.Image w18 = new global::Gtk.Image();
+			w18.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.izlaz.png");
+			this.button5.Image = w18;
 			this.hbox3.Add(this.button5);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button5]));
-			w18.Position = 0;
-			w18.Expand = false;
-			w18.Fill = false;
-			this.vbox1.Add(this.hbox3);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox3]));
-			w19.Position = 2;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button5]));
+			w19.Position = 0;
 			w19.Expand = false;
 			w19.Fill = false;
+			this.vbox1.Add(this.hbox3);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox3]));
+			w20.Position = 3;
+			w20.Expand = false;
+			w20.Fill = false;
 			this.notebook.Add(this.vbox1);
 			// Notebook tab
 			this.label1 = new global::Gtk.Label();
@@ -223,20 +232,20 @@ namespace Osobni_Troškovnik
 			this.label3.Name = "label3";
 			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("label1");
 			this.vbox3.Add(this.label3);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.label3]));
-			w21.Position = 0;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.label3]));
+			w22.Position = 0;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.colorselection2 = new global::Gtk.ColorSelection();
 			this.colorselection2.Name = "colorselection2";
 			this.colorselection2.HasOpacityControl = true;
 			this.vbox3.Add(this.colorselection2);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.colorselection2]));
-			w22.Position = 1;
-			this.notebook.Add(this.vbox3);
-			global::Gtk.Notebook.NotebookChild w23 = ((global::Gtk.Notebook.NotebookChild)(this.notebook[this.vbox3]));
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.colorselection2]));
 			w23.Position = 1;
+			this.notebook.Add(this.vbox3);
+			global::Gtk.Notebook.NotebookChild w24 = ((global::Gtk.Notebook.NotebookChild)(this.notebook[this.vbox3]));
+			w24.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label();
 			this.label2.Name = "label2";

@@ -50,6 +50,7 @@ namespace Osobni_Troškovnik
 
 		protected void izlazClicked(object sender, EventArgs e)
 		{
+			
 			OnDeleteEvent(sender, new DeleteEventArgs());
 		}
 		private void generirajKategorije()
@@ -195,7 +196,7 @@ namespace Osobni_Troškovnik
 
 
 			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
-			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 14");
+			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
 
 			t.Attach(dateBoja, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
@@ -243,9 +244,9 @@ namespace Osobni_Troškovnik
 			sW.AddWithViewport(t);
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
-
+			this.SetSizeRequest(886, 575);
 			t.RowSpacing = 10;
-			t.WidthRequest = 800;
+			t.WidthRequest = 860;
 
 			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
 			var w3 = new Image();
@@ -264,11 +265,17 @@ namespace Osobni_Troškovnik
 
 
 			var cijenaLab = new Label("Ukupan trošak: ");
-			t.Attach(cijenaLab, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var cijenaLabBoja = Props.add2EventBox(cijenaLab, Props.getColor("#0017FF"), "Kristen ITC 14");
+			t.Attach(cijenaLabBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			cijenaLab.SetAlignment(0.8f, 0.5f);
 
-			var rangeButton = new Button();
-			rangeButton.Label = "Filtriraj po datumu";
+		//	var rangeButton = new Button();
+		//	rangeButton.Label = "Filtriraj po datumu";
+
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
+			var rangeButton = new Button(w3);
+
 			rangeButton.Clicked += (sender, e) =>
 			{
 				if (dCW == null)
@@ -289,14 +296,18 @@ namespace Osobni_Troškovnik
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Kategorija");
-			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var labBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(labBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab.SetAlignment(0.2f, 0.5f);
 			var lab2 = new Label("Ukupna cijena");
-			t.Attach(lab2, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var lab2Boja = Props.add2EventBox(lab2, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(lab2Boja, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.8f, 0.5f);
 
 			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
-			t.Attach(date, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(dateBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 
 			Gdk.Color picked;
@@ -350,8 +361,8 @@ namespace Osobni_Troškovnik
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
 
-			t.RowSpacing = 10;
-			t.WidthRequest = 800;
+			//t.RowSpacing = 10;
+			t.WidthRequest = 860;
 
 	//		var back = new Button(ImageButton.imageButton("gtk-go-back"));
 	
@@ -368,8 +379,12 @@ namespace Osobni_Troškovnik
 				notebook.CurrentPage = 0;
 			};
 
-			var rangeButton = new Button();
-			rangeButton.Label = "Filtriraj po datumu";
+		//	var rangeButton = new Button();
+		//	rangeButton.Label = "Filtriraj po datumu";
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
+			var rangeButton = new Button(w3);
+
 			rangeButton.Clicked += (sender, e) =>
 			{
 				if (dCW == null)
@@ -407,20 +422,23 @@ namespace Osobni_Troškovnik
 
 			};
 
-			var hbox = new HBox(true, 10);
-			hbox.PackStart(lin, false, false, 5);
-			hbox.PackEnd(pie, false, false, 5);
-			hbox.PackEnd(bar, false, false, 5);
-			t.Attach(hbox, 2, 3, 2, 3, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+			var hbox = new HBox(false, 20);
+			hbox.PackEnd(bar, false, false, 0);
+			hbox.PackEnd(lin, false, false, 0);
+			hbox.PackEnd(pie, false, false, 0);
+
+			t.Attach(hbox, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
 
 
 
 			var lab = new Label("Kategorija");
-			t.Attach(lab, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var labBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(labBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab.SetAlignment(0, 0.5f);
 
 			var date = new Label("Razdoblje: " + odDatum.ToString("dd-MM-yyyy") + " - " + doDatum.ToString("dd-MM-yyyy"));
-			t.Attach(date, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
+			t.Attach(dateBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 			Gdk.Color picked;
 
@@ -433,7 +451,7 @@ namespace Osobni_Troškovnik
 				l.SetAlignment(0.2f, 0.5f);
 
 
-				picked = (i % 2 == 0 ? Props.getColor("#FFEAC9") : Props.getColor("#D7D7D7"));
+				picked = (i % 2 == 0 ? Props.getColor("#A5BEFF") : Props.getColor("#D7D7D7"));
 
 
 
@@ -441,16 +459,18 @@ namespace Osobni_Troškovnik
 				var e1 = Props.add2EventBox(new Label(), picked);
 				var b1 = new Button(ImageButton.imageButton("Line"));
 				var b2 = new Button(ImageButton.imageButton("Bar"));
-				var hb = new HBox(true, 10);
-				hb.PackStart(b1, false, true, 0);
-				hb.PackStart(b2, false, true, 0);
+				var hb = new HBox(false, 20);
+				hb.PackEnd(b2, false, false, 0);
+				hb.PackEnd(b1, false, false, 0);
 
 				var e2 = Props.add2EventBox(hb, picked);
 
-
-				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+				e.HeightRequest = 30;
+				e1.HeightRequest = 30;
+				e2.HeightRequest = 30;
+				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
+				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
+				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
 
 				b1.Clicked += (sender, ev) =>
 				{
