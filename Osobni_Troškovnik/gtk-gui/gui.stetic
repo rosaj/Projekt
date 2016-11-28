@@ -777,6 +777,7 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">DatumChooseWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
     <property name="Resizable">False</property>
     <signal name="DeleteEvent" handler="onDeleteEvent" />

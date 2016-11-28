@@ -7,8 +7,6 @@ namespace Osobni_Troškovnik
 
 		public delegate void eventHandler(DateTime odDatum, DateTime doDatum);
 		public event eventHandler signaliziraj;
-		public delegate void cancelHandler();
-		public event cancelHandler cancelOdabiranje;
 
 		public DatumChooseWindow() : base(Gtk.WindowType.Toplevel)
 		{
@@ -17,7 +15,6 @@ namespace Osobni_Troškovnik
 			this.Title = "Odaberi raspon";
 			var datum = DateTime.Now.AddMonths(-2);
 			kalendarOd.SelectMonth((uint)datum.Month, (uint)datum.Year);
-			this.KeepAbove = true;
 
 		}
 
@@ -29,7 +26,6 @@ namespace Osobni_Troškovnik
 
 		protected void onDeleteEvent(object o, Gtk.DeleteEventArgs args)
 		{
-			if(cancelOdabiranje!=null)	cancelOdabiranje();
 			Destroy();
 		}
 		protected void KeyPress(object o, KeyReleaseEventArgs args)

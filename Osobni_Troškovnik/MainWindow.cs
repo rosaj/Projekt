@@ -176,17 +176,13 @@ namespace Osobni_Troškovnik
 
 			rangeButton.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
+				
 					dCW = new DatumChooseWindow();
 					dCW.signaliziraj += (odDatum, doDatum) =>
 					{
 						notebook.Remove(sW);
 						addTroskove(Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, ime), ime, odDatum, doDatum);
-						dCW = null;
 					};
-					dCW.cancelOdabiranje += () => dCW = null;
-				}
 
 			};
 			//	var back = new Button(ImageButton.imageButton("gtk-go-back"));
@@ -198,12 +194,9 @@ namespace Osobni_Troškovnik
 			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
+				
 					notebook.Remove(sW);
 					notebook.CurrentPage = 1;
-				}
-			
 			};
 			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
@@ -295,18 +288,14 @@ namespace Osobni_Troškovnik
 
 			rangeButton.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
+				
 					dCW = new DatumChooseWindow();
 					dCW.signaliziraj += (odDatum, doDatum) =>
 					{
 						notebook.Remove(sW);
 						addTotalTroskove(Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum), odDatum, doDatum);
-						dCW = null;
 					};
-					dCW.cancelOdabiranje += () => dCW = null;
 
-				}
 
 			};
 
@@ -319,11 +308,8 @@ namespace Osobni_Troškovnik
 			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
 					notebook.Remove(sW);
 					notebook.CurrentPage = 0;
-				}
 			};
 
 
@@ -419,17 +405,13 @@ namespace Osobni_Troškovnik
 
 			rangeButton.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
 					dCW = new DatumChooseWindow();
 					dCW.signaliziraj += (odDat, doDat) =>
 					{
 						notebook.Remove(sW);
 						addStatisticView(Baza.getInstance.getKategorije(), odDat, doDat);
-						dCW = null;
 					};
-					dCW.cancelOdabiranje += () => dCW = null;
-				}
+				
 
 			};
 
@@ -446,11 +428,9 @@ namespace Osobni_Troškovnik
 			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
-				if (dCW == null)
-				{
 					notebook.Remove(sW);
 					notebook.CurrentPage = 0;
-				}
+				
 			};
 
 			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
