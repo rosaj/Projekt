@@ -10,13 +10,13 @@ namespace Osobni_Troškovnik
 	{
 		public delegate void eventHandler();
 		public event eventHandler signaliziraj;
-		
+		private Gdk.Color bgColor = Props.bgColor;
 		public UnesiTrosakWindow() :base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Novi trošak";
-
+			eventboxHome.ModifyBg(StateType.Normal,bgColor);
 			this.Resizable = false;
 			List<String> lista = Baza.getInstance.getKategorije();
 			foreach (string s in lista) listaKategorija.AppendText(s);
@@ -28,8 +28,9 @@ namespace Osobni_Troškovnik
 
 		protected void odustaniClicked(object sender, EventArgs e)
 		{
-			if(signaliziraj!=null)signaliziraj();
-			this.Destroy();
+			
+			OnDeleteEvent(sender, null);
+
 		}
 
 		protected void spremiAndNoviClicked(object sender, EventArgs e)
@@ -43,10 +44,9 @@ namespace Osobni_Troškovnik
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
-			if (spremi()) Destroy();
-			if (signaliziraj != null)	signaliziraj();
-
-
+			if (spremi())
+				OnDeleteEvent(sender , null);
+			
 		}
 
 		protected void novaKategorijaClicked(object sender, EventArgs e)
@@ -59,8 +59,11 @@ namespace Osobni_Troškovnik
 		{
 			e = e.Trim();
 
-			if(Baza.getInstance.insertKategorija(e))
-							listaKategorija.AppendText(e);
+			if (e.Length > 0)
+			{
+				if (Baza.getInstance.insertKategorija(e))
+					listaKategorija.AppendText(e);
+			}
 		}
 		private bool spremi()
 		{
@@ -96,13 +99,15 @@ namespace Osobni_Troškovnik
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
 			if (signaliziraj != null) signaliziraj();
+			Destroy();
 
 		}
 		protected void KeyPress(object o, KeyReleaseEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
-			if (keyCode == 65307) if (signaliziraj != null) signaliziraj();
-			this.Destroy();
+			if (keyCode == 65307) OnDeleteEvent(o, null);
+			else if (keyCode == 65293) spremiClicked(o, null);
+			
 		}
 	}
 }

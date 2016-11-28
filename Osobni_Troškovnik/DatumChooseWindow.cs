@@ -35,7 +35,7 @@ namespace Osobni_Troškovnik
 		protected void KeyPress(object o, KeyReleaseEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
-			if (keyCode == 65307) onDeleteEvent(o,new DeleteEventArgs());
+			if (keyCode == 65307) onDeleteEvent(o,null);
 		}
 	}
 }

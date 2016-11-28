@@ -91,6 +91,7 @@
     <EmbeddedResource Include="Pics\back.png" />
     <EmbeddedResource Include="Pics\Stanarina.png" />
     <EmbeddedResource Include="Pics\filterDatum.png" />
+    <EmbeddedResource Include="Pics\plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

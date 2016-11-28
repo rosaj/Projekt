@@ -25,16 +25,19 @@ namespace Osobni_Troškovnik
 			this.vbox1.Spacing = 6;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.novaKategorija = new global::Gtk.Entry();
+			global::Gtk.Tooltips w1 = new Gtk.Tooltips();
+			w1.SetTip(this.novaKategorija, "Naziv nove kategorije, do 20 znakova", "Naziv nove kategorije, do 20 znakova");
 			this.novaKategorija.CanFocus = true;
 			this.novaKategorija.Name = "novaKategorija";
 			this.novaKategorija.IsEditable = true;
+			this.novaKategorija.MaxLength = 20;
 			this.novaKategorija.InvisibleChar = '●';
 			this.vbox1.Add(this.novaKategorija);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.novaKategorija]));
-			w1.Position = 0;
-			w1.Expand = false;
-			w1.Fill = false;
-			w1.Padding = ((uint)(15));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.novaKategorija]));
+			w2.Position = 0;
+			w2.Expand = false;
+			w2.Fill = false;
+			w2.Padding = ((uint)(15));
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.spremi = new global::Gtk.Button();
 			this.spremi.CanFocus = true;
@@ -42,10 +45,10 @@ namespace Osobni_Troškovnik
 			this.spremi.UseUnderline = true;
 			this.spremi.Label = global::Mono.Unix.Catalog.GetString("Spremi");
 			this.vbox1.Add(this.spremi);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.spremi]));
-			w2.Position = 1;
-			w2.Expand = false;
-			w2.Fill = false;
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.spremi]));
+			w3.Position = 1;
+			w3.Expand = false;
+			w3.Fill = false;
 			this.Add(this.vbox1);
 			if ((this.Child != null))
 			{

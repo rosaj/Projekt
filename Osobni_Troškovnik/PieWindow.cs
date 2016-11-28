@@ -35,7 +35,7 @@ namespace Osobni_Troškovnik
 				PlotSaver.saveToFile(this, "PieChart_" + odDatum.ToShortDateString() + "_-_" + doDatum.ToShortDateString() + ".png", myModel);
 			};
 
-			v.PackStart(save, false, false, 10);
+			v.PackEnd(save, false, false, 10);
 			this.Add(v);
 			this.ShowAll();
 

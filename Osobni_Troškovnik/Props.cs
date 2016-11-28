@@ -10,6 +10,7 @@ namespace Osobni_Troškovnik
 			"Računalna oprema", "Struja", "Voda", "Telefon", "Internet", "TV", "Odjeća", "Nakit", "Shopping", "Zdravlje"};
 
 
+		public static readonly Gdk.Color bgColor = Props.getColor("#B9CFDD");
 
 		public static Gdk.Color getColor(string color)
 		{

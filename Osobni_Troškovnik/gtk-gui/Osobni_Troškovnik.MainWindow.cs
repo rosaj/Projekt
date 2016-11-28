@@ -6,6 +6,8 @@ namespace Osobni_Troškovnik
 	{
 		private global::Gtk.Notebook notebook;
 
+		private global::Gtk.EventBox eventboxHome;
+
 		private global::Gtk.VBox vbox1;
 
 		private global::Gtk.Image image1;
@@ -64,8 +66,11 @@ namespace Osobni_Troškovnik
 			this.notebook.Name = "notebook";
 			this.notebook.CurrentPage = 1;
 			this.notebook.ShowBorder = false;
-			this.notebook.Scrollable = true;
+			this.notebook.ShowTabs = false;
 			// Container child notebook.Gtk.Notebook+NotebookChild
+			this.eventboxHome = new global::Gtk.EventBox();
+			this.eventboxHome.Name = "eventboxHome";
+			// Container child eventboxHome.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
@@ -215,12 +220,13 @@ namespace Osobni_Troškovnik
 			w20.Position = 3;
 			w20.Expand = false;
 			w20.Fill = false;
-			this.notebook.Add(this.vbox1);
+			this.eventboxHome.Add(this.vbox1);
+			this.notebook.Add(this.eventboxHome);
 			// Notebook tab
 			this.label1 = new global::Gtk.Label();
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString("page1");
-			this.notebook.SetTabLabel(this.vbox1, this.label1);
+			this.notebook.SetTabLabel(this.eventboxHome, this.label1);
 			this.label1.ShowAll();
 			// Container child notebook.Gtk.Notebook+NotebookChild
 			this.vbox3 = new global::Gtk.VBox();
@@ -232,20 +238,20 @@ namespace Osobni_Troškovnik
 			this.label3.Name = "label3";
 			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("label1");
 			this.vbox3.Add(this.label3);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.label3]));
-			w22.Position = 0;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.label3]));
+			w23.Position = 0;
+			w23.Expand = false;
+			w23.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.colorselection2 = new global::Gtk.ColorSelection();
 			this.colorselection2.Name = "colorselection2";
 			this.colorselection2.HasOpacityControl = true;
 			this.vbox3.Add(this.colorselection2);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.colorselection2]));
-			w23.Position = 1;
-			this.notebook.Add(this.vbox3);
-			global::Gtk.Notebook.NotebookChild w24 = ((global::Gtk.Notebook.NotebookChild)(this.notebook[this.vbox3]));
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.colorselection2]));
 			w24.Position = 1;
+			this.notebook.Add(this.vbox3);
+			global::Gtk.Notebook.NotebookChild w25 = ((global::Gtk.Notebook.NotebookChild)(this.notebook[this.vbox3]));
+			w25.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label();
 			this.label2.Name = "label2";

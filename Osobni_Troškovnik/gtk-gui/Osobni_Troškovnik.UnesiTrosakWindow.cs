@@ -4,6 +4,8 @@ namespace Osobni_Troškovnik
 {
 	public partial class UnesiTrosakWindow
 	{
+		private global::Gtk.EventBox eventboxHome;
+
 		private global::Gtk.VBox vbox14;
 
 		private global::Gtk.Table table5;
@@ -51,6 +53,9 @@ namespace Osobni_Troškovnik
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(6));
 			// Container child Osobni_Troškovnik.UnesiTrosakWindow.Gtk.Container+ContainerChild
+			this.eventboxHome = new global::Gtk.EventBox();
+			this.eventboxHome.Name = "eventboxHome";
+			// Container child eventboxHome.Gtk.Container+ContainerChild
 			this.vbox14 = new global::Gtk.VBox();
 			this.vbox14.Name = "vbox14";
 			this.vbox14.Spacing = 6;
@@ -84,13 +89,15 @@ namespace Osobni_Troškovnik
 			this.dodajKategorijuButton.CanFocus = true;
 			this.dodajKategorijuButton.Name = "dodajKategorijuButton";
 			this.dodajKategorijuButton.UseUnderline = true;
-			this.dodajKategorijuButton.Label = global::Mono.Unix.Catalog.GetString("Dodaj");
+			global::Gtk.Image w3 = new global::Gtk.Image();
+			w3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.plus.png");
+			this.dodajKategorijuButton.Image = w3;
 			this.table5.Add(this.dodajKategorijuButton);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table5[this.dodajKategorijuButton]));
-			w3.LeftAttach = ((uint)(2));
-			w3.RightAttach = ((uint)(3));
-			w3.XOptions = ((global::Gtk.AttachOptions)(4));
-			w3.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table5[this.dodajKategorijuButton]));
+			w4.LeftAttach = ((uint)(2));
+			w4.RightAttach = ((uint)(3));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -102,12 +109,12 @@ namespace Osobni_Troškovnik
 			this.opis.Name = "opis";
 			this.GtkScrolledWindow.Add(this.opis);
 			this.table5.Add(this.GtkScrolledWindow);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table5[this.GtkScrolledWindow]));
-			w5.TopAttach = ((uint)(3));
-			w5.BottomAttach = ((uint)(4));
-			w5.LeftAttach = ((uint)(1));
-			w5.RightAttach = ((uint)(2));
-			w5.XOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table5[this.GtkScrolledWindow]));
+			w6.TopAttach = ((uint)(3));
+			w6.BottomAttach = ((uint)(4));
+			w6.LeftAttach = ((uint)(1));
+			w6.RightAttach = ((uint)(2));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.kalendar = new global::Gtk.Calendar();
 			w1.SetTip(this.kalendar, "Odaberite datum nastanka troška", "Odaberite datum nastanka troška");
@@ -115,43 +122,43 @@ namespace Osobni_Troškovnik
 			this.kalendar.Name = "kalendar";
 			this.kalendar.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
 			this.table5.Add(this.kalendar);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table5[this.kalendar]));
-			w6.TopAttach = ((uint)(2));
-			w6.BottomAttach = ((uint)(3));
-			w6.LeftAttach = ((uint)(1));
-			w6.RightAttach = ((uint)(2));
-			w6.YPadding = ((uint)(5));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table5[this.kalendar]));
+			w7.TopAttach = ((uint)(2));
+			w7.BottomAttach = ((uint)(3));
+			w7.LeftAttach = ((uint)(1));
+			w7.RightAttach = ((uint)(2));
+			w7.YPadding = ((uint)(5));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.label18 = new global::Gtk.Label();
 			this.label18.Name = "label18";
 			this.label18.Xpad = 10;
 			this.label18.LabelProp = global::Mono.Unix.Catalog.GetString("Kategorija:");
 			this.table5.Add(this.label18);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table5[this.label18]));
-			w7.XOptions = ((global::Gtk.AttachOptions)(4));
-			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table5[this.label18]));
+			w8.XOptions = ((global::Gtk.AttachOptions)(4));
+			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.label19 = new global::Gtk.Label();
 			this.label19.Name = "label19";
 			this.label19.LabelProp = global::Mono.Unix.Catalog.GetString("Cijena:      ");
 			this.table5.Add(this.label19);
-			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table5[this.label19]));
-			w8.TopAttach = ((uint)(1));
-			w8.BottomAttach = ((uint)(2));
-			w8.XOptions = ((global::Gtk.AttachOptions)(4));
-			w8.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table5[this.label19]));
+			w9.TopAttach = ((uint)(1));
+			w9.BottomAttach = ((uint)(2));
+			w9.XOptions = ((global::Gtk.AttachOptions)(4));
+			w9.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.listaKategorija = global::Gtk.ComboBox.NewText();
 			this.listaKategorija.Name = "listaKategorija";
 			this.table5.Add(this.listaKategorija);
-			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table5[this.listaKategorija]));
-			w9.LeftAttach = ((uint)(1));
-			w9.RightAttach = ((uint)(2));
-			w9.YPadding = ((uint)(5));
-			w9.XOptions = ((global::Gtk.AttachOptions)(4));
-			w9.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table5[this.listaKategorija]));
+			w10.LeftAttach = ((uint)(1));
+			w10.RightAttach = ((uint)(2));
+			w10.YPadding = ((uint)(5));
+			w10.XOptions = ((global::Gtk.AttachOptions)(4));
+			w10.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.vbox15 = new global::Gtk.VBox();
 			this.vbox15.Name = "vbox15";
@@ -161,17 +168,17 @@ namespace Osobni_Troškovnik
 			this.label20.Name = "label20";
 			this.label20.LabelProp = global::Mono.Unix.Catalog.GetString("Datum:     ");
 			this.vbox15.Add(this.label20);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox15[this.label20]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
-			w10.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox15[this.label20]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
+			w11.Padding = ((uint)(8));
 			this.table5.Add(this.vbox15);
-			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table5[this.vbox15]));
-			w11.TopAttach = ((uint)(2));
-			w11.BottomAttach = ((uint)(3));
-			w11.XOptions = ((global::Gtk.AttachOptions)(4));
-			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table5[this.vbox15]));
+			w12.TopAttach = ((uint)(2));
+			w12.BottomAttach = ((uint)(3));
+			w12.XOptions = ((global::Gtk.AttachOptions)(4));
+			w12.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table5.Gtk.Table+TableChild
 			this.vbox16 = new global::Gtk.VBox();
 			this.vbox16.Name = "vbox16";
@@ -181,26 +188,26 @@ namespace Osobni_Troškovnik
 			this.label21.Name = "label21";
 			this.label21.LabelProp = global::Mono.Unix.Catalog.GetString("Opis:          ");
 			this.vbox16.Add(this.label21);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox16[this.label21]));
-			w12.Position = 0;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox16[this.label21]));
+			w13.Position = 0;
+			w13.Expand = false;
+			w13.Fill = false;
 			this.table5.Add(this.vbox16);
-			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table5[this.vbox16]));
-			w13.TopAttach = ((uint)(3));
-			w13.BottomAttach = ((uint)(4));
-			w13.XOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.table5[this.vbox16]));
+			w14.TopAttach = ((uint)(3));
+			w14.BottomAttach = ((uint)(4));
+			w14.XOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox14.Add(this.table5);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.table5]));
-			w14.Position = 0;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.table5]));
+			w15.Position = 0;
 			// Container child vbox14.Gtk.Box+BoxChild
 			this.hseparator2 = new global::Gtk.HSeparator();
 			this.hseparator2.Name = "hseparator2";
 			this.vbox14.Add(this.hseparator2);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.hseparator2]));
-			w15.Position = 1;
-			w15.Expand = false;
-			w15.Fill = false;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.hseparator2]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
 			// Container child vbox14.Gtk.Box+BoxChild
 			this.hbox6 = new global::Gtk.HBox();
 			this.hbox6.Name = "hbox6";
@@ -214,10 +221,10 @@ namespace Osobni_Troškovnik
 			this.odustaniButton.UseUnderline = true;
 			this.odustaniButton.Label = global::Mono.Unix.Catalog.GetString("Odustani");
 			this.hbox6.Add(this.odustaniButton);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.odustaniButton]));
-			w16.Position = 0;
-			w16.Expand = false;
-			w16.Fill = false;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.odustaniButton]));
+			w17.Position = 0;
+			w17.Expand = false;
+			w17.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.spremiAndNovi = new global::Gtk.Button();
 			w1.SetTip(this.spremiAndNovi, "Spremi trošak i unesi novi", "Spremi trošak i unesi novi");
@@ -226,10 +233,10 @@ namespace Osobni_Troškovnik
 			this.spremiAndNovi.UseUnderline = true;
 			this.spremiAndNovi.Label = global::Mono.Unix.Catalog.GetString("Spremi & Novi");
 			this.hbox6.Add(this.spremiAndNovi);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.spremiAndNovi]));
-			w17.Position = 1;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.spremiAndNovi]));
+			w18.Position = 1;
+			w18.Expand = false;
+			w18.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.spremiButton = new global::Gtk.Button();
 			w1.SetTip(this.spremiButton, "Spremi trošak", "Spremi trošak");
@@ -238,22 +245,23 @@ namespace Osobni_Troškovnik
 			this.spremiButton.UseUnderline = true;
 			this.spremiButton.Label = global::Mono.Unix.Catalog.GetString("Spremi");
 			this.hbox6.Add(this.spremiButton);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.spremiButton]));
-			w18.Position = 2;
-			w18.Expand = false;
-			w18.Fill = false;
-			this.vbox14.Add(this.hbox6);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.hbox6]));
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.spremiButton]));
 			w19.Position = 2;
 			w19.Expand = false;
 			w19.Fill = false;
-			this.Add(this.vbox14);
+			this.vbox14.Add(this.hbox6);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox14[this.hbox6]));
+			w20.Position = 2;
+			w20.Expand = false;
+			w20.Fill = false;
+			this.eventboxHome.Add(this.vbox14);
+			this.Add(this.eventboxHome);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 371;
-			this.DefaultHeight = 457;
+			this.DefaultWidth = 368;
+			this.DefaultHeight = 441;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);

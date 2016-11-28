@@ -91,7 +91,7 @@ namespace Osobni_Troškovnik
 
 		private void executeNonQuery(string sql)
 		{
-			SQLiteCommand command = new SQLiteCommand(sql, con);
+			var command = new SQLiteCommand(sql, con);
 			command.ExecuteNonQuery();
 		}
 
@@ -229,8 +229,7 @@ namespace Osobni_Troškovnik
 
 
 
+
 	}
-
-
 
 }

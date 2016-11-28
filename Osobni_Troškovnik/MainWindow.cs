@@ -7,12 +7,20 @@ namespace Osobni_Troškovnik
 	{
 		private UnesiTrosakWindow uT;
 		private DatumChooseWindow dCW;
+		private string textF12 = "Tw Cen MT Condensed 12";
+		private string textF14= "Tw Cen MT Condensed 14";
+		private string defText12 = "Kristen ITC 12";
+		private string defText14 = "Kristen ITC 14";
+		private Gdk.Color bgColor = Props.bgColor;
+		private Gdk.Color bojaSlova = Props.getColor("#0017FF");
+
 		public MainWindow() : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
+			eventboxHome.ModifyBg(StateType.Normal, bgColor);
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
@@ -51,14 +59,21 @@ namespace Osobni_Troškovnik
 		protected void izlazClicked(object sender, EventArgs e)
 		{
 			
-			OnDeleteEvent(sender, new DeleteEventArgs());
+			OnDeleteEvent(sender, null);
 		}
+
+
+
 		private void generirajKategorije()
 		{
 			var lista = Baza.getInstance.getKategorije();
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)(lista.Count + 2), 1, true);
-			sW.AddWithViewport(t);
+			var eventBox = new EventBox();
+			eventBox.Add(t);
+			eventBox.ModifyBg(StateType.Normal, bgColor);
+
+			sW.AddWithViewport(eventBox);
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
 
@@ -117,7 +132,13 @@ namespace Osobni_Troškovnik
 
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);
-			sW.AddWithViewport(t);
+
+			var eventBox = new EventBox();
+			eventBox.Add(t);
+			eventBox.ModifyBg(StateType.Normal, bgColor);
+
+			sW.AddWithViewport(eventBox);
+			//sW.AddWithViewport(t);
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
 
@@ -144,13 +165,13 @@ namespace Osobni_Troškovnik
 			var hbox = new HBox(false, 6);
 			hbox.PackStart(kategorija, false, true, 0);
 
-			var katBoja = Props.add2EventBox(new Label(ime), Props.getColor("#0017FF"), "Kristen ITC 14");
+			var katBoja = Props.add2EventBox(new Label(ime),bgColor, bojaSlova, textF14);
 			hbox.PackStart(katBoja, false, true, 0);
 			t.Attach(hbox, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 			var cijenaLab = new Label("Ukupan trošak: ");
 			cijenaLab.SetAlignment(0.8f, 0.5f);
-			var cijenaBoja = Props.add2EventBox(cijenaLab, Props.getColor("#0017FF"),"Kristen ITC 14");
+			var cijenaBoja = Props.add2EventBox(cijenaLab,bgColor,bojaSlova, defText14);
 			t.Attach(cijenaBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 
@@ -181,22 +202,22 @@ namespace Osobni_Troškovnik
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Opis");
-			var opisBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var opisBoja = Props.add2EventBox(lab,bgColor,bojaSlova, defText14);
 			t.Attach(opisBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab.SetAlignment(0.1f, 0.5f);
 
 			var lab1 = new Label("Datum");
-			var datumBoja = Props.add2EventBox(lab1, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var datumBoja = Props.add2EventBox(lab1,bgColor,bojaSlova, defText14);
 			t.Attach(datumBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 			var lab2 = new Label("Cijena");
-			var cijenaFg = Props.add2EventBox(lab2, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var cijenaFg = Props.add2EventBox(lab2, bgColor, bojaSlova, defText14);
 			t.Attach(cijenaFg, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.9f, 0.5f);
 
 
-			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
-			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var date = new Label(datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
+			var dateBoja = Props.add2EventBox(date,bgColor,bojaSlova, defText14);
 
 			t.Attach(dateBoja, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
@@ -209,7 +230,7 @@ namespace Osobni_Troškovnik
 
 				var l = new Label(trosak.Opis);
 				var l1 = new Label(trosak.Datum);
-				var l2 = new Label(trosak.Cijena.ToString());
+				var l2 = new Label(trosak.Cijena+" kn");
 				l.SetAlignment(0.1f, 0.5f);
 				//l1.SetAlignment(0.7f, 0.5f);
 				l2.SetAlignment(0.9f, 0.5f);
@@ -217,18 +238,16 @@ namespace Osobni_Troškovnik
 				picked = (i % 2 == 0 ? Props.getColor("#B3BBFF") : Props.getColor("#CCD8E0"));
 
 
-
-				var e = Props.add2EventBox(l, picked);
-				var e1 = Props.add2EventBox(l1, picked);
-				var e2 = Props.add2EventBox(l2, picked);
-
+				var e = Props.add2EventBox(l, picked,bojaSlova, textF12);
+				var e1 = Props.add2EventBox(l1, picked,bojaSlova, textF12);
+				var e2 = Props.add2EventBox(l2, picked,bojaSlova, textF12);
 
 				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				cijena += trosak.Cijena;
 			}
-			cijenaLab.Text += cijena.ToString();
+			cijenaLab.Text += cijena+" kn";
 			t.BorderWidth = 20;
 			notebook.ShowAll();
 			notebook.CurrentPage = 3;
@@ -241,12 +260,18 @@ namespace Osobni_Troškovnik
 		{
 			var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);
-			sW.AddWithViewport(t);
+
+			var eventBox = new EventBox();
+			eventBox.Add(t);
+			eventBox.ModifyBg(StateType.Normal, bgColor);
+
+			sW.AddWithViewport(eventBox);
+
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
 			this.SetSizeRequest(886, 575);
 			t.RowSpacing = 10;
-			t.WidthRequest = 860;
+			t.WidthRequest = 800;
 
 			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
 			var w3 = new Image();
@@ -265,7 +290,7 @@ namespace Osobni_Troškovnik
 
 
 			var cijenaLab = new Label("Ukupan trošak: ");
-			var cijenaLabBoja = Props.add2EventBox(cijenaLab, Props.getColor("#0017FF"), "Kristen ITC 14");
+			var cijenaLabBoja = Props.add2EventBox(cijenaLab,bgColor,bojaSlova, defText14);
 			t.Attach(cijenaLabBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			cijenaLab.SetAlignment(0.8f, 0.5f);
 
@@ -296,17 +321,17 @@ namespace Osobni_Troškovnik
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Kategorija");
-			var labBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var labBoja = Props.add2EventBox(lab,bgColor, bojaSlova, defText14);
 			t.Attach(labBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab.SetAlignment(0.2f, 0.5f);
 			var lab2 = new Label("Ukupna cijena");
-			var lab2Boja = Props.add2EventBox(lab2, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var lab2Boja = Props.add2EventBox(lab2,bgColor,bojaSlova, defText14);
 			t.Attach(lab2Boja, 2, 3, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			lab2.SetAlignment(0.8f, 0.5f);
 
-			var date = new Label("Razdoblje: " + datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
+			var date = new Label(datumPoc.ToString("dd-MM-yyyy") + " - " + datumKraj.ToString("dd-MM-yyyy"));
 
-			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var dateBoja = Props.add2EventBox(date,bgColor, bojaSlova, defText14);
 			t.Attach(dateBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
 
@@ -323,20 +348,20 @@ namespace Osobni_Troškovnik
 					
 				var l = new Label(kategorija);
 					//float total = Baza.getInstance.getSumuTroskovaURazdoblju(datumPoc, datumKraj, kategorija);
-					float total = dic.Value;
-				var l2 = new Label((total).ToString());
+				float total = dic.Value;
+				var l2 = new Label((total)+" kn");
 				l.SetAlignment(0.2f, 0.5f);
 
 				l2.SetAlignment(0.8f, 0.5f);
 
-				picked = (i % 2 == 0 ? Props.getColor("#C4FAFF") : Props.getColor("#FCF1FF"));
+				picked = (i % 2 == 0 ? Props.getColor("#0099D4") : Props.getColor("#FFFFFF"));
+				var slovoPi = (i % 2 == 0 ? Props.getColor("#FFFFFF"): bojaSlova);
 
+				// # FCF1FF
 
-
-				var e = Props.add2EventBox(l, picked);
+				var e = Props.add2EventBox(l, picked,slovoPi, textF14);
 				var e1 = Props.add2EventBox(new Label(), picked);
-				var e2 = Props.add2EventBox(l2, picked);
-
+				var e2 = Props.add2EventBox(l2, picked, slovoPi, textF14);
 
 				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
@@ -344,7 +369,7 @@ namespace Osobni_Troškovnik
 				cijena += total;
 				i++;
 			}
-			cijenaLab.Text += cijena;
+			cijenaLab.Text += cijena+" kn";
 			t.BorderWidth = 50;
 			notebook.ShowAll();
 			notebook.CurrentPage = 2;
@@ -356,13 +381,24 @@ namespace Osobni_Troškovnik
 		{
 
 			var sW = new ScrolledWindow();
-			var t = new Table((uint)lista.Count + 3, 3, true);
-			sW.AddWithViewport(t);
+
+			int iter = (lista.Count) / 3;
+			if ((lista.Count) % 3 != 0) iter++;
+
+
+			var t = new Table((uint)iter + 3, 3, true);
+
+			var eventBox = new EventBox();
+			eventBox.Add(t);
+			eventBox.ModifyBg(StateType.Normal, bgColor);
+
+			sW.AddWithViewport(eventBox);
+
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
 
-			//t.RowSpacing = 10;
-			t.WidthRequest = 860;
+			t.RowSpacing = 10;
+			t.WidthRequest = 800;
 
 	//		var back = new Button(ImageButton.imageButton("gtk-go-back"));
 	
@@ -423,6 +459,8 @@ namespace Osobni_Troškovnik
 			};
 
 			var hbox = new HBox(false, 20);
+
+			hbox.PackEnd(new Fixed(), false, false, 0);
 			hbox.PackEnd(bar, false, false, 0);
 			hbox.PackEnd(lin, false, false, 0);
 			hbox.PackEnd(pie, false, false, 0);
@@ -431,58 +469,109 @@ namespace Osobni_Troškovnik
 
 
 
-			var lab = new Label("Kategorija");
-			var labBoja = Props.add2EventBox(lab, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var lab = new Label("Kategorije");
+			var labBoja = Props.add2EventBox(lab,bgColor, bojaSlova,defText14);
 			t.Attach(labBoja, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-			lab.SetAlignment(0, 0.5f);
+			//lab.SetAlignment(0, 0.5f);
 
-			var date = new Label("Razdoblje: " + odDatum.ToString("dd-MM-yyyy") + " - " + doDatum.ToString("dd-MM-yyyy"));
-			var dateBoja = Props.add2EventBox(date, Props.getColor("#0017FF"), "Kristen ITC 12");
+			var date = new Label(odDatum.ToString("dd-MM-yyyy") + " - " + doDatum.ToString("dd-MM-yyyy"));
+			var dateBoja = Props.add2EventBox(date,bgColor,bojaSlova, defText14);
 			t.Attach(dateBoja, 1, 2, 2, 3, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
-			Gdk.Color picked;
+			/*	Gdk.Color picked;
 
-			for (int i = 3; i < lista.Count + 3; i++)
+				for (int i = 3; i < lista.Count + 3; i++)
+				{
+					var kategorija = lista[i - 3];
+
+					var l = new Label(kategorija);
+
+					l.SetAlignment(0.2f, 0.5f);
+
+
+					//picked = (i % 2 == 0 ? Props.getColor("#A5BEFF") : Props.getColor("#D7D7D7"));
+					picked = (i % 2 == 0 ? Props.getColor("#0099D4") : Props.getColor("#FFFFFF"));
+					var slovoPi = (i % 2 == 0 ? Props.getColor("#FFFFFF") : bojaSlova);
+
+
+					var e = Props.add2EventBox(l, picked,slovoPi, textF14);
+					var e1 = Props.add2EventBox(new Label(), picked);
+					var b1 = new Button(ImageButton.imageButton("Line"));
+					var b2 = new Button(ImageButton.imageButton("Bar"));
+					var hb = new HBox(false, 20);
+					hb.PackEnd(b2, false, false, 0);
+					hb.PackEnd(b1, false, false, 0);
+
+					var e2 = Props.add2EventBox(hb, picked);
+
+
+					t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+					t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+					t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Fill, 0, 0);
+
+					b1.Clicked += (sender, ev) =>
+					{
+						var line = new PlotWindow();
+						line.plotKategoriju(odDatum, doDatum, kategorija);
+					};
+					b2.Clicked += (sender, ev) =>
+					{
+						var barC = new BarWindow();
+						barC.barPlotKategorija(odDatum, doDatum, kategorija);
+					};
+				}
+
+				*/
+
+
+
+
+			int br = 0;
+			for (int i = 0; i < iter; i++)
 			{
-				var kategorija = lista[i - 3];
-
-				var l = new Label(kategorija);
-
-				l.SetAlignment(0.2f, 0.5f);
 
 
-				picked = (i % 2 == 0 ? Props.getColor("#A5BEFF") : Props.getColor("#D7D7D7"));
-
-
-
-				var e = Props.add2EventBox(l, picked);
-				var e1 = Props.add2EventBox(new Label(), picked);
-				var b1 = new Button(ImageButton.imageButton("Line"));
-				var b2 = new Button(ImageButton.imageButton("Bar"));
-				var hb = new HBox(false, 20);
-				hb.PackEnd(b2, false, false, 0);
-				hb.PackEnd(b1, false, false, 0);
-
-				var e2 = Props.add2EventBox(hb, picked);
-
-				e.HeightRequest = 30;
-				e1.HeightRequest = 30;
-				e2.HeightRequest = 30;
-				t.Attach(e, 0, 1, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
-				t.Attach(e1, 1, 2, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
-				t.Attach(e2, 2, 3, (uint)i, (uint)(i + 1), AttachOptions.Fill, AttachOptions.Shrink, 0, 0);
-
-				b1.Clicked += (sender, ev) =>
+				for (int y = 0; y < 3 && br < lista.Count; y++)
 				{
-					var line = new PlotWindow();
-					line.plotKategoriju(odDatum, doDatum, kategorija);
+					var kategorija = lista[br];
+					br++;
+					var l = new Label(kategorija);
+
+					//l.SetAlignment(0.2f, 0.5f);
+
+				//var e = Props.add2EventBox(l,Props.getColor("white"));
+					var b1 = new Button(ImageButton.imageButton("Line"));
+					var b2 = new Button(ImageButton.imageButton("Bar"));
+					var hb = new HBox(false, 20);
+					hb.PackStart(new Fixed());
+					hb.PackStart(b1,false, false, 0);
+					hb.PackStart(b2, false,false,0);
+					hb.PackStart(new Fixed());
+				
+
+					var vbox = new VBox(false, 5);
+					vbox.Add(Props.add2EventBox(l,Props.getColor("#0099D4"),Props.getColor("White"),textF12));
+					vbox.PackEnd(hb, false, false, 0);
+					var e2 = Props.add2EventBox(vbox, Props.getColor("#0099D4"));
+
+					t.Attach(e2, (uint)(y),(uint) (y+1), (uint)i+3, (uint)(i + 4), AttachOptions.Fill, AttachOptions.Fill, 20, 0);
+
+					b1.Clicked += (sender, ev) =>
+					{
+						var line = new PlotWindow();
+						line.plotKategoriju(odDatum, doDatum, kategorija);
+					};
+					b2.Clicked += (sender, ev) =>
+					{
+						var barC = new BarWindow();
+						barC.barPlotKategorija(odDatum, doDatum, kategorija);
 				};
-				b2.Clicked += (sender, ev) =>
-				{
-					var barC = new BarWindow();
-					barC.barPlotKategorija(odDatum, doDatum, kategorija);
-				};
+
+				}
+
+
 			}
+
 
 			t.BorderWidth = 50;
 			notebook.ShowAll();
@@ -490,5 +579,7 @@ namespace Osobni_Troškovnik
 
 
 		}
+
+
 	}
 }

@@ -25,6 +25,7 @@ namespace Osobni_Troškovnik
 		{
 			uint keyCode = args.Event.KeyValue;
 			if (keyCode == 65307) this.Destroy();
+			else if (keyCode == 65293) spremiKategorijuClicked(o, null);
 		}
 
 	}
