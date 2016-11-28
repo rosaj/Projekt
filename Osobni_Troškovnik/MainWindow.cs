@@ -61,7 +61,11 @@ namespace Osobni_Troškovnik
 			
 			OnDeleteEvent(sender, null);
 		}
+		protected void keyPressEvent(object o, KeyPressEventArgs args)
+		{
+			uint keyCode = args.Event.KeyValue;
 
+		}
 
 
 		private void generirajKategorije()

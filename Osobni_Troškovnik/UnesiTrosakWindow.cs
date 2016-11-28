@@ -106,7 +106,6 @@ namespace Osobni_Troškovnik
 		{
 			uint keyCode = args.Event.KeyValue;
 			if (keyCode == 65307) OnDeleteEvent(o, null);
-			else if (keyCode == 65293) spremiClicked(o, null);
 			
 		}
 	}

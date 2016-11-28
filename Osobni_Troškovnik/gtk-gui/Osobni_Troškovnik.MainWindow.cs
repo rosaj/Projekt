@@ -265,6 +265,7 @@ namespace Osobni_Troškovnik
 			}
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.KeyPressEvent += new global::Gtk.KeyPressEventHandler(this.keyPressEvent);
 			this.button2.Clicked += new global::System.EventHandler(this.noviTrosakClicked);
 			this.button1.Clicked += new global::System.EventHandler(this.popisClicked);
 			this.button3.Clicked += new global::System.EventHandler(this.totalCostClicked);

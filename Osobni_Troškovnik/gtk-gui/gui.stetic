@@ -525,6 +525,7 @@
     <property name="DefaultWidth">719</property>
     <property name="DefaultHeight">569</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <signal name="KeyPressEvent" handler="keyPressEvent" />
     <child>
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
