@@ -42,14 +42,6 @@ namespace Osobni_Troškovnik
 
 		private global::Gtk.Label label1;
 
-		private global::Gtk.VBox vbox3;
-
-		private global::Gtk.Label label3;
-
-		private global::Gtk.ColorSelection colorselection2;
-
-		private global::Gtk.Label label2;
-
 		protected virtual void Build()
 		{
 			global::Stetic.Gui.Initialize(this);
@@ -64,7 +56,7 @@ namespace Osobni_Troškovnik
 			this.notebook = new global::Gtk.Notebook();
 			this.notebook.CanFocus = true;
 			this.notebook.Name = "notebook";
-			this.notebook.CurrentPage = 1;
+			this.notebook.CurrentPage = 0;
 			this.notebook.ShowBorder = false;
 			this.notebook.ShowTabs = false;
 			// Container child notebook.Gtk.Notebook+NotebookChild
@@ -228,36 +220,6 @@ namespace Osobni_Troškovnik
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString("page1");
 			this.notebook.SetTabLabel(this.eventboxHome, this.label1);
 			this.label1.ShowAll();
-			// Container child notebook.Gtk.Notebook+NotebookChild
-			this.vbox3 = new global::Gtk.VBox();
-			this.vbox3.Name = "vbox3";
-			this.vbox3.Spacing = 6;
-			// Container child vbox3.Gtk.Box+BoxChild
-			this.label3 = new global::Gtk.Label();
-			this.label3.WidthRequest = 72;
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("label1");
-			this.vbox3.Add(this.label3);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.label3]));
-			w23.Position = 0;
-			w23.Expand = false;
-			w23.Fill = false;
-			// Container child vbox3.Gtk.Box+BoxChild
-			this.colorselection2 = new global::Gtk.ColorSelection();
-			this.colorselection2.Name = "colorselection2";
-			this.colorselection2.HasOpacityControl = true;
-			this.vbox3.Add(this.colorselection2);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.colorselection2]));
-			w24.Position = 1;
-			this.notebook.Add(this.vbox3);
-			global::Gtk.Notebook.NotebookChild w25 = ((global::Gtk.Notebook.NotebookChild)(this.notebook[this.vbox3]));
-			w25.Position = 1;
-			// Notebook tab
-			this.label2 = new global::Gtk.Label();
-			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString("page2");
-			this.notebook.SetTabLabel(this.vbox3, this.label2);
-			this.label2.ShowAll();
 			this.Add(this.notebook);
 			if ((this.Child != null))
 			{

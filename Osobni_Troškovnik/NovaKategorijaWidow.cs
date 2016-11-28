@@ -13,6 +13,7 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Dodaj novu kategoriju";
+			this.KeepAbove = true;
 		}
 
 		public void spremiKategorijuClicked(object sender, EventArgs e)

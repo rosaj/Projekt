@@ -14,10 +14,13 @@ namespace Osobni_Troškovnik
 		{
 			global::Stetic.Gui.Initialize(this);
 			// Widget Osobni_Troškovnik.NovaKategorijaWidow
+			this.WidthRequest = 270;
+			this.HeightRequest = 100;
 			this.Name = "Osobni_Troškovnik.NovaKategorijaWidow";
 			this.Title = global::Mono.Unix.Catalog.GetString("NovaKategorijaWidow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(15));
+			this.Resizable = false;
 			// Container child Osobni_Troškovnik.NovaKategorijaWidow.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
@@ -54,7 +57,7 @@ namespace Osobni_Troškovnik
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 274;
+			this.DefaultWidth = 300;
 			this.DefaultHeight = 150;
 			this.Show();
 			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);

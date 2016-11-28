@@ -470,11 +470,14 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Osobni_Troškovnik.NovaKategorijaWidow" design-size="274 150">
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.NovaKategorijaWidow" design-size="300 150">
     <property name="MemberName" />
+    <property name="WidthRequest">270</property>
+    <property name="HeightRequest">100</property>
     <property name="Title" translatable="yes">NovaKategorijaWidow</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="BorderWidth">15</property>
+    <property name="Resizable">False</property>
     <signal name="KeyReleaseEvent" handler="KeyPress" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -517,7 +520,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="719 666">
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.MainWindow" design-size="717 641">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Osobni Troškovnik</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -530,7 +533,7 @@
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">1</property>
+        <property name="CurrentPage">0</property>
         <property name="ShowBorder">False</property>
         <property name="ShowTabs">False</property>
         <child>
@@ -762,48 +765,10 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.VBox" id="vbox3">
-            <property name="MemberName" />
-            <property name="Spacing">6</property>
-            <child>
-              <widget class="Gtk.Label" id="label3">
-                <property name="MemberName" />
-                <property name="WidthRequest">72</property>
-                <property name="LabelProp" translatable="yes">label1</property>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.ColorSelection" id="colorselection2">
-                <property name="MemberName" />
-                <property name="HasOpacityControl">True</property>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder />
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">1</property>
-          </packing>
+          <placeholder />
         </child>
         <child>
-          <widget class="Gtk.Label" id="label2">
-            <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">page2</property>
-          </widget>
-          <packing>
-            <property name="type">tab</property>
-          </packing>
+          <placeholder />
         </child>
       </widget>
     </child>

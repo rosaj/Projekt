@@ -22,7 +22,6 @@ namespace Osobni_Troškovnik
 			foreach (string s in lista) listaKategorija.AppendText(s);
 			listaKategorija.Active = 0;
 			cijena.Text = "";
-	
 		}
 
 

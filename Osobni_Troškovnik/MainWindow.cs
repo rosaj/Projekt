@@ -39,7 +39,6 @@ namespace Osobni_Troškovnik
 		}
 		protected void popisClicked(object sender, EventArgs e)
 		{
-			notebook.CurrentPage = 1;
 			generirajKategorije();
 		}
 
@@ -64,7 +63,10 @@ namespace Osobni_Troškovnik
 		protected void keyPressEvent(object o, KeyPressEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
-
+			if (keyCode == 65480) this.Fullscreen();
+			else if (keyCode == 65307) this.Iconify();
+		
+			Console.WriteLine(keyCode);
 		}
 
 
@@ -119,7 +121,7 @@ namespace Osobni_Troškovnik
 			}
 
 			notebook.ShowAll();
-			notebook.CurrentPage = 2;
+			notebook.CurrentPage = 1;
 		}
 
 		private void kategorijaClicked(string ime)
@@ -149,21 +151,7 @@ namespace Osobni_Troškovnik
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
 
-		//	var back = new Button(ImageButton.imageButton("gtk-go-back"));
 		
-			var w3 = new Image();
-			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
-			var back = new Button(w3);
-
-
-			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
-
-			//back.SetSizeRequest(400, 50);
-			back.Clicked += (sender, e) =>
-			{
-				notebook.Remove(sW);
-				notebook.CurrentPage = 2;
-			};
 
 			var kategorija = ImageButton.imageButton(ime);
 			var hbox = new HBox(false, 6);
@@ -181,7 +169,7 @@ namespace Osobni_Troškovnik
 
 		//	var rangeButton = new Button();
 		//	rangeButton.Label = "Filtriraj po datumu";
-			w3 = new Image();
+			var w3 = new Image();
 			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
 			var rangeButton = new Button(w3);
 
@@ -201,8 +189,23 @@ namespace Osobni_Troškovnik
 				}
 
 			};
+			//	var back = new Button(ImageButton.imageButton("gtk-go-back"));
 
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
 
+			//back.SetSizeRequest(400, 50);
+			back.Clicked += (sender, e) =>
+			{
+				if (dCW == null)
+				{
+					notebook.Remove(sW);
+					notebook.CurrentPage = 1;
+				}
+			
+			};
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Opis");
@@ -254,7 +257,7 @@ namespace Osobni_Troškovnik
 			cijenaLab.Text += cijena+" kn";
 			t.BorderWidth = 20;
 			notebook.ShowAll();
-			notebook.CurrentPage = 3;
+			notebook.CurrentPage = 2;
 
 		}
 
@@ -273,24 +276,9 @@ namespace Osobni_Troškovnik
 
 			sW.SetPolicy(PolicyType.Never, PolicyType.Automatic);
 			notebook.Add(sW);
-			this.SetSizeRequest(886, 575);
+
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
-
-			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
-			var w3 = new Image();
-			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
-			var back = new Button(w3);
-
-
-			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
-
-			//back.SetSizeRequest(400, 50);
-			back.Clicked += (sender, e) =>
-			{
-				notebook.Remove(sW);
-				notebook.CurrentPage = 0;
-			};
 
 
 			var cijenaLab = new Label("Ukupan trošak: ");
@@ -301,7 +289,7 @@ namespace Osobni_Troškovnik
 		//	var rangeButton = new Button();
 		//	rangeButton.Label = "Filtriraj po datumu";
 
-			w3 = new Image();
+			var w3 = new Image();
 			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
 			var rangeButton = new Button(w3);
 
@@ -322,6 +310,24 @@ namespace Osobni_Troškovnik
 
 			};
 
+			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
+
+
+			//back.SetSizeRequest(400, 50);
+			back.Clicked += (sender, e) =>
+			{
+				if (dCW == null)
+				{
+					notebook.Remove(sW);
+					notebook.CurrentPage = 0;
+				}
+			};
+
+
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var lab = new Label("Kategorija");
@@ -376,7 +382,7 @@ namespace Osobni_Troškovnik
 			cijenaLab.Text += cijena+" kn";
 			t.BorderWidth = 50;
 			notebook.ShowAll();
-			notebook.CurrentPage = 2;
+			notebook.CurrentPage = 1;
 
 
 		}
@@ -390,7 +396,7 @@ namespace Osobni_Troškovnik
 			if ((lista.Count) % 3 != 0) iter++;
 
 
-			var t = new Table((uint)iter + 3, 3, true);
+			var t = new Table((uint)iter + 3, 3,true);
 
 			var eventBox = new EventBox();
 			eventBox.Add(t);
@@ -404,24 +410,10 @@ namespace Osobni_Troškovnik
 			t.RowSpacing = 10;
 			t.WidthRequest = 800;
 
-	//		var back = new Button(ImageButton.imageButton("gtk-go-back"));
-	
-			var w3 = new Image();
-			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
-			var back = new Button(w3);
-
-			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
-
-			//back.SetSizeRequest(400, 50);
-			back.Clicked += (sender, e) =>
-			{
-				notebook.Remove(sW);
-				notebook.CurrentPage = 0;
-			};
 
 		//	var rangeButton = new Button();
 		//	rangeButton.Label = "Filtriraj po datumu";
-			w3 = new Image();
+			var w3 = new Image();
 			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.filterDatum.png");
 			var rangeButton = new Button(w3);
 
@@ -441,6 +433,27 @@ namespace Osobni_Troškovnik
 
 			};
 
+
+
+	//		var back = new Button(ImageButton.imageButton("gtk-go-back"));
+	
+			w3 = new Image();
+			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
+			var back = new Button(w3);
+
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
+
+			//back.SetSizeRequest(400, 50);
+			back.Clicked += (sender, e) =>
+			{
+				if (dCW == null)
+				{
+					notebook.Remove(sW);
+					notebook.CurrentPage = 0;
+				}
+			};
+
+			t.Attach(back, 1, 2, 0, 1, AttachOptions.Expand, AttachOptions.Fill, 0, 0);
 			t.Attach(rangeButton, 1, 2, 1, 2, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 
 			var pie = new Button(ImageButton.imageButton("Pie"));
@@ -579,7 +592,7 @@ namespace Osobni_Troškovnik
 
 			t.BorderWidth = 50;
 			notebook.ShowAll();
-			notebook.CurrentPage = 2;
+			notebook.CurrentPage = 1;
 
 
 		}

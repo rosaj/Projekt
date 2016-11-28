@@ -17,7 +17,7 @@ namespace Osobni_Troškovnik
 			this.Title = "Odaberi raspon";
 			var datum = DateTime.Now.AddMonths(-2);
 			kalendarOd.SelectMonth((uint)datum.Month, (uint)datum.Year);
-
+			this.KeepAbove = true;
 
 		}
 

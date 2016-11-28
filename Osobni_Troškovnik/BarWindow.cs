@@ -24,12 +24,27 @@ namespace Osobni_Troškovnik
 			var datums = new List<string>();
 			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
 
+
+
+			
 			foreach (Trosak t in list)
 			{
 
 				var b = new ColumnItem(t.Cijena);
 				items.Add(b);
 				datums.Add(t.Datum);
+			}
+
+			if (list.Count > 1)
+			{
+				int i = 0;
+				var listaBoja = OxyPalettes.Cool(list.Count).Colors;
+				foreach (ColumnItem cI in items)
+				{
+					
+					cI.Color = listaBoja[i];
+					i++;
+				}
 			}
 
 
@@ -45,7 +60,6 @@ namespace Osobni_Troškovnik
 			var model = new PlotModel { Title = "Statistika za: " + kategorija };
 			this.SetSizeRequest(800, 600);
 			var pv = new PlotView();
-
 			model.Series.Add(barSeries);
 
 			model.Axes.Add(new CategoryAxis
@@ -85,6 +99,18 @@ namespace Osobni_Troškovnik
 				var b = new ColumnItem(t.Value);
 				items.Add(b);
 				kat.Add(t.Key);
+			}
+
+			if (list.Count > 1)
+			{
+				int i = 0;
+				var listaBoja = OxyPalettes.Cool(list.Count).Colors;
+				foreach (ColumnItem cI in items)
+				{
+
+					cI.Color = listaBoja[i];
+					i++;
+				}
 			}
 
 
