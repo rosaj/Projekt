@@ -9,7 +9,7 @@ namespace Osobni_Troškovnik
 		private DatumChooseWindow dCW;
 		private string textF12 = "Tw Cen MT Condensed 12";
 		private string textF14= "Tw Cen MT Condensed 14";
-		private string defText12 = "Kristen ITC 12";
+		//private string defText12 = "Kristen ITC 12";
 		private string defText14 = "Kristen ITC 14";
 		private Gdk.Color bgColor = Props.bgColor;
 		private Gdk.Color bojaSlova = Props.getColor("#0017FF");
@@ -161,7 +161,7 @@ namespace Osobni_Troškovnik
 			hbox.PackStart(katBoja, false, true, 0);
 			t.Attach(hbox, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 
-			var cijenaLab = new Label("Ukupan trošak: ");
+			var cijenaLab = new Label("Ukupno: ");
 			cijenaLab.SetAlignment(0.8f, 0.5f);
 			var cijenaBoja = Props.add2EventBox(cijenaLab,bgColor,bojaSlova, defText14);
 			t.Attach(cijenaBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
@@ -281,7 +281,7 @@ namespace Osobni_Troškovnik
 			t.WidthRequest = 800;
 
 
-			var cijenaLab = new Label("Ukupan trošak: ");
+			var cijenaLab = new Label("Ukupno: ");
 			var cijenaLabBoja = Props.add2EventBox(cijenaLab,bgColor,bojaSlova, defText14);
 			t.Attach(cijenaLabBoja, 2, 3, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			cijenaLab.SetAlignment(0.8f, 0.5f);
