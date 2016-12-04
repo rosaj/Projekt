@@ -19,6 +19,7 @@ namespace Osobni_Troškovnik
 			this.Name = "Osobni_Troškovnik.NovaKategorijaWidow";
 			this.Title = global::Mono.Unix.Catalog.GetString("NovaKategorijaWidow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
 			this.BorderWidth = ((uint)(15));
 			this.Resizable = false;
 			// Container child Osobni_Troškovnik.NovaKategorijaWidow.Gtk.Container+ContainerChild

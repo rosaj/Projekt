@@ -66,8 +66,8 @@ namespace Osobni_Troškovnik
 		}
 		private bool spremi()
 		{
-			float broj;
-			if (!float.TryParse(cijena.Text, out broj))
+			double broj;
+			if (!double.TryParse(cijena.Text, out broj))
 			{
 				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti prazna");
 				return false;

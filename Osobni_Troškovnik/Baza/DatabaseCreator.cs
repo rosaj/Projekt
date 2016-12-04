@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Collections.Generic;
 namespace Osobni_Troškovnik
 {
 	public abstract class DatabaseCreator
 	{
+
+		public static readonly List<string> defultLista = new List<string>(){ "Hrana", "Školovanje", "Gorivo","Automobil", "Namještaj", "Stanarina",
+			"Računalna oprema", "Struja", "Voda", "Telefon", "Internet", "TV", "Odjeća", "Nakit", "Shopping", "Zdravlje"};
+
+
+
 		public static void createDatabase(string path, string connectionString)
 		{
 
@@ -27,7 +34,7 @@ namespace Osobni_Troškovnik
 				command = new SQLiteCommand(sql, con);
 				command.ExecuteNonQuery();
 
-				foreach (string s in Props.defultLista)
+				foreach (string s in DatabaseCreator.defultLista)
 				{
 					sql = String.Format("insert into kategorija(ime) values('{0}')", s);
 					command = new SQLiteCommand(sql, con);

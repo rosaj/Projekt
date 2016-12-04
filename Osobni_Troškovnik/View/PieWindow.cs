@@ -20,7 +20,7 @@ namespace Osobni_Troškovnik
 			var series = new PieSeries
 			{ StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 
-			foreach (KeyValuePair<string, float> s in Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum))
+			foreach (KeyValuePair<string, double> s in Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum,doDatum))
 			{
 				series.Slices.Add(new PieSlice(s.Key, s.Value));
 

@@ -14,8 +14,8 @@ namespace Osobni_Troškovnik
 			var i = new Gtk.Image(image, IconSize.Button);
 
 			var labela = new Label(label);
-			box.PackStart(i, false, false, 70);
-			box.PackStart(labela, false, false, 3);
+			box.PackStart(i, false, false, 10);
+			box.PackStart(labela, false, false, 5);
 			var b = new Button(box);
 			b.Name = label;
 			return b;

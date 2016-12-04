@@ -3,14 +3,16 @@ namespace Osobni_Troškovnik
 {
 	public class Trosak
 	{
+		private int id;
 		private string kategorija;
-		private float cijena;
+		private double cijena;
 		private string datum;
 		private string opis;
 
 
-		public Trosak(string kategorija, float cijena, string datum, string opis)
+		public Trosak(int id, string kategorija, double cijena, string datum, string opis)
 		{
+			this.id = id;
 			this.kategorija = kategorija;
 			this.cijena = cijena;
 			this.datum = datum;
@@ -18,21 +20,39 @@ namespace Osobni_Troškovnik
 		}
 
 
-
+		public int ID
+		{
+			get
+			{
+				return id;
+			}
+			set
+			{
+				id = value;
+			}
+		}
 		public string Kategorija
 		{
 			get
 			{
 				return kategorija;
 			}
+			set
+			{
+				kategorija = value;
+			}
 
 		}
 
-		public float Cijena
+		public double Cijena
 		{
 			get
 			{
 				return cijena;
+			}
+			set
+			{
+				cijena = value;
 			}
 
 		}
@@ -42,6 +62,10 @@ namespace Osobni_Troškovnik
 			get
 			{
 				return datum;
+			}
+			set
+			{
+				datum = value;
 			}
 
 		}
@@ -53,6 +77,10 @@ namespace Osobni_Troškovnik
 				return opis;
 			}
 
+			set
+			{
+				opis = value;
+			}
 		}
 	}
 }

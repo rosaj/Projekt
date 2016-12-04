@@ -65,7 +65,7 @@ namespace Osobni_Troškovnik
 			this.table5.RowSpacing = ((uint)(6));
 			this.table5.ColumnSpacing = ((uint)(6));
 			// Container child table5.Gtk.Table+TableChild
-			this.cijena = new global::Gtk.SpinButton(0D, 999999999999D, 1D);
+			this.cijena = new global::Gtk.SpinButton(0D, 1E+31D, 1D);
 			global::Gtk.Tooltips w1 = new Gtk.Tooltips();
 			w1.SetTip(this.cijena, "Unesite cijenu troška\n", "Unesite cijenu troška\n");
 			this.cijena.CanFocus = true;

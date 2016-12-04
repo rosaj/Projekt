@@ -6,9 +6,6 @@ namespace Osobni_Troškovnik
 	public abstract class Props
 	{
 
-		public static readonly List<string> defultLista = new List<string>(){ "Hrana", "Školovanje", "Gorivo","Automobil", "Namještaj", "Stanarina",
-			"Računalna oprema", "Struja", "Voda", "Telefon", "Internet", "TV", "Odjeća", "Nakit", "Shopping", "Zdravlje"};
-
 
 		public static readonly Gdk.Color bgColor = Props.getColor("#B9CFDD");
 

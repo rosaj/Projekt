@@ -60,7 +60,7 @@ namespace Osobni_Troškovnik
 			return false;
 		}
 
-		public void insertTrosak(string kategorija, float cijena, DateTime datum, string opis)
+		public void insertTrosak(string kategorija, double cijena, DateTime datum, string opis)
 		{
 			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
 			SQLiteCommand command = new SQLiteCommand(sql, con);
@@ -72,6 +72,21 @@ namespace Osobni_Troškovnik
 
 			executeNonQuery(string.Format(" insert into trosak(id_kategorija, cijena,datum,opis) " +
 										  "values('{0}','{1}','{2}','{3}')", id, cijena, dateString, opis));
+
+		}
+
+		public void updateTrosak(Trosak t)
+		{
+			var datum = DateTime.Parse(t.Datum);
+			var dateString = datum.ToString("s");
+
+			executeNonQuery(string.Format("update trosak set cijena = '{0}', datum = '{1}', opis = '{2}' " +
+										  "where id = '{3}' ", t.Cijena, dateString, t.Opis, t.ID));
+
+		}
+		public void brisiTrosak(Trosak t)
+		{
+			executeNonQuery(string.Format("delete from trosak where id = '{0}' ", t.ID));
 
 		}
 
@@ -107,11 +122,14 @@ namespace Osobni_Troškovnik
 			reader.Read();
 			int id = Int32.Parse(reader[0].ToString());
 
+			odDatum = odDatum.AddDays(-1);
+			doDatum = doDatum.AddDays(+1);
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
-			sql = string.Format("select cijena, datum, opis from trosak " +
+
+			sql = string.Format("select id, cijena, datum, opis from trosak " +
 								"where id_kategorija= '{0}'" +
-								" AND datum >= '{1}' AND datum <= '{2}' " +
+								" AND datum > '{1}' AND datum < '{2}' " +
 								"order by datum DESC", id, datumOdString, datumDoString);
 			command = new SQLiteCommand(sql, con);
 			reader = command.ExecuteReader();
@@ -119,10 +137,11 @@ namespace Osobni_Troškovnik
 
 			while (reader.Read())
 			{
-				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd-MM-yyyy");
+				var dateString = DateTime.Parse(reader[2].ToString()).ToString("dd-MM-yyyy");
 
-				var t = new Trosak(kategorija, float.Parse(reader[0].ToString()),
-								   dateString, reader[2].ToString());
+				var t = new Trosak( Int32.Parse(reader[0].ToString()), 
+				                   kategorija, double.Parse(reader[1].ToString()),
+								   dateString, reader[3].ToString());
 				lista.Add(t);
 			}
 
@@ -131,7 +150,7 @@ namespace Osobni_Troškovnik
 
 
 		}
-		/*public float getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		/*public double getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
 		{
 
 			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
@@ -184,7 +203,7 @@ namespace Osobni_Troškovnik
 			{
 				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd-MM-yyyy");
 
-				var t = new Trosak(kategorija, float.Parse(reader[0].ToString()),
+				var t = new Trosak(0,	kategorija, double.Parse(reader[0].ToString()),
 								   dateString, "");
 				lista.Add(t);
 			}
@@ -198,10 +217,10 @@ namespace Osobni_Troškovnik
 
 
 
-		public Dictionary<string, float> getSumiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum)
+		public Dictionary<string, double> getSumiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum)
 		{
 
-			var lista = new Dictionary<string, float>();
+			var lista = new Dictionary<string, double>();
 
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
@@ -218,7 +237,7 @@ namespace Osobni_Troškovnik
 			while (reader.Read())
 			{
 
-				lista.Add(reader[0].ToString(), float.Parse(reader[1].ToString()));
+				lista.Add(reader[0].ToString(), double.Parse(reader[1].ToString()));
 			}
 
 

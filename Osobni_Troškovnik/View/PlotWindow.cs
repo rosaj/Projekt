@@ -32,7 +32,7 @@ namespace Osobni_Troškovnik
 			foreach (string s in lista)
 			{
 				var l = new LineSeries() { Title = s };
-				var list = Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, s);
+				var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, s);
 				if (list.Count > 0)
 				{
 					foreach (Trosak t in list)
@@ -74,7 +74,7 @@ namespace Osobni_Troškovnik
 			myModel.Axes.Add(x);
 			myModel.Axes.Add(y);
 
-			var list = Baza.getInstance.getTroskoveURazdoblju(odDatum, doDatum, kategorija);
+			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
 			var l = new LineSeries() { Title = kategorija };
 			foreach (Trosak t in list)
 			{

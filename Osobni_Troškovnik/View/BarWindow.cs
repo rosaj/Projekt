@@ -14,7 +14,6 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Stupčasti grafikon";
-			Console.WriteLine("");
 		}
 
 
@@ -23,7 +22,6 @@ namespace Osobni_Troškovnik
 			var items = new List<ColumnItem>();
 			var datums = new List<string>();
 			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
-
 
 
 			
@@ -70,6 +68,13 @@ namespace Osobni_Troškovnik
 
 			});
 
+			model.Axes.Add(new LinearAxis
+			{
+				Position = AxisPosition.Left,
+				Minimum = 0,
+				LabelFormatter=StringManipulator.formatter
+			});
+
 			pv.Model = model;
 			var v = new VBox();
 			v.Add(pv);
@@ -93,7 +98,7 @@ namespace Osobni_Troškovnik
 			var kat = new List<string>();
 			var list = Baza.getInstance.getSumiraneTroskoveURazdoblju(odDatum, doDatum);
 
-			foreach (KeyValuePair<string, float> t in list)
+			foreach (KeyValuePair<string, double> t in list)
 			{
 
 				var b = new ColumnItem(t.Value);
@@ -123,6 +128,7 @@ namespace Osobni_Troškovnik
 			};
 
 
+
 			var model = new PlotModel { Title = "Statistika za razdoblje: " + odDatum.ToShortDateString() + " - " + doDatum.ToShortDateString() };
 			this.SetSizeRequest(800, 600);
 			var pv = new PlotView();
@@ -138,6 +144,13 @@ namespace Osobni_Troškovnik
 				Key = "Datum",
 				ItemsSource = kat
 
+			});
+
+			model.Axes.Add(new LinearAxis
+			{
+				Position = AxisPosition.Left,
+				Minimum = 0,
+				LabelFormatter = StringManipulator.formatter
 			});
 
 			pv.Model = model;
