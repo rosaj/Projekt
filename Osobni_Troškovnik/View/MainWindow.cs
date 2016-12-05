@@ -245,7 +245,7 @@ namespace Osobni_Troškovnik
 		}
 		private void addTotalTroskove(Dictionary<string,double> lista, DateTime datumPoc, DateTime datumKraj)
 		{
-			var sW = new ScrolledWindow();
+			/*var sW = new ScrolledWindow();
 			var t = new Table((uint)lista.Count + 3, 3, true);
 
 			var eventBox = new EventBox();
@@ -345,7 +345,7 @@ namespace Osobni_Troškovnik
 			notebook.ShowAll();
 			notebook.CurrentPage = 1;
 
-
+*/
 		}
 
 		private void addStatisticView(List<string> lista, DateTime odDatum, DateTime doDatum)
