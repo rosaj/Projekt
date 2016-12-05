@@ -14,7 +14,7 @@ namespace Osobni_Troškovnik
 			cijena.Text = t.Cijena.ToString();
 			opis.Buffer.Text = t.Opis;
 			kategorijaLabel.LabelProp = t.Kategorija;
-			var datum = DateTime.ParseExact(t.Datum, "dd-MM-yyyy", null);
+			var datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
 			kalendar.SelectMonth((uint)datum.Month - 1, (uint)datum.Year);
 			kalendar.SelectDay((uint)datum.Day);
 		}
@@ -22,7 +22,7 @@ namespace Osobni_Troškovnik
 		protected void spremiClicked(object sender, EventArgs e)
 		{
 			trosak.Cijena = double.Parse(cijena.Text);
-			trosak.Datum = kalendar.GetDate().ToString("dd-MM-yyyy");
+			trosak.Datum = kalendar.GetDate().ToString("dd.MM.yyyy");
 			trosak.Opis = opis.Buffer.Text;
 			Baza.getInstance.updateTrosak(trosak);
 			signal(trosak, e);

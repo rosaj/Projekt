@@ -66,7 +66,7 @@ namespace Osobni_Troškovnik
 				lista.Sort((x, y) =>
 				{
 					if (x.Cijena < y.Cijena) return 1;
-					else if (x.Cijena > y.Cijena) return -1;
+					if (x.Cijena > y.Cijena) return -1;
 					return 0;
 				});
 			}
@@ -75,7 +75,7 @@ namespace Osobni_Troškovnik
 			lista.Sort((x, y) =>
 				{
 					if (x.Cijena < y.Cijena) return -1;
-					else if (x.Cijena > y.Cijena) return 1;
+					if (x.Cijena > y.Cijena) return 1;
 					return 0;
 				});
 
@@ -99,7 +99,7 @@ namespace Osobni_Troškovnik
 					var datumX = DateTime.Parse(x.Datum);
 					var datumY = DateTime.Parse(y.Datum);
 					if (datumX < datumY) return 1;
-					else if (datumX > datumY) return -1;
+					if (datumX > datumY) return -1;
 					return 0;
 				});
 			}
@@ -110,7 +110,7 @@ namespace Osobni_Troškovnik
 						var datumX = DateTime.Parse(x.Datum);
 						var datumY = DateTime.Parse(y.Datum);
 						if (datumX < datumY) return -1;
-						else if (datumX > datumY) return 1;
+						if (datumX > datumY) return 1;
 						return 0;
 					});
 

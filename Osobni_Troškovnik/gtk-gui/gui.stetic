@@ -757,7 +757,6 @@
               <widget class="Gtk.Label" id="kategorijaLabel">
                 <property name="MemberName" />
                 <property name="Xalign">0.03</property>
-                <property name="LabelProp" translatable="yes" />
               </widget>
               <packing>
                 <property name="LeftAttach">1</property>
@@ -943,7 +942,7 @@
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">1</property>
         <property name="ShowBorder">False</property>
         <child>
           <widget class="Gtk.EventBox" id="eventboxHome">
@@ -1238,7 +1237,6 @@
                           <widget class="Gtk.Label" id="datumLabel">
                             <property name="MemberName" />
                             <property name="Xalign">0.1</property>
-                            <property name="LabelProp" translatable="yes" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -1402,7 +1400,6 @@
                                           <widget class="Gtk.Label" id="infoUkupno">
                                             <property name="MemberName" />
                                             <property name="Xalign">0</property>
-                                            <property name="LabelProp" translatable="yes" />
                                           </widget>
                                           <packing>
                                             <property name="Position">1</property>
@@ -1415,7 +1412,6 @@
                                           <widget class="Gtk.Label" id="infoProsjek">
                                             <property name="MemberName" />
                                             <property name="Xalign">0</property>
-                                            <property name="LabelProp" translatable="yes" />
                                           </widget>
                                           <packing>
                                             <property name="Position">2</property>
@@ -1597,9 +1593,6 @@
                             <property name="MemberName" />
                             <property name="Spacing">6</property>
                             <child>
-                              <placeholder />
-                            </child>
-                            <child>
                               <widget class="Gtk.Button" id="button12">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
@@ -1610,7 +1603,7 @@
                                 <signal name="Clicked" handler="datumFilterClicked" />
                               </widget>
                               <packing>
-                                <property name="Position">1</property>
+                                <property name="Position">0</property>
                                 <property name="AutoSize">True</property>
                                 <property name="Expand">False</property>
                                 <property name="Fill">False</property>
@@ -1620,11 +1613,49 @@
                               <widget class="Gtk.Label" id="datumLabela">
                                 <property name="MemberName" />
                                 <property name="Xalign">0.1</property>
-                                <property name="LabelProp" translatable="yes" />
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.HBox" id="hbox25">
+                                <property name="MemberName" />
+                                <property name="Spacing">6</property>
+                                <child>
+                                  <widget class="Gtk.Fixed" id="fixed10">
+                                    <property name="MemberName" />
+                                    <property name="HasWindow">False</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="Position">0</property>
+                                    <property name="AutoSize">True</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Button" id="button6">
+                                    <property name="MemberName" />
+                                    <property name="CanFocus">True</property>
+                                    <property name="Type">TextAndIcon</property>
+                                    <property name="Icon">resource:Osobni_Troškovnik.Pics.openInNewWindow.png</property>
+                                    <property name="Label" translatable="yes" />
+                                    <property name="UseUnderline">True</property>
+                                    <signal name="Clicked" handler="openInNewWindowClicked" />
+                                  </widget>
+                                  <packing>
+                                    <property name="Position">1</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="Expand">False</property>
+                                    <property name="Fill">False</property>
+                                  </packing>
+                                </child>
                               </widget>
                               <packing>
                                 <property name="Position">2</property>
-                                <property name="AutoSize">False</property>
+                                <property name="AutoSize">True</property>
                               </packing>
                             </child>
                           </widget>

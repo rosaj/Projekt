@@ -101,6 +101,7 @@
     <EmbeddedResource Include="Pics\smallBack.png" />
     <EmbeddedResource Include="Pics\edit.png" />
     <EmbeddedResource Include="Pics\pie.png" />
+    <EmbeddedResource Include="Pics\openInNewWindow.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
