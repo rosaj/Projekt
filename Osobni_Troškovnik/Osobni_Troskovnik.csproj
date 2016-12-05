@@ -86,7 +86,6 @@
     <EmbeddedResource Include="Pics\Računalna oprema.png" />
     <EmbeddedResource Include="Pics\r.png" />
     <EmbeddedResource Include="Pics\bar.png" />
-    <EmbeddedResource Include="Pics\pie.png" />
     <EmbeddedResource Include="Pics\chart.png" />
     <EmbeddedResource Include="Pics\winico.png" />
     <EmbeddedResource Include="Pics\image.png" />
@@ -101,6 +100,7 @@
     <EmbeddedResource Include="Pics\plus.png" />
     <EmbeddedResource Include="Pics\smallBack.png" />
     <EmbeddedResource Include="Pics\edit.png" />
+    <EmbeddedResource Include="Pics\pie.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -132,6 +132,8 @@
     <Compile Include="Presenter\TrosakNodeStore.cs" />
     <Compile Include="View\MainWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.MainWindow.cs" />
+    <Compile Include="Presenter\KategorijaPresenter.cs" />
+    <Compile Include="Presenter\KategorijeButtonPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

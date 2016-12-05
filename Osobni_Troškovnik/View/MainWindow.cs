@@ -7,16 +7,24 @@ namespace Osobni_Troškovnik
 	{
 		private UnesiTrosakWindow uT;
 		private DatumChooseWindow dCW;
+
 		private string textF12 = "Sans Condensed Not-Rotated 12";
 		private string textF14 = "Sans Condensed Not-Rotated 14";
 		//private string defText12 = "Kristen ITC 12";
 		private string defText14 = "Kristen ITC 14";
 		private Gdk.Color bgColor = Props.bgColor;
 		private Gdk.Color bojaSlova = Props.getColor("#0017FF");
+
 		private DateTime p = DateTime.Now.AddMonths(-1);
 		private DateTime k = DateTime.Now;
+
 		private string currentKategorija;
+
 		TrosakNodeStore trosakPresenter;
+
+		private EventHandler datumChanged;
+		private EventHandler backClicked;
+
 		public MainWindow() : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
@@ -91,7 +99,7 @@ namespace Osobni_Troškovnik
 				tn.cijena = t.Cijena.ToString("0.00 kn");
 				tn.datum = t.Datum;
 				tn.opis = t.Opis;
-				opisView.Buffer.Text = "Opis: \n" + t.Opis;
+				opisView.Buffer.Text = t.Opis;
 			};
 			editWin.brisiTrosak += (sender2, e2) =>
 			  {
@@ -102,42 +110,35 @@ namespace Osobni_Troškovnik
 			
 		protected void backButtonClicked(object sender, EventArgs e)
 		{
-			var list = kategorijeHBox.AllChildren;
-			foreach (Widget w in list)
-			{
-				kategorijeHBox.Remove(w);
-			}
-			trosakPresenter.brisiTroskove();
-			if (nodeView.NodeStore != null) nodeView.NodeStore.Clear();
+			datumChanged = null;
+
 			notebook.CurrentPage = 0;
+			if(backClicked != null)	backClicked(sender, e);
+			backClicked = null;
 		}
 
 		protected void datumFilterClicked(object sender, EventArgs e)
 		{
-			if (currentKategorija != null )
-			{
+			
 				dCW = new DatumChooseWindow(p,k);
 				dCW.signaliziraj += (odDatum, doDatum) =>
 				{
 					p = odDatum;
 					k = doDatum;
-					prikaziPodatke(currentKategorija);
-					datumLabel.LabelProp = p.ToString("dd-MM-yyyy") + " - " + k.ToString("dd-MM-yyyy");
-
+				if (datumChanged != null)datumChanged(sender, e);
 				};
-			}	
 		}
-		private void prikaziPodatke( string kategorija)
+		private void prikaziPodatke(string kategorija)
 		{
 				currentKategorija = kategorija;
-				var listaTr = Baza.getInstance.getTroskoveURazdoblju(p, k, kategorija);
+				
 				trosakPresenter.brisiTroskove();
-				trosakPresenter.dodaj(listaTr);
+				trosakPresenter.dodajTroskoveURazdoblju(kategorija, p, k);
+				//trosakPresenter.dodaj(listaTr);
 				nodeView.NodeStore = trosakPresenter;
-				info.LabelProp ="Kategorija: "+currentKategorija +
-				        "    \nUkupno: " + trosakPresenter.suma.ToString("0.00 kn") +
-									"     \nProsjek: " + trosakPresenter.Prosjek.ToString("0.00 kn");
-		
+				kategorijaLabel.LabelProp = currentKategorija;
+				infoUkupno.LabelProp = trosakPresenter.Suma;
+				infoProsjek.LabelProp = trosakPresenter.Prosjek;
 		}
 
 		public void setupTreeView()
@@ -149,7 +150,7 @@ namespace Osobni_Troškovnik
 			cijenaColumn.Reorderable = true;
 			cijenaColumn.SortIndicator = true;
 			cijenaColumn.Resizable = true;
-			cijenaColumn.MinWidth = 130;
+			cijenaColumn.MinWidth = 100;
 			cijenaColumn.Clicked += (sender, e) => sortiranjePoCijeni(cijenaColumn);
 
 			datumColumn.Clickable = true;
@@ -157,7 +158,7 @@ namespace Osobni_Troškovnik
 			datumColumn.SortIndicator = true;
 			datumColumn.Resizable = true;
 			datumColumn.SortOrder = SortType.Descending;
-			datumColumn.MinWidth = 130;
+			datumColumn.MinWidth = 100;
 			datumColumn.Clicked += (sender, e) => sortiranjePoDatumu(datumColumn);
 
 			nodeView.AppendColumn(cijenaColumn);
@@ -194,42 +195,54 @@ namespace Osobni_Troškovnik
 		}
 		private void generirajKategorije()
 		{
-			var lista = Baza.getInstance.getKategorije();
-
 			notebook.CurrentPage = 1;
 
-			var kategorijeBox = new VBox(false, 10);
-			kategorijeHBox.Add(kategorijeBox);
+			var kategorijeBPresenter = new KategorijeButtonPresenter();
+			var vBoxKat = kategorijeBPresenter.Kategorije((Widget w) => 
+			{
+				var b = w as Button;
+				b.Clicked += (sender, e) => prikaziPodatke(b.Name);
 
-			datumLabel.LabelProp = p.ToString("dd-MM-yyyy") + " - " + k.ToString("dd-MM-yyyy");
+			});
+			kategorijeHBox.Add(vBoxKat);
+			refreshPodatke();
 
 			nodeView.NodeSelection.Changed += (sender, e) =>
 			{
 				var selectedTrosak = (TrosakNode)nodeView.NodeSelection.SelectedNode;
 				if (selectedTrosak != null)
 				{
-					opisView.Buffer.Text = "Opis: \n" + selectedTrosak.opis;
+					opisView.Buffer.Text = selectedTrosak.opis;
 				}
 
 				else opisView.Buffer.Text = "";
 			};
 
-			foreach (var s in lista)
-			{
-				string icon = s;
-				if (!DatabaseCreator.defultLista.Contains(s))
-					icon = "r";
-				var b = ImageButton.imageButton(icon, s);
+			datumChanged += (sender, e) => refreshPodatke();
 
-				b.HeightRequest = 50;
-				b.WidthRequest = 200;
-
-				kategorijeBox.PackStart(b, false, false, 0);
-				b.Clicked += (sender, e) => prikaziPodatke(s);
-			}
+			backClicked+=(sender, e) => troskoviBackClicked();
+		
 			notebook.ShowAll();
 		}
+		private void refreshPodatke()
+		{
+			if (currentKategorija != null) prikaziPodatke(currentKategorija);
+			datumLabel.LabelProp = p.ToString("dd-MM-yyyy") + " - " + k.ToString("dd-MM-yyyy");
+		}
+		private void troskoviBackClicked()
+		{
+			infoUkupno.LabelProp = "";
+			infoProsjek.LabelProp = "";
+			kategorijaLabel.LabelProp = "";
+			var list = kategorijeHBox.AllChildren;
+			foreach (Widget w in list)
+			{
+				kategorijeHBox.Remove(w);
+			}
+			trosakPresenter.brisiTroskove();
+			if (nodeView.NodeStore != null) nodeView.NodeStore.Clear();
 
+		}
 		private void addTotalTroskove(Dictionary<string,double> lista, DateTime datumPoc, DateTime datumKraj)
 		{
 			var sW = new ScrolledWindow();
@@ -268,13 +281,10 @@ namespace Osobni_Troškovnik
 				};
 			};
 
-			//var back = new Button(ImageButton.imageButton("gtk-go-back"));
 			w3 = new Image();
 			w3.Pixbuf = Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.back.png");
 			var back = new Button(w3);
 
-
-			//back.SetSizeRequest(400, 50);
 			back.Clicked += (sender, e) =>
 			{
 				notebook.Remove(sW);
@@ -340,7 +350,7 @@ namespace Osobni_Troškovnik
 
 		private void addStatisticView(List<string> lista, DateTime odDatum, DateTime doDatum)
 		{
-
+			/*
 			var sW = new ScrolledWindow();
 
 			int iter = (lista.Count) / 3;
@@ -485,6 +495,17 @@ namespace Osobni_Troškovnik
 			notebook.ShowAll();
 			notebook.CurrentPage = 1;
 
+*/
+			notebook.CurrentPage = 2;
+			totalBar.Image =  new Image("Bar", IconSize.Dnd);
+			totalPie.Image = new Image("Pie", IconSize.Dnd);
+			totalLine.Image = new Image("Line", IconSize.Dnd);
+			kategorijaBar.Image = new Image("Bar", IconSize.Dnd);
+			kategorijaLine.Image = new Image("Line", IconSize.Dnd);
+			prikazPoBar.Image = new Image("Bar", IconSize.Dnd);
+			prikazPoPie.Image = new Image("Pie", IconSize.Dnd);
+
+			var kP = new KategorijaPresenter(kategorijeCombo);
 
 		}
 

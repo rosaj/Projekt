@@ -5,7 +5,7 @@ namespace Osobni_Troškovnik
 {
 	public class TrosakNodeStore : Gtk.NodeStore
 	{
-		public double suma { get; set; }
+		private double suma;
 		private int broj;
 		public TrosakNodeStore() : base(typeof(TrosakNode))
 		{
@@ -25,6 +25,11 @@ namespace Osobni_Troškovnik
 				this.Add(t);
 			}
 		}
+		public void dodajTroskoveURazdoblju(string kategorija, DateTime pocetak, DateTime kraj)
+		{
+			var listaTr = Baza.getInstance.getTroskoveURazdoblju(pocetak, kraj, kategorija);
+			dodaj(listaTr);
+		}
 		public void brisiTroskove()
 		{
 			suma = 0;
@@ -32,13 +37,21 @@ namespace Osobni_Troškovnik
 			this.Clear();
 		}
 
-		public double Prosjek
+		public string Prosjek
 		{
 			get
 			{
-				return suma / broj;
+				return (suma / broj).ToString("0.00 kn");;
 			}
 
+		}
+		public string Suma
+		{
+			get
+			{
+				return suma.ToString("0.00 kn");
+			}
+			
 		}
 		public void sortByCijena(SortType st) 
 		{

@@ -18,9 +18,7 @@ namespace Osobni_Troškovnik
 			this.Title = "Novi trošak";
 			eventboxHome.ModifyBg(StateType.Normal,bgColor);
 			this.Resizable = false;
-			List<String> lista = Baza.getInstance.getKategorije();
-			foreach (string s in lista) listaKategorija.AppendText(s);
-			listaKategorija.Active = 0;
+			var kategorijaPresenter = new KategorijaPresenter(listaKategorija);
 			cijena.Text = "";
 		}
 
