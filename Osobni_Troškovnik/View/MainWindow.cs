@@ -32,6 +32,7 @@ namespace Osobni_Troškovnik
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
 			eventboxHome.ModifyBg(StateType.Normal, bgColor);
+			eventBoxTroskovi.ModifyBg(StateType.Normal, bgColor);
 
 			trosakPresenter = new TrosakNodeStore();
 
