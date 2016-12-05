@@ -44,7 +44,7 @@ namespace Osobni_Troškovnik
 			Application.Quit();
 			a.RetVal = true;
 		}
-
+		  
 		protected void noviTrosakClicked(object sender, EventArgs e)
 		{
 			if (uT == null)
