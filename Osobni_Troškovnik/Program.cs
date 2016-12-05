@@ -10,6 +10,8 @@ namespace Osobni_Troškovnik
 			var win = new MainWindow();
 			win.Show();
 
+
+
 			Application.Run();
 		}
 	}

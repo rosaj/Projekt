@@ -8,10 +8,10 @@ namespace Osobni_Troškovnik
 		private UnesiTrosakWindow uT;
 		private DatumChooseWindow dCW;
 
-		private string textF12 = "Sans Condensed Not-Rotated 12";
-		private string textF14 = "Sans Condensed Not-Rotated 14";
+	//	private string textF12 = "Sans Condensed Not-Rotated 12";
+	//	private string textF14 = "Sans Condensed Not-Rotated 14";
 		//private string defText12 = "Kristen ITC 12";
-		private string defText14 = "Kristen ITC 14";
+	//	private string defText14 = "Kristen ITC 14";
 		private Gdk.Color bgColor = Props.bgColor;
 		private Gdk.Color bojaSlova = Props.getColor("#0017FF");
 
@@ -33,6 +33,7 @@ namespace Osobni_Troškovnik
 			this.Title = "Osobni troškovnik";
 			eventboxHome.ModifyBg(StateType.Normal, bgColor);
 			eventBoxTroskovi.ModifyBg(StateType.Normal, bgColor);
+			eventBoxStatistika.ModifyBg(StateType.Normal, bgColor);
 
 			trosakPresenter = new TrosakNodeStore();
 
@@ -505,10 +506,83 @@ namespace Osobni_Troškovnik
 			kategorijaLine.Image = new Image("Line", IconSize.Dnd);
 			prikazPoBar.Image = new Image("Bar", IconSize.Dnd);
 			prikazPoPie.Image = new Image("Pie", IconSize.Dnd);
-
+			odabranaGodina.Text = DateTime.Now.Year.ToString();
 			var kP = new KategorijaPresenter(kategorijeCombo);
+			datumLabela.LabelProp = p.ToString("dd.MM.yyyy") + " - " + k.ToString("dd.MM.yyyy");
 
 		}
 
+		protected void totalClicked(object sender, EventArgs e)
+		{
+			pocistiPlotBox();
+			var b = sender as Button;
+
+			if (b.Name == totalBar.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.BarPlotSveKategorije(p, k));
+				plotBox.ShowAll();
+			}
+			else if (b.Name == totalPie.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.PieViewSveKategorije(p, k));
+				plotBox.ShowAll();
+			}
+
+			else if (b.Name == totalLine.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.PlotSveKategorije(p, k));
+				plotBox.ShowAll();
+			}
+		}
+
+		protected void kategorijaGrafClicked(object sender, EventArgs e)
+		{
+			pocistiPlotBox();
+			var b = sender as Button;
+
+			if (b.Name == kategorijaBar.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.BarPlotKategorija(p, k, kategorijeCombo.ActiveText));
+				plotBox.ShowAll();
+			}
+			else if (b.Name == kategorijaLine.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.PlotKategoriju(p, k,kategorijeCombo.ActiveText));
+				plotBox.ShowAll();
+			}
+		}
+
+		protected void prikazPoGrafClicked(object sender, EventArgs e)
+		{
+			pocistiPlotBox();
+			var b = sender as Button;
+			if (b.Name == prikazPoBar.Name)
+			{
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.BarPlotMjeseceUGodini(Int32.Parse(odabranaGodina.Text)));
+				plotBox.ShowAll();
+			}
+			else if (b.Name == prikazPoPie.Name)
+			{
+
+				var grafPresenter = new GrafPresenter();
+				plotBox.Add(grafPresenter.PieViewMjeseceUGodini(Int32.Parse(odabranaGodina.Text)));
+				plotBox.ShowAll();
+			}
+			
+		}
+		private void pocistiPlotBox()
+		{
+			var list = plotBox.AllChildren;
+			foreach (Widget w in list)
+			{
+				plotBox.Remove(w);
+			}
+		}
 	}
 }

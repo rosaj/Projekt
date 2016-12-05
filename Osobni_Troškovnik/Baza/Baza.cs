@@ -137,7 +137,7 @@ namespace Osobni_Troškovnik
 
 			while (reader.Read())
 			{
-				var dateString = DateTime.Parse(reader[2].ToString()).ToString("dd-MM-yyyy");
+				var dateString = DateTime.Parse(reader[2].ToString()).ToString("dd.MM.yyyy");
 
 				var t = new Trosak( Int32.Parse(reader[0].ToString()), 
 				                   kategorija, double.Parse(reader[1].ToString()),
@@ -189,11 +189,14 @@ namespace Osobni_Troškovnik
 			reader.Read();
 			int id = Int32.Parse(reader[0].ToString());
 
+			odDatum = odDatum.AddDays(-1);
+			doDatum = doDatum.AddDays(+1);
+
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
 			sql = string.Format("select SUM(cijena),datum from trosak " +
 								"where id_kategorija= '{0}'" +
-								" AND datum >= '{1}' AND datum <= '{2}' " +
+								" AND datum > '{1}' AND datum < '{2}' " +
 								"group by datum", id, datumOdString, datumDoString);
 			command = new SQLiteCommand(sql, con);
 			reader = command.ExecuteReader();
@@ -201,7 +204,7 @@ namespace Osobni_Troškovnik
 
 			while (reader.Read())
 			{
-				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd-MM-yyyy");
+				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd.MM.yyyy");
 
 				var t = new Trosak(0,	kategorija, double.Parse(reader[0].ToString()),
 								   dateString, "");
@@ -222,13 +225,15 @@ namespace Osobni_Troškovnik
 
 			var lista = new Dictionary<string, double>();
 
+			odDatum = odDatum.AddDays(-1);
+			doDatum = doDatum.AddDays(+1);
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
 			string sql = string.Format("select kategorija.ime, SUM(cijena) " +
 									   "from trosak " +
 									   "join kategorija " +
 									   "ON id_kategorija = kategorija.id " +
-									   "where datum >= '{0}' AND datum <= '{1}' " +
+									   "where datum > '{0}' AND datum < '{1}' " +
 									   "group by ime " +
 			                           "order by  sum(cijena) desc ", datumOdString, datumDoString);
 			SQLiteCommand command = new SQLiteCommand(sql, con);
@@ -245,7 +250,74 @@ namespace Osobni_Troškovnik
 
 
 		}
+		public Dictionary<string, double> getTroskovePoKategorijamaUGodini(int godina)
+		{
+			var lista = new Dictionary<string,double>();
 
+			string sql = string.Format("select strftime('%m',datum) as Mjesec, SUM(cijena) as Cijena " +
+									   "from trosak " +
+			                           "where strftime('%Y',datum) > '{0}' AND strftime('%Y',datum) <'{1}' " +
+									   "group by Mjesec",godina-1,godina+1);
+
+
+
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+
+			while (reader.Read())
+			{
+
+				int mjesec = Int32.Parse(reader[0].ToString());
+				string mjesecString = "NA";
+				switch (mjesec)
+				{
+					case 1:
+						mjesecString = "Siječanj";
+						break;
+					case 2:
+						mjesecString = "Veljača";
+						break;		
+					case 3:
+						mjesecString = "Ožujak";
+						break;
+					case 4:
+						mjesecString = "Travanj";
+						break;	
+					case 5:
+						mjesecString = "Svibanj";
+						break;
+					case 6:
+						mjesecString = "Lipanj";
+						break;
+					case 7:
+						mjesecString = "Srpanj";
+						break;
+					case 8:
+						mjesecString = "Kolovoz";
+						break;
+					case 9:
+						mjesecString = "Rujan";
+						break;
+					case 10:
+						mjesecString = "Listopad";
+						break;
+					case 11:
+						mjesecString = "Studeni";
+						break;
+					case 12:
+						mjesecString = "Prosinac";
+						break;
+				}
+
+				lista.Add(mjesecString, double.Parse(reader[1].ToString()));
+
+			}
+
+
+
+
+			return lista;
+		}
 
 
 

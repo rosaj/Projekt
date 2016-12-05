@@ -134,6 +134,7 @@
     <Compile Include="gtk-gui\Osobni_Troškovnik.MainWindow.cs" />
     <Compile Include="Presenter\KategorijaPresenter.cs" />
     <Compile Include="Presenter\KategorijeButtonPresenter.cs" />
+    <Compile Include="Presenter\GrafPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
