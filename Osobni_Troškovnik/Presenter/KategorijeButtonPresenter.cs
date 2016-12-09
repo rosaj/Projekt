@@ -4,9 +4,7 @@ namespace Osobni_Troškovnik
 {
 	public class KategorijeButtonPresenter
 	{
-		public KategorijeButtonPresenter()
-		{
-		}
+		
 		public VBox Kategorije(Callback c)
 		{
 			var kategorijeBox = new VBox(false, 10);
