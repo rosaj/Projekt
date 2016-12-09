@@ -51,7 +51,6 @@ namespace Osobni_Troškovnik
 			this.Name = "Osobni_Troškovnik.UnesiTrosakWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString("UnesiTrosakWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
-			this.BorderWidth = ((uint)(6));
 			// Container child Osobni_Troškovnik.UnesiTrosakWindow.Gtk.Container+ContainerChild
 			this.eventboxHome = new global::Gtk.EventBox();
 			this.eventboxHome.Name = "eventboxHome";
@@ -59,6 +58,7 @@ namespace Osobni_Troškovnik
 			this.vbox14 = new global::Gtk.VBox();
 			this.vbox14.Name = "vbox14";
 			this.vbox14.Spacing = 6;
+			this.vbox14.BorderWidth = ((uint)(12));
 			// Container child vbox14.Gtk.Box+BoxChild
 			this.table5 = new global::Gtk.Table(((uint)(4)), ((uint)(3)), false);
 			this.table5.Name = "table5";
@@ -104,7 +104,7 @@ namespace Osobni_Troškovnik
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.opis = new global::Gtk.TextView();
-			w1.SetTip(this.opis, "Kratak opis troška(pr. Kupnja mobitela IPhone 7) max 100 znakova.", "Kratak opis troška(pr. Kupnja mobitela IPhone 7) max 100 znakova.");
+			w1.SetTip(this.opis, "Kratak opis troška(pr. Kupnja mobitela IPhone 7)", "Kratak opis troška(pr. Kupnja mobitela IPhone 7)");
 			this.opis.CanFocus = true;
 			this.opis.Name = "opis";
 			this.GtkScrolledWindow.Add(this.opis);
@@ -260,7 +260,7 @@ namespace Osobni_Troškovnik
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 368;
+			this.DefaultWidth = 380;
 			this.DefaultHeight = 441;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);

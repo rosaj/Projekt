@@ -4,21 +4,45 @@ namespace Osobni_Troškovnik
 {
 	public partial class DatumChooseWindow
 	{
+		private global::Gtk.VBox vbox3;
+
+		private global::Gtk.HBox hbox4;
+
+		private global::Gtk.RadioButton rangeRadio;
+
+		private global::Gtk.Fixed fixed3;
+
+		private global::Gtk.RadioButton mjeseciRadio;
+
+		private global::Gtk.HBox hbox5;
+
 		private global::Gtk.VBox vbox2;
 
-		private global::Gtk.HBox hbox1;
+		private global::Gtk.HBox hbox3;
 
 		private global::Gtk.Label label3;
 
 		private global::Gtk.Label label4;
 
-		private global::Gtk.HBox hbox3;
+		private global::Gtk.HBox hbox6;
 
 		private global::Gtk.Calendar kalendarOd;
 
 		private global::Gtk.Calendar kalendarDo;
 
+		private global::Gtk.VBox vbox4;
+
+		private global::Gtk.Fixed fixed4;
+
+		private global::Gtk.ComboBox mjeseciCombo;
+
+		private global::Gtk.HBox hbox1;
+
+		private global::Gtk.Fixed fixed1;
+
 		private global::Gtk.Button filtrirajButton;
+
+		private global::Gtk.Fixed fixed2;
 
 		protected virtual void Build()
 		{
@@ -31,88 +55,203 @@ namespace Osobni_Troškovnik
 			this.BorderWidth = ((uint)(6));
 			this.Resizable = false;
 			// Container child Osobni_Troškovnik.DatumChooseWindow.Gtk.Container+ContainerChild
+			this.vbox3 = new global::Gtk.VBox();
+			this.vbox3.Name = "vbox3";
+			this.vbox3.Spacing = 16;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox4 = new global::Gtk.HBox();
+			this.hbox4.Name = "hbox4";
+			this.hbox4.Spacing = 195;
+			// Container child hbox4.Gtk.Box+BoxChild
+			this.rangeRadio = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Raspon"));
+			this.rangeRadio.CanFocus = true;
+			this.rangeRadio.Name = "rangeRadio";
+			this.rangeRadio.DrawIndicator = true;
+			this.rangeRadio.UseUnderline = true;
+			this.rangeRadio.Group = new global::GLib.SList(global::System.IntPtr.Zero);
+			this.hbox4.Add(this.rangeRadio);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.rangeRadio]));
+			w1.Position = 0;
+			// Container child hbox4.Gtk.Box+BoxChild
+			this.fixed3 = new global::Gtk.Fixed();
+			this.fixed3.Name = "fixed3";
+			this.fixed3.HasWindow = false;
+			this.hbox4.Add(this.fixed3);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.fixed3]));
+			w2.Position = 1;
+			// Container child hbox4.Gtk.Box+BoxChild
+			this.mjeseciRadio = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Mjeseci"));
+			this.mjeseciRadio.CanFocus = true;
+			this.mjeseciRadio.Name = "mjeseciRadio";
+			this.mjeseciRadio.DrawIndicator = true;
+			this.mjeseciRadio.UseUnderline = true;
+			this.mjeseciRadio.Group = this.rangeRadio.Group;
+			this.hbox4.Add(this.mjeseciRadio);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.mjeseciRadio]));
+			w3.Position = 2;
+			this.vbox3.Add(this.hbox4);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
+			w4.Position = 0;
+			w4.Expand = false;
+			w4.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox5 = new global::Gtk.HBox();
+			this.hbox5.Name = "hbox5";
+			this.hbox5.Spacing = 29;
+			// Container child hbox5.Gtk.Box+BoxChild
 			this.vbox2 = new global::Gtk.VBox();
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox();
-			this.hbox1.Name = "hbox1";
-			this.hbox1.Homogeneous = true;
-			this.hbox1.Spacing = 6;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.label3 = new global::Gtk.Label();
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("Početak");
-			this.hbox1.Add(this.label3);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.label3]));
-			w1.Position = 0;
-			w1.Expand = false;
-			w1.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.label4 = new global::Gtk.Label();
-			this.label4.Name = "label4";
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString("Kraj");
-			this.hbox1.Add(this.label4);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.label4]));
-			w2.Position = 1;
-			w2.Expand = false;
-			w2.Fill = false;
-			this.vbox2.Add(this.hbox1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
-			w3.Position = 0;
-			w3.Expand = false;
-			w3.Fill = false;
-			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox();
 			this.hbox3.Name = "hbox3";
 			this.hbox3.Homogeneous = true;
-			this.hbox3.Spacing = 20;
+			this.hbox3.Spacing = 6;
 			// Container child hbox3.Gtk.Box+BoxChild
+			this.label3 = new global::Gtk.Label();
+			this.label3.Name = "label3";
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("Početak");
+			this.hbox3.Add(this.label3);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.label3]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.label4 = new global::Gtk.Label();
+			this.label4.Name = "label4";
+			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString("Kraj");
+			this.hbox3.Add(this.label4);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.label4]));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
+			this.vbox2.Add(this.hbox3);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox3]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.hbox6 = new global::Gtk.HBox();
+			this.hbox6.Name = "hbox6";
+			this.hbox6.Homogeneous = true;
+			this.hbox6.Spacing = 20;
+			// Container child hbox6.Gtk.Box+BoxChild
 			this.kalendarOd = new global::Gtk.Calendar();
 			this.kalendarOd.CanFocus = true;
 			this.kalendarOd.Name = "kalendarOd";
 			this.kalendarOd.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
-			this.hbox3.Add(this.kalendarOd);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.kalendarOd]));
-			w4.Position = 0;
-			w4.Expand = false;
-			w4.Fill = false;
-			// Container child hbox3.Gtk.Box+BoxChild
+			this.hbox6.Add(this.kalendarOd);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.kalendarOd]));
+			w8.Position = 0;
+			w8.Expand = false;
+			w8.Fill = false;
+			// Container child hbox6.Gtk.Box+BoxChild
 			this.kalendarDo = new global::Gtk.Calendar();
 			this.kalendarDo.CanFocus = true;
 			this.kalendarDo.Name = "kalendarDo";
 			this.kalendarDo.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
-			this.hbox3.Add(this.kalendarDo);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.kalendarDo]));
-			w5.Position = 1;
-			w5.Expand = false;
-			w5.Fill = false;
-			this.vbox2.Add(this.hbox3);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox3]));
-			w6.Position = 1;
-			w6.Expand = false;
-			w6.Fill = false;
-			// Container child vbox2.Gtk.Box+BoxChild
+			this.hbox6.Add(this.kalendarDo);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.kalendarDo]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
+			this.vbox2.Add(this.hbox6);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox6]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
+			this.hbox5.Add(this.vbox2);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.vbox2]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
+			// Container child hbox5.Gtk.Box+BoxChild
+			this.vbox4 = new global::Gtk.VBox();
+			this.vbox4.Name = "vbox4";
+			this.vbox4.Spacing = 20;
+			// Container child vbox4.Gtk.Box+BoxChild
+			this.fixed4 = new global::Gtk.Fixed();
+			this.fixed4.Name = "fixed4";
+			this.fixed4.HasWindow = false;
+			this.vbox4.Add(this.fixed4);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.fixed4]));
+			w12.Position = 0;
+			w12.Expand = false;
+			// Container child vbox4.Gtk.Box+BoxChild
+			this.mjeseciCombo = global::Gtk.ComboBox.NewText();
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Siječanj"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Veljača"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Ožujak"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Travanj"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Svibanj"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Lipanj"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Srpanj"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Kolovoz"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Rujan"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Listopad"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Studeni"));
+			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Prosinac"));
+			this.mjeseciCombo.Name = "mjeseciCombo";
+			this.mjeseciCombo.Active = 0;
+			this.vbox4.Add(this.mjeseciCombo);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.mjeseciCombo]));
+			w13.Position = 1;
+			w13.Expand = false;
+			w13.Fill = false;
+			this.hbox5.Add(this.vbox4);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.vbox4]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
+			this.vbox3.Add(this.hbox5);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox1 = new global::Gtk.HBox();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.fixed1 = new global::Gtk.Fixed();
+			this.fixed1.Name = "fixed1";
+			this.fixed1.HasWindow = false;
+			this.hbox1.Add(this.fixed1);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.fixed1]));
+			w16.Position = 0;
+			// Container child hbox1.Gtk.Box+BoxChild
 			this.filtrirajButton = new global::Gtk.Button();
 			this.filtrirajButton.CanFocus = true;
 			this.filtrirajButton.Name = "filtrirajButton";
 			this.filtrirajButton.UseUnderline = true;
 			this.filtrirajButton.Label = global::Mono.Unix.Catalog.GetString("Filtriraj");
-			this.vbox2.Add(this.filtrirajButton);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.filtrirajButton]));
-			w7.Position = 2;
-			w7.Expand = false;
-			w7.Fill = false;
-			this.Add(this.vbox2);
+			this.hbox1.Add(this.filtrirajButton);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.filtrirajButton]));
+			w17.Position = 1;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.fixed2 = new global::Gtk.Fixed();
+			this.fixed2.Name = "fixed2";
+			this.fixed2.HasWindow = false;
+			this.hbox1.Add(this.fixed2);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.fixed2]));
+			w18.Position = 2;
+			this.vbox3.Add(this.hbox1);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox1]));
+			w19.Position = 2;
+			w19.Expand = false;
+			w19.Fill = false;
+			this.Add(this.vbox3);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 458;
-			this.DefaultHeight = 277;
+			this.DefaultWidth = 637;
+			this.DefaultHeight = 302;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.onDeleteEvent);
 			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);
+			this.rangeRadio.Toggled += new global::System.EventHandler(this.radioRasponToggled);
+			this.mjeseciRadio.Toggled += new global::System.EventHandler(this.radioMjeseciToggled);
 			this.filtrirajButton.Clicked += new global::System.EventHandler(this.filtrirajClicked);
 		}
 	}

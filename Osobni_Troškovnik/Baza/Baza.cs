@@ -89,7 +89,18 @@ namespace Osobni_Troškovnik
 			executeNonQuery(string.Format("delete from trosak where id = '{0}' ", t.ID));
 
 		}
+		public void brisiSveTroskoveUKategoriji(string kategorija)
+		{
+			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
 
+			int id = Int32.Parse(reader[0].ToString());
+
+			executeNonQuery(string.Format("delete from trosak where id_kategorija = '{0}' ", id));
+
+		}
 
 		public List<String> getKategorije()
 		{
@@ -250,6 +261,7 @@ namespace Osobni_Troškovnik
 
 
 		}
+
 		public Dictionary<string, double> getTroskovePoKategorijamaUGodini(int godina)
 		{
 			var lista = new Dictionary<string,double>();

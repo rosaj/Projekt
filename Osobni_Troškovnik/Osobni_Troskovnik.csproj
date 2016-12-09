@@ -102,6 +102,7 @@
     <EmbeddedResource Include="Pics\edit.png" />
     <EmbeddedResource Include="Pics\pie.png" />
     <EmbeddedResource Include="Pics\openInNewWindow.png" />
+    <EmbeddedResource Include="Pics\brisiSve.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -110,17 +111,11 @@
     <Compile Include="gtk-gui\Osobni_Troškovnik.UnesiTrosakWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.NovaKategorijaWidow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.DatumChooseWindow.cs" />
-    <Compile Include="gtk-gui\Osobni_Troškovnik.PlotWindow.cs" />
-    <Compile Include="gtk-gui\Osobni_Troškovnik.PieWindow.cs" />
-    <Compile Include="gtk-gui\Osobni_Troškovnik.BarWindow.cs" />
     <Compile Include="Baza\Baza.cs" />
     <Compile Include="Baza\DatabaseCreator.cs" />
     <Compile Include="View\DatumChooseWindow.cs" />
     <Compile Include="View\NovaKategorijaWidow.cs" />
-    <Compile Include="View\PieWindow.cs" />
-    <Compile Include="View\PlotWindow.cs" />
     <Compile Include="View\UnesiTrosakWindow.cs" />
-    <Compile Include="View\BarWindow.cs" />
     <Compile Include="Model\Trosak.cs" />
     <Compile Include="Services\StringManipulator.cs" />
     <Compile Include="Services\ImageButton.cs" />

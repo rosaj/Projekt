@@ -120,6 +120,32 @@ namespace Osobni_Troškovnik
 
 
 		}
+		public void azurirajTrosak(TrosakNode tn)
+		{
+			Baza.getInstance.updateTrosak(tn.trosak);
+			tn.cijena = tn.trosak.Cijena.ToString("0.00 kn");
+			tn.datum = tn.trosak.Datum;
+			tn.opis = tn.trosak.Opis;
+			suma = 0;broj = 0;
+			foreach (TrosakNode t in this)
+			{
+				suma += t.trosak.Cijena;
+				broj++;
+			}
+
+		}
+
+		public void brisiTrosak(TrosakNode tn)
+		{
+			this.RemoveNode(tn);
+			Baza.getInstance.brisiTrosak(tn.trosak);
+		
+		}
+		public void brisiSveTroskove(string kategorija)
+		{
+			this.brisiTroskove();
+			Baza.getInstance.brisiSveTroskoveUKategoriji(kategorija);
+		}
 
 	}
 

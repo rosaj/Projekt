@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Gtk;
 namespace Osobni_Troškovnik
 {
@@ -11,14 +10,19 @@ namespace Osobni_Troškovnik
 		public delegate void eventHandler();
 		public event eventHandler signaliziraj;
 		private Gdk.Color bgColor = Props.bgColor;
-		public UnesiTrosakWindow() :base(Gtk.WindowType.Toplevel)
+
+		KategorijaPresenter kategorijaPresenter;
+		public UnesiTrosakWindow(Window parent) :base(Gtk.WindowType.Toplevel)
 		{
+			this.TransientFor = parent;
+
+			this.ParentWindow = parent.GdkWindow;
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Novi trošak";
 			eventboxHome.ModifyBg(StateType.Normal,bgColor);
 			this.Resizable = false;
-			var kategorijaPresenter = new KategorijaPresenter(listaKategorija);
+			kategorijaPresenter = new KategorijaPresenter(listaKategorija);
 			cijena.Text = "";
 		}
 
@@ -36,20 +40,22 @@ namespace Osobni_Troškovnik
 			{
 				cijena.Text = "";
 				opis.Buffer.Text = "";
+				MessageBox.Popout("Trošak dodan", 1, this);
 			}
 		}
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
 			if (spremi())
-				OnDeleteEvent(sender , null);
-			
+			{
+				MessageBox.Popout("Trošak dodan", 1, TransientFor);
+				OnDeleteEvent(sender, null);
+			}
 		}
 
 		protected void novaKategorijaClicked(object sender, EventArgs e)
 		{
-			var nova = new NovaKategorijaWidow();
-			nova.Title = "Nova kategorija";
+			var nova = new NovaKategorijaWidow(this);
 			nova.resurs += dodajKategoriju;
 		}
 		public void dodajKategoriju(string e)
@@ -58,8 +64,14 @@ namespace Osobni_Troškovnik
 
 			if (e.Length > 0)
 			{
-				if (Baza.getInstance.insertKategorija(e))
-					listaKategorija.AppendText(e);
+				if (kategorijaPresenter.insertKategorija(e))
+				{
+					MessageBox.Popout("Kategorija dodana", 1, this);
+				}
+				else 
+				{
+					MessageBox.Popout("Kategorija već postoji", 2, this);
+				}
 			}
 		}
 		private bool spremi()
@@ -75,11 +87,7 @@ namespace Osobni_Troškovnik
 				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti nula");
 				return false;
 			}
-			else if (opis.Buffer.Text.Length > 100)
-			{
-				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti duži od \n 100 znakova");
-				return false;
-			}
+		
 			else if (opis.Buffer.Text.Trim() == "")
 			{
 				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti prazan");
@@ -87,7 +95,7 @@ namespace Osobni_Troškovnik
 			}
 			else {
 				
-				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),StringManipulator.insertBreaks(opis.Buffer.Text, 40));
+				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),opis.Buffer.Text);
 				return true;
 			}
 		}

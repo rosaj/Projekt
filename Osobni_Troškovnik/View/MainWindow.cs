@@ -1,6 +1,5 @@
 ﻿using System;
 using Gtk;
-using System.Collections.Generic;
 namespace Osobni_Troškovnik
 {
 	public partial class MainWindow : Gtk.Window
@@ -28,6 +27,7 @@ namespace Osobni_Troškovnik
 
 		public MainWindow() : base(Gtk.WindowType.Toplevel)
 		{
+
 			this.Build();
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
@@ -50,7 +50,7 @@ namespace Osobni_Troškovnik
 		{
 			if (uT == null)
 			{
-				uT = new UnesiTrosakWindow();
+				uT = new UnesiTrosakWindow(this);
 				uT.signaliziraj += () => uT = null;
 			}
 		}
@@ -61,12 +61,12 @@ namespace Osobni_Troškovnik
 
 		protected void totalCostClicked(object sender, EventArgs e)
 		{
-			addTotalTroskove(Baza.getInstance.getSumiraneTroskoveURazdoblju(p, k), p, k);
+			addTotalTroskove();
 		}
 
 		protected void statistikaClicked(object sender, EventArgs e)
 		{
-			addStatisticView(Baza.getInstance.getKategorije(), DateTime.Now.AddMonths(-1), DateTime.Now);
+			addStatisticView();
 		}
 
 		protected void izlazClicked(object sender, EventArgs e)
@@ -88,27 +88,23 @@ namespace Osobni_Troškovnik
 			var selectedTrosak = (TrosakNode)nodeView.NodeSelection.SelectedNode;
 			if (selectedTrosak != null)
 			{
-				editTrosak(selectedTrosak);
+				
+				var editWin = new EditTrosakWindow(selectedTrosak.trosak,this);
+				var t = selectedTrosak.trosak;
+				editWin.signal += (sender1, e1) =>
+				{
+					trosakPresenter.azurirajTrosak(selectedTrosak);
+					osvjeziInfo();
+					opisView.Buffer.Text = t.Opis;
+				};
+				editWin.brisiTrosak += (sender2, e2) =>
+				  {
+					trosakPresenter.brisiTrosak(selectedTrosak);
+				  };
 			}
 		}
 
-		private void editTrosak(TrosakNode tn)
-		{
-			var editWin = new EditTrosakWindow(tn.trosak);
-			var t = tn.trosak;
-			editWin.signal += (sender1, e1) =>
-			{
-				tn.cijena = t.Cijena.ToString("0.00 kn");
-				tn.datum = t.Datum;
-				tn.opis = t.Opis;
-				opisView.Buffer.Text = t.Opis;
-			};
-			editWin.brisiTrosak += (sender2, e2) =>
-			  {
-				  nodeView.NodeStore.RemoveNode(tn);
-			  };
-			
-		}
+	
 			
 		protected void backButtonClicked(object sender, EventArgs e)
 		{
@@ -117,6 +113,9 @@ namespace Osobni_Troškovnik
 			notebook.CurrentPage = 0;
 			if(backClicked != null)	backClicked(sender, e);
 			backClicked = null;
+			p = DateTime.Now.AddMonths(-1);
+			k = DateTime.Now;
+
 		}
 
 		protected void datumFilterClicked(object sender, EventArgs e)
@@ -136,13 +135,15 @@ namespace Osobni_Troškovnik
 				
 				trosakPresenter.brisiTroskove();
 				trosakPresenter.dodajTroskoveURazdoblju(kategorija, p, k);
-				//trosakPresenter.dodaj(listaTr);
 				nodeView.NodeStore = trosakPresenter;
-				kategorijaLabel.LabelProp = currentKategorija;
-				infoUkupno.LabelProp = trosakPresenter.Suma;
-				infoProsjek.LabelProp = trosakPresenter.Prosjek;
+				osvjeziInfo();
 		}
-
+		private void osvjeziInfo()
+		{
+			kategorijaLabel.LabelProp = currentKategorija;
+			infoUkupno.LabelProp = trosakPresenter.Suma;
+			infoProsjek.LabelProp = trosakPresenter.Prosjek;
+		}
 		public void setupTreeView()
 		{
 			var cijenaColumn = new TreeViewColumn("Cijena", new CellRendererText(), "text", 1);
@@ -245,12 +246,12 @@ namespace Osobni_Troškovnik
 			if (nodeView.NodeStore != null) nodeView.NodeStore.Clear();
 
 		}
-		private void addTotalTroskove(Dictionary<string,double> lista, DateTime datumPoc, DateTime datumKraj)
+		private void addTotalTroskove()
 		{
 
 		}
 
-		private void addStatisticView(List<string> lista, DateTime odDatum, DateTime doDatum)
+		private void addStatisticView()
 		{
 			notebook.CurrentPage = 2;
 			if (grafPresenter == null)
@@ -348,6 +349,29 @@ namespace Osobni_Troškovnik
 				newWin.ShowAll();
 			}
 
+		}
+
+		protected void brisiSveClicked(object sender, EventArgs e)
+		{
+
+			if (currentKategorija != null)
+			{
+				Dialog d = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.None, "Time ćete obrisati sve postojeće troškove. Jeste li sigurni da želite obrisati sve troškove u kategoriji " + currentKategorija + "?");
+				d.AddButton("Da", Gtk.ResponseType.Yes);
+				d.AddButton("Ne", Gtk.ResponseType.No);
+
+				var odgovor = (Gtk.ResponseType)d.Run();
+
+
+				if (odgovor == Gtk.ResponseType.Yes)
+				{
+					d.Destroy();
+					trosakPresenter.brisiSveTroskove(currentKategorija);
+					MessageBox.Popout("Izbrisano", 2, this);
+
+				}
+				else d.Destroy();
+			}
 		}
 	}
 }

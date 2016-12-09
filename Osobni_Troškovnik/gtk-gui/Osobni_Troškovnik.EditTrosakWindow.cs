@@ -4,6 +4,8 @@ namespace Osobni_Troškovnik
 {
 	public partial class EditTrosakWindow
 	{
+		private global::Gtk.EventBox eventBox;
+
 		private global::Gtk.VBox vbox1;
 
 		private global::Gtk.Table table1;
@@ -45,12 +47,16 @@ namespace Osobni_Troškovnik
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.winico.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
-			this.BorderWidth = ((uint)(18));
 			this.Resizable = false;
+			this.Gravity = ((global::Gdk.Gravity)(5));
 			// Container child Osobni_Troškovnik.EditTrosakWindow.Gtk.Container+ContainerChild
+			this.eventBox = new global::Gtk.EventBox();
+			this.eventBox.Name = "eventBox";
+			// Container child eventBox.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
+			this.vbox1.BorderWidth = ((uint)(15));
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.table1 = new global::Gtk.Table(((uint)(4)), ((uint)(2)), false);
 			this.table1.Name = "table1";
@@ -106,7 +112,6 @@ namespace Osobni_Troškovnik
 			this.kategorijaLabel = new global::Gtk.Label();
 			this.kategorijaLabel.Name = "kategorijaLabel";
 			this.kategorijaLabel.Xalign = 0.03F;
-			this.kategorijaLabel.LabelProp = "";
 			this.table1.Add(this.kategorijaLabel);
 			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1[this.kategorijaLabel]));
 			w5.LeftAttach = ((uint)(1));
@@ -208,7 +213,8 @@ namespace Osobni_Troškovnik
 			w15.Position = 2;
 			w15.Expand = false;
 			w15.Fill = false;
-			this.Add(this.vbox1);
+			this.eventBox.Add(this.vbox1);
+			this.Add(this.eventBox);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
@@ -216,6 +222,8 @@ namespace Osobni_Troškovnik
 			this.DefaultWidth = 377;
 			this.DefaultHeight = 409;
 			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.KeyPressEvent += new global::Gtk.KeyPressEventHandler(this.OnKeyPress);
 			this.odustani.Clicked += new global::System.EventHandler(this.odustaniClicked);
 			this.brisi.Clicked += new global::System.EventHandler(this.brisiClicked);
 			this.spremi.Clicked += new global::System.EventHandler(this.spremiClicked);

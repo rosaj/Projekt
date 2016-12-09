@@ -7,9 +7,16 @@ namespace Osobni_Troškovnik
 		private Trosak trosak;
 		public EventHandler signal;
 		public EventHandler brisiTrosak;
-		public EditTrosakWindow(Trosak t) : base(Gtk.WindowType.Toplevel)
+		private Gdk.Color bgColor = Props.bgColor;
+		public EditTrosakWindow(Trosak t,Window parent) : base(Gtk.WindowType.Toplevel)
 		{
+	
+			this.TransientFor = parent;
+
+			this.ParentWindow = parent.GdkWindow;
+
 			this.Build();
+			eventBox.ModifyBg(StateType.Normal, bgColor);
 			trosak = t;
 			cijena.Text = t.Cijena.ToString();
 			opis.Buffer.Text = t.Opis;
@@ -24,8 +31,8 @@ namespace Osobni_Troškovnik
 			trosak.Cijena = double.Parse(cijena.Text);
 			trosak.Datum = kalendar.GetDate().ToString("dd.MM.yyyy");
 			trosak.Opis = opis.Buffer.Text;
-			Baza.getInstance.updateTrosak(trosak);
 			signal(trosak, e);
+			MessageBox.Popout("Trošak spremljen", 1, TransientFor);
 			OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
 		}
 
@@ -52,13 +59,22 @@ namespace Osobni_Troškovnik
 
 			if (odgovor == Gtk.ResponseType.Yes)
 			{
-				Baza.getInstance.brisiTrosak(trosak);
 				brisiTrosak(trosak, e);
 				d.Destroy();
+				MessageBox.Popout("Trošak izbrisan", 1,TransientFor);
 				Destroy();
 			}
-			else d.Destroy();
+			else 
+			{
+				d.Destroy();
+			}
 
+		}
+
+		protected void OnKeyPress(object o, KeyPressEventArgs args)
+		{
+			uint keyCode = args.Event.KeyValue;
+			if (keyCode == 65307) OnDeleteEvent(o, null);
 		}
 	}
 }

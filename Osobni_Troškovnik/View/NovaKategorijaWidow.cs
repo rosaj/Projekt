@@ -8,8 +8,11 @@ namespace Osobni_Troškovnik
 	{
 		public delegate void eventHandler(string ime);
 		public event eventHandler resurs;
-		public NovaKategorijaWidow() : base(Gtk.WindowType.Toplevel)
+		public NovaKategorijaWidow(Window parent) : base(Gtk.WindowType.Toplevel)
 		{
+			this.TransientFor = parent;
+
+			this.ParentWindow = parent.GdkWindow;
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Dodaj novu kategoriju";
