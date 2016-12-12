@@ -146,14 +146,19 @@ namespace Osobni_Troškovnik
 		}
 		public void setupTreeView()
 		{
-			var cijenaColumn = new TreeViewColumn("Cijena", new CellRendererText(), "text", 1);
+			
 			var datumColumn = new TreeViewColumn("Datum", new CellRendererText(), "text", 0);
+
+			var cijenaText = new CellRendererText();
+			cijenaText.Xalign = 1;
+			var cijenaColumn = new TreeViewColumn("Cijena", cijenaText, "text", 1);
 
 			cijenaColumn.Clickable = true;
 			cijenaColumn.Reorderable = true;
 			cijenaColumn.SortIndicator = true;
 			cijenaColumn.Resizable = true;
 			cijenaColumn.MinWidth = 100;
+			cijenaColumn.Alignment = 1;
 			cijenaColumn.Clicked += (sender, e) => sortiranjePoCijeni(cijenaColumn);
 
 			datumColumn.Clickable = true;
@@ -164,8 +169,9 @@ namespace Osobni_Troškovnik
 			datumColumn.MinWidth = 100;
 			datumColumn.Clicked += (sender, e) => sortiranjePoDatumu(datumColumn);
 
-			nodeView.AppendColumn(cijenaColumn);
 			nodeView.AppendColumn(datumColumn);
+			nodeView.AppendColumn(cijenaColumn);
+
 		}
 
 		private void sortiranjePoCijeni(TreeViewColumn cijenaCol)
@@ -345,7 +351,7 @@ namespace Osobni_Troškovnik
 
 				newWin.Add(child);
 				newWin.SetSizeRequest(600, 400);
-				newWin.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+				newWin.Icon = this.Icon;
 				newWin.ShowAll();
 			}
 

@@ -21,7 +21,7 @@ namespace Osobni_Troškovnik
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Novi trošak";
 			eventboxHome.ModifyBg(StateType.Normal,bgColor);
-			this.Resizable = false;
+	
 			kategorijaPresenter = new KategorijaPresenter(listaKategorija);
 			cijena.Text = "";
 		}

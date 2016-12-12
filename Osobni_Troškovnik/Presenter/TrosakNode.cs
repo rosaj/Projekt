@@ -16,7 +16,7 @@
 
 		public TrosakNode(Trosak t)
 		{
-
+			
 			this.trosak = t;
 			datum = t.Datum;
 			cijena = t.Cijena.ToString("0.00 kn");
