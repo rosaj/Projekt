@@ -7,8 +7,7 @@ namespace Osobni_Troškovnik
 
 	public partial class UnesiTrosakWindow : Gtk.Window
 	{
-		public delegate void eventHandler();
-		public event eventHandler signaliziraj;
+		
 		private Gdk.Color bgColor = Props.bgColor;
 
 		KategorijaPresenter kategorijaPresenter;
@@ -103,7 +102,7 @@ namespace Osobni_Troškovnik
 
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
-			if (signaliziraj != null) signaliziraj();
+
 			Destroy();
 
 		}

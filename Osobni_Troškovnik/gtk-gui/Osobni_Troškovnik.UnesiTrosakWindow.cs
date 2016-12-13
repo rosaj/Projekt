@@ -51,6 +51,8 @@ namespace Osobni_Troškovnik
 			this.Name = "Osobni_Troškovnik.UnesiTrosakWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString("UnesiTrosakWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
+			this.Resizable = false;
 			// Container child Osobni_Troškovnik.UnesiTrosakWindow.Gtk.Container+ContainerChild
 			this.eventboxHome = new global::Gtk.EventBox();
 			this.eventboxHome.Name = "eventboxHome";

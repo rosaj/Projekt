@@ -118,6 +118,8 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">UnesiTrosakWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
+    <property name="Resizable">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <signal name="KeyReleaseEvent" handler="KeyPress" />
     <child>
@@ -470,9 +472,9 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Osobni_Troškovnik.NovaKategorijaWidow" design-size="300 150">
+  <widget class="Gtk.Window" id="Osobni_Troškovnik.NovaKategorijaWidow" design-size="353 150">
     <property name="MemberName" />
-    <property name="WidthRequest">270</property>
+    <property name="WidthRequest">300</property>
     <property name="HeightRequest">100</property>
     <property name="Title" translatable="yes">NovaKategorijaWidow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -1083,7 +1085,7 @@ Prosinac</property>
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">1</property>
+        <property name="CurrentPage">0</property>
         <property name="ShowBorder">False</property>
         <child>
           <widget class="Gtk.EventBox" id="eventboxHome">

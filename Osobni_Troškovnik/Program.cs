@@ -7,7 +7,7 @@ namespace Osobni_Troškovnik
 		{
 			Application.Init();
 			//Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
-		/*	var splash = new Window("Učitavanje");
+		var splash = new Window("Učitavanje");
 			splash.TypeHint = Gdk.WindowTypeHint.Splashscreen;
 
 			splash.SetSizeRequest(300, 200);
@@ -15,7 +15,7 @@ namespace Osobni_Troškovnik
 			progresBar.Text = "Otvaranje osobnog troškovnika";
 			progresBar.Fraction = 0;
 			var vbox = new VBox();
-			vbox.PackStart(new Label("Otvarnanje aplikacije"), true, true, 0);
+			vbox.PackStart(new Label("Otvarananje aplikacije"), true, true, 0);
 			vbox.PackStart(progresBar, false, true, 0);
 
 			splash.Add(vbox);
@@ -37,10 +37,10 @@ namespace Osobni_Troškovnik
 				splash.Destroy();
 				return false;
 			});
-*/
-			var win = new MainWindow();
 
-			win.Show();
+		/*		var win = new MainWindow();
+
+			win.Show();*/
 
 			Application.Run();
 		}

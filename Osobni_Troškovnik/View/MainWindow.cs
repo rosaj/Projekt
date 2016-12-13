@@ -4,8 +4,8 @@ namespace Osobni_Troškovnik
 {
 	public partial class MainWindow : Gtk.Window
 	{
-		private UnesiTrosakWindow uT;
-		private DatumChooseWindow dCW;
+		
+
 
 	//	private string textF12 = "Sans Condensed Not-Rotated 12";
 	//	private string textF14 = "Sans Condensed Not-Rotated 14";
@@ -48,11 +48,9 @@ namespace Osobni_Troškovnik
 		  
 		protected void noviTrosakClicked(object sender, EventArgs e)
 		{
-			if (uT == null)
-			{
-				uT = new UnesiTrosakWindow(this);
-				uT.signaliziraj += () => uT = null;
-			}
+			
+				var uT = new UnesiTrosakWindow(this);
+			
 		}
 		protected void popisClicked(object sender, EventArgs e)
 		{
@@ -121,7 +119,7 @@ namespace Osobni_Troškovnik
 		protected void datumFilterClicked(object sender, EventArgs e)
 		{
 			
-				dCW = new DatumChooseWindow(p,k);
+			var	dCW = new DatumChooseWindow(p,k);
 				dCW.signaliziraj += (odDatum, doDatum) =>
 				{
 					p = odDatum;

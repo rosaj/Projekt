@@ -33,7 +33,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 		public VBox PieViewMjeseceUGodini(int godina)
 		{
 
-			var myModel = new PlotModel { Title = "Statistika za godinu: " +godina };
+			var myModel = new PlotModel { Title = "Statistika za godinu: " +godina};
 			var series = new PieSeries
 			{ StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 

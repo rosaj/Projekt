@@ -14,7 +14,7 @@ namespace Osobni_Troškovnik
 		{
 			global::Stetic.Gui.Initialize(this);
 			// Widget Osobni_Troškovnik.NovaKategorijaWidow
-			this.WidthRequest = 270;
+			this.WidthRequest = 300;
 			this.HeightRequest = 100;
 			this.Name = "Osobni_Troškovnik.NovaKategorijaWidow";
 			this.Title = global::Mono.Unix.Catalog.GetString("NovaKategorijaWidow");
@@ -58,7 +58,7 @@ namespace Osobni_Troškovnik
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 300;
+			this.DefaultWidth = 353;
 			this.DefaultHeight = 150;
 			this.Show();
 			this.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler(this.KeyPress);
