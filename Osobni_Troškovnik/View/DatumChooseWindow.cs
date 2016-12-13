@@ -8,24 +8,31 @@ namespace Osobni_Troškovnik
 		public delegate void eventHandler(DateTime odDatum, DateTime doDatum);
 		public event eventHandler signaliziraj;
 
-		public DatumChooseWindow(DateTime p, DateTime k) : base(Gtk.WindowType.Toplevel)
+		public DatumChooseWindow(DateTime p, DateTime k, Window parent) : base(Gtk.WindowType.Toplevel)
 		{
+			this.TransientFor = parent;
+
+			this.ParentWindow = parent.GdkWindow;
 			this.Build();
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Odaberi raspon";
-			p = p.AddMonths(-1);
-			k = k.AddMonths(-1);
+
+
+			var odMjesec = (uint)(p.Month - 1);
+			var doMjesec = (uint)(k.Month -1);
+
 			kalendarOd.SelectDay((uint)p.Day);
-			kalendarOd.SelectMonth((uint)p.Month, (uint) p.Year);
+			kalendarOd.SelectMonth(odMjesec, (uint) p.Year);
 
 			kalendarDo.SelectDay((uint)k.Day);
-			kalendarDo.SelectMonth((uint)k.Month, (uint)k.Year);
+			kalendarDo.SelectMonth(doMjesec, (uint)k.Year);
 
 			mjeseciCombo.Sensitive = false;
 		}
 
 		protected void filtrirajClicked(object sender, EventArgs e)
 		{
+			
 			if (rangeRadio.Active)
 			{
 				if (kalendarOd.GetDate() > kalendarDo.GetDate())
@@ -41,19 +48,23 @@ namespace Osobni_Troškovnik
 			else if (mjeseciRadio.Active)
 			{
 				var mjesec = mjeseciCombo.Active+1;
-				var odDatum = new DateTime(DateTime.Now.Year, mjesec, 1);
+
+				int year;
+				if (godinaCheckButton.Active) year = Int32.Parse(godinaSpinButton.Text);
+				else year = DateTime.Now.Year;
+
+				var odDatum = new DateTime(year, mjesec, 1);
 				DateTime doDatum;
 				if (mjesec == 12)
 				{
-					doDatum = new DateTime(DateTime.Now.Year + 1, 1, 1);
+					doDatum = new DateTime(year+ 1, 1, 1);
 				}
 				else
 				{
-					 doDatum = new DateTime(DateTime.Now.Year, mjesec + 1, 1);
+					 doDatum = new DateTime(year, mjesec + 1, 1);
 				}
 				doDatum = doDatum.AddDays(-1);
 				if (signaliziraj != null) signaliziraj(odDatum,doDatum);
-
 				Destroy();
 			}
 
@@ -74,6 +85,7 @@ namespace Osobni_Troškovnik
 			mjeseciCombo.Sensitive = true;
 			kalendarDo.Sensitive = false;
 			kalendarOd.Sensitive = false;
+			godinaCheckButton.Sensitive = true;
 		}
 
 		protected void radioRasponToggled(object sender, EventArgs e)
@@ -81,6 +93,15 @@ namespace Osobni_Troškovnik
 			mjeseciCombo.Sensitive = false;
 			kalendarDo.Sensitive = true;
 			kalendarOd.Sensitive = true;
+			if (godinaCheckButton.Active) godinaCheckButton.Activate();
+			godinaCheckButton.Sensitive = false;
+
+		}
+
+		protected void godinaCheckToggled(object sender, EventArgs e)
+		{
+			if (godinaCheckButton.Active) godinaSpinButton.Sensitive = true;
+			else if (!godinaCheckButton.Active) godinaSpinButton.Sensitive = false;
 		}
 	}
 }
