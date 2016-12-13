@@ -179,6 +179,7 @@ namespace Osobni_Troškovnik
 			w11.Expand = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox();
+			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.godinaCheckButton = new global::Gtk.CheckButton();
@@ -225,6 +226,7 @@ namespace Osobni_Troškovnik
 			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Listopad"));
 			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Studeni"));
 			this.mjeseciCombo.AppendText(global::Mono.Unix.Catalog.GetString("Prosinac"));
+			this.mjeseciCombo.Sensitive = false;
 			this.mjeseciCombo.Name = "mjeseciCombo";
 			this.mjeseciCombo.Active = 0;
 			this.vbox4.Add(this.mjeseciCombo);

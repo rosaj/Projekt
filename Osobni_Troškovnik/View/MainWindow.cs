@@ -119,7 +119,7 @@ namespace Osobni_Troškovnik
 		protected void datumFilterClicked(object sender, EventArgs e)
 		{
 			
-			var	dCW = new DatumChooseWindow(p,k,this);
+			var	dCW = new DatumChooseWindow(p,k,this,true,true);
 				dCW.signaliziraj += (odDatum, doDatum) =>
 				{
 					p = odDatum;

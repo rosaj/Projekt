@@ -8,7 +8,7 @@ namespace Osobni_Troškovnik
 		public delegate void eventHandler(DateTime odDatum, DateTime doDatum);
 		public event eventHandler signaliziraj;
 
-		public DatumChooseWindow(DateTime p, DateTime k, Window parent) : base(Gtk.WindowType.Toplevel)
+		public DatumChooseWindow(DateTime p, DateTime k, Window parent,bool rangeEnabled, bool mjesecEnabled) : base(Gtk.WindowType.Toplevel)
 		{
 			this.TransientFor = parent;
 
@@ -27,7 +27,21 @@ namespace Osobni_Troškovnik
 			kalendarDo.SelectDay((uint)k.Day);
 			kalendarDo.SelectMonth(doMjesec, (uint)k.Year);
 
-			mjeseciCombo.Sensitive = false;
+			if (!rangeEnabled) 
+			{ 
+				rangeRadio.Sensitive = false;
+				kalendarDo.Sensitive = false;
+				kalendarOd.Sensitive = false;
+				mjeseciRadio.Active = true;
+			}
+			if (!mjesecEnabled)
+			{
+				mjeseciRadio.Sensitive = false;
+				mjeseciCombo.Sensitive = false;
+				godinaCheckButton.Sensitive = false;
+
+			}
+			if (!mjesecEnabled && !rangeEnabled) filtrirajButton.Sensitive = false;
 		}
 
 		protected void filtrirajClicked(object sender, EventArgs e)
