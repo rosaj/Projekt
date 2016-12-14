@@ -90,8 +90,8 @@ namespace Osobni_Troškovnik
 
 		public void updateTrosak(Trosak t)
 		{
-			var datum = DateTime.Parse(t.Datum);
-			var dateString = datum.ToString("s");
+			
+			var dateString = t.Datum.ToString("s");
 
 			executeNonQuery(string.Format("update trosak set cijena = '{0}', datum = '{1}', opis = '{2}' " +
 										  "where id = '{3}' ", t.Cijena, dateString, t.Opis, t.ID));
@@ -161,11 +161,11 @@ namespace Osobni_Troškovnik
 
 			while (reader.Read())
 			{
-				var dateString = DateTime.Parse(reader[2].ToString()).ToString("dd.MM.yyyy");
+				var date = DateTime.Parse(reader[2].ToString());
 
 				var t = new Trosak( Int32.Parse(reader[0].ToString()), 
 				                   kategorija, double.Parse(reader[1].ToString()),
-								   dateString, reader[3].ToString());
+								   date, reader[3].ToString());
 				lista.Add(t);
 			}
 
@@ -228,10 +228,10 @@ namespace Osobni_Troškovnik
 
 			while (reader.Read())
 			{
-				var dateString = DateTime.Parse(reader[1].ToString()).ToString("dd.MM.yyyy");
+				var date = DateTime.Parse(reader[1].ToString());
 
 				var t = new Trosak(0,	kategorija, double.Parse(reader[0].ToString()),
-								   dateString, "");
+								   date, "");
 				lista.Add(t);
 			}
 

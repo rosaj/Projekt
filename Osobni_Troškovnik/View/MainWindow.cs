@@ -89,18 +89,16 @@ namespace Osobni_Troškovnik
 			if (selectedTrosak != null)
 			{
 				
-				var editWin = new EditTrosakWindow(selectedTrosak.trosak,this);
+				var editWin = new EditTrosakWindow(selectedTrosak,trosakPresenter,this);
+
 				var t = selectedTrosak.trosak;
 				editWin.signal += (sender1, e1) =>
 				{
-					trosakPresenter.azurirajTrosak(selectedTrosak);
+					//trosakPresenter.azurirajTrosak(selectedTrosak);
 					osvjeziInfo();
 					opisView.Buffer.Text = t.Opis;
 				};
-				editWin.brisiTrosak += (sender2, e2) =>
-				  {
-					trosakPresenter.brisiTrosak(selectedTrosak);
-				  };
+
 			}
 		}
 
@@ -313,7 +311,7 @@ namespace Osobni_Troškovnik
 				//progressbarBudget.Fraction = 1;
 				GLib.Timeout.Add(5, delegate
 				{
-					if (progressbarBudget.Fraction <1 ) return false;
+					if (progressbarBudget.Fraction+0.001 >1 ) return false;
 					progressbarBudget.Fraction += 0.001;
 					return true;
 				});

@@ -4,11 +4,11 @@ namespace Osobni_Troškovnik
 {
 	public partial class EditTrosakWindow : Gtk.Window
 	{
-		private Trosak trosak;
 		public EventHandler signal;
-		public EventHandler brisiTrosak;
 		private Gdk.Color bgColor = Props.bgColor;
-		public EditTrosakWindow(Trosak t,Window parent) : base(Gtk.WindowType.Toplevel)
+		private TrosakNodeStore presenter;
+		private TrosakNode trosakPresenter;
+		public EditTrosakWindow(TrosakNode tp,TrosakNodeStore t,Window parent) : base(Gtk.WindowType.Toplevel)
 		{
 	
 			this.TransientFor = parent;
@@ -18,22 +18,38 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = parent.Icon;
 			eventBox.ModifyBg(StateType.Normal, bgColor);
-			trosak = t;
-			cijena.Text = t.Cijena.ToString();
-			opis.Buffer.Text = t.Opis;
-			kategorijaLabel.LabelProp = t.Kategorija;
-			var datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
+			/*	trosak = t;
+				cijena.Text = t.Cijena.ToString();
+				opis.Buffer.Text = t.Opis;
+				kategorijaLabel.LabelProp = t.Kategorija;
+				var datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
+				kalendar.SelectMonth((uint)datum.Month - 1, (uint)datum.Year);
+				kalendar.SelectDay((uint)datum.Day);*/
+			presenter = t;
+			trosakPresenter = tp;
+			cijena.Text = trosakPresenter.trosak.Cijena.ToString();
+			opis.Buffer.Text = trosakPresenter.opis;
+			kategorijaLabel.LabelProp = trosakPresenter.trosak.Kategorija;
+			var datum = DateTime.ParseExact(trosakPresenter.datum, "dd.MM.yyyy", null);
 			kalendar.SelectMonth((uint)datum.Month - 1, (uint)datum.Year);
 			kalendar.SelectDay((uint)datum.Day);
+
 		}
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
-			trosak.Cijena = double.Parse(cijena.Text);
+			/*trosak.Cijena = double.Parse(cijena.Text);
 			trosak.Datum = kalendar.GetDate().ToString("dd.MM.yyyy");
 			trosak.Opis = opis.Buffer.Text;
-			signal(trosak, e);
+			signal(trosak, e);*/
+
+			trosakPresenter.trosak.Cijena = double.Parse(cijena.Text);
+			trosakPresenter.trosak.Datum = kalendar.GetDate();
+			trosakPresenter.trosak.Opis = opis.Buffer.Text;
+			presenter.azurirajTrosak(trosakPresenter);
+
 			MessageBox.Popout("Trošak spremljen", 1, TransientFor);
+			if (signal != null) signal(sender,e);
 			OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
 		}
 
@@ -60,7 +76,8 @@ namespace Osobni_Troškovnik
 
 			if (odgovor == Gtk.ResponseType.Yes)
 			{
-				brisiTrosak(trosak, e);
+				//brisiTrosak(trosak, e);
+				presenter.brisiTrosak(trosakPresenter);
 				d.Destroy();
 				MessageBox.Popout("Trošak izbrisan", 1,TransientFor);
 				Destroy();

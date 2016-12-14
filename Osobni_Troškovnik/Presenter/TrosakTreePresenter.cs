@@ -29,7 +29,7 @@ namespace Osobni_Troškovnik
 
 				foreach (var t in Baza.getInstance.getTroskoveURazdoblju(p, k, item.Key))
 				{
-					var i = this.AppendValues(iter, null, t.Datum,t.Cijena.ToString("0.00 kn"));
+					var i = this.AppendValues(iter, null, t.Datum.ToString("dd.MM.yyyy"),t.Cijena.ToString("0.00 kn"));
 					this.AppendValues(i, null, null, null, t.Opis);
 					ukupanTrosak += t.Cijena;
 				}

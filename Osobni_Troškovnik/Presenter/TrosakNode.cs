@@ -18,7 +18,7 @@
 		{
 			
 			this.trosak = t;
-			datum = t.Datum;
+			datum = t.Datum.ToString("dd.MM.yyyy");
 			cijena = t.Cijena.ToString("0.00 kn");
 			opis = t.Opis;
 		}

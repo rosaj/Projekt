@@ -96,10 +96,9 @@ namespace Osobni_Troškovnik
 			{
 				lista.Sort((x, y) =>
 				{
-					var datumX = DateTime.Parse(x.Datum);
-					var datumY = DateTime.Parse(y.Datum);
-					if (datumX < datumY) return 1;
-					if (datumX > datumY) return -1;
+					
+					if (x.Datum < y.Datum) return 1;
+					if (x.Datum > y.Datum) return -1;
 					return 0;
 				});
 			}
@@ -107,10 +106,8 @@ namespace Osobni_Troškovnik
 			{
 				lista.Sort((x, y) =>
 					{
-						var datumX = DateTime.Parse(x.Datum);
-						var datumY = DateTime.Parse(y.Datum);
-						if (datumX < datumY) return -1;
-						if (datumX > datumY) return 1;
+					if (x.Datum < y.Datum) return -1;
+					if (x.Datum > y.Datum) return 1;
 						return 0;
 					});
 
@@ -124,7 +121,7 @@ namespace Osobni_Troškovnik
 		{
 			Baza.getInstance.updateTrosak(tn.trosak);
 			tn.cijena = tn.trosak.Cijena.ToString("0.00 kn");
-			tn.datum = tn.trosak.Datum;
+			tn.datum = tn.trosak.Datum.ToString("dd.MM.yyyy");
 			tn.opis = tn.trosak.Opis;
 			suma = 0;broj = 0;
 			foreach (TrosakNode t in this)

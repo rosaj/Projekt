@@ -6,11 +6,11 @@ namespace Osobni_Troškovnik
 		private int id;
 		private string kategorija;
 		private double cijena;
-		private string datum;
+		private DateTime datum;
 		private string opis;
 
 
-		public Trosak(int id, string kategorija, double cijena, string datum, string opis)
+		public Trosak(int id, string kategorija, double cijena, DateTime datum, string opis)
 		{
 			this.id = id;
 			this.kategorija = kategorija;
@@ -57,7 +57,7 @@ namespace Osobni_Troškovnik
 
 		}
 
-		public string Datum
+		public DateTime Datum
 		{
 			get
 			{

@@ -58,7 +58,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			{
 				var b = new ColumnItem(t.Cijena);
 				items.Add(b);
-				datums.Add(t.Datum);
+				datums.Add(t.Datum.ToString("dd.MM.yyyy"));
 			}
 
 			if (list.Count > 1)
@@ -247,8 +247,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 					foreach (Trosak t in list)
 					{
 
-						DateTime datum;
-						datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
+						var datum = DateTime.ParseExact(t.Datum.ToString("dd.MM.yyyy"), "dd.MM.yyyy", null);
 
 						l.Points.Add(new DataPoint(DateTimeAxis.ToDouble(datum), t.Cijena));
 
@@ -276,7 +275,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			{
 				
 				DateTime datum;
-				datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
+				datum = DateTime.ParseExact(t.Datum.ToString("dd.MM.yyyy"), "dd.MM.yyyy", null);
 
 				l.Points.Add(new DataPoint(DateTimeAxis.ToDouble(datum), t.Cijena));
 
