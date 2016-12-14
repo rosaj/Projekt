@@ -14,7 +14,7 @@ namespace Osobni_Troškovnik
 
 			this.ParentWindow = parent.GdkWindow;
 			this.Build();
-			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
+			this.Icon = parent.Icon;
 			this.Title = "Dodaj novu kategoriju";
 
 		}

@@ -103,6 +103,7 @@
     <EmbeddedResource Include="Pics\pie.png" />
     <EmbeddedResource Include="Pics\openInNewWindow.png" />
     <EmbeddedResource Include="Pics\brisiSve.png" />
+    <EmbeddedResource Include="Pics\budget.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -131,6 +132,9 @@
     <Compile Include="Presenter\KategorijaPresenter.cs" />
     <Compile Include="Presenter\KategorijeButtonPresenter.cs" />
     <Compile Include="Presenter\GrafPresenter.cs" />
+    <Compile Include="Presenter\TrosakTreePresenter.cs" />
+    <Compile Include="View\BudgetWindow.cs" />
+    <Compile Include="gtk-gui\Osobni_Troškovnik.BudgetWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,7 +2,7 @@
 {
 	public class TrosakNode : Gtk.TreeNode
 	{
-		public Trosak trosak;
+		
 
 		[Gtk.TreeNodeValue(Column = 0)]
 		public string datum;
@@ -13,7 +13,7 @@
 		[Gtk.TreeNodeValue(Column = 2)]
 		public string opis;
 
-
+		public Trosak trosak;
 		public TrosakNode(Trosak t)
 		{
 			

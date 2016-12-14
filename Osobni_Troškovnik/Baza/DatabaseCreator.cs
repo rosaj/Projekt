@@ -25,6 +25,14 @@ namespace Osobni_Troškovnik
 				SQLiteCommand command = new SQLiteCommand(sql, con);
 				command.ExecuteNonQuery();
 
+				sql = "create table budget( iznos NUMERIC NOT NULL)";
+				command = new SQLiteCommand(sql, con);
+				command.ExecuteNonQuery();
+
+				sql = String.Format("insert into budget(iznos) values(3000)");
+				command = new SQLiteCommand(sql, con);
+				command.ExecuteNonQuery();
+
 				sql = "create table trosak(id INTEGER PRIMARY KEY NOT NULL," +
 					"id_kategorija INTEGER NOT NULL," +
 					"cijena NUMERIC NOT NULL," +

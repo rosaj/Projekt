@@ -70,6 +70,7 @@ namespace Osobni_Troškovnik
 			this.rangeRadio = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Raspon"));
 			this.rangeRadio.CanFocus = true;
 			this.rangeRadio.Name = "rangeRadio";
+			this.rangeRadio.Active = true;
 			this.rangeRadio.DrawIndicator = true;
 			this.rangeRadio.UseUnderline = true;
 			this.rangeRadio.Group = new global::GLib.SList(global::System.IntPtr.Zero);

@@ -21,9 +21,10 @@ namespace Osobni_Troškovnik
 
 		TrosakNodeStore trosakPresenter;
 		GrafPresenter grafPresenter;
-
-		private EventHandler datumChanged;
-		private EventHandler backClicked;
+		TrosakTreePresenter  treePresenter;
+		private delegate void promjena();
+		private promjena datumChanged;
+		private promjena backClicked;
 
 		public MainWindow() : base(Gtk.WindowType.Toplevel)
 		{
@@ -35,6 +36,7 @@ namespace Osobni_Troškovnik
 			eventboxHome.ModifyBg(StateType.Normal, bgColor);
 			eventBoxTroskovi.ModifyBg(StateType.Normal, bgColor);
 			eventBoxStatistika.ModifyBg(StateType.Normal, bgColor);
+			eventBoxTotalTroskovi.ModifyBg(StateType.Normal, bgColor);
 
 			trosakPresenter = new TrosakNodeStore();
 			setupTreeView();
@@ -70,13 +72,13 @@ namespace Osobni_Troškovnik
 		protected void izlazClicked(object sender, EventArgs e)
 		{
 
-			OnDeleteEvent(sender, null);
+			OnDeleteEvent(sender, new DeleteEventArgs());
 		}
 		protected void keyPressEvent(object o, KeyPressEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
 			if (keyCode == 65480) this.Fullscreen();
-			else if (keyCode == 65307) this.Iconify();
+			else if (keyCode == 65307) backButtonClicked(null,null);
 		}
 
 
@@ -109,7 +111,7 @@ namespace Osobni_Troškovnik
 			datumChanged = null;
 
 			notebook.CurrentPage = 0;
-			if(backClicked != null)	backClicked(sender, e);
+			if(backClicked != null)	backClicked();
 			backClicked = null;
 			p = DateTime.Now.AddMonths(-1);
 			k = DateTime.Now;
@@ -124,7 +126,7 @@ namespace Osobni_Troškovnik
 				{
 					p = odDatum;
 					k = doDatum;
-				if (datumChanged != null)datumChanged(sender, e);
+				if (datumChanged != null)datumChanged();
 				};
 		}
 		private void prikaziPodatke(string kategorija)
@@ -225,9 +227,9 @@ namespace Osobni_Troškovnik
 				else opisView.Buffer.Text = "";
 			};
 
-			datumChanged += (sender, e) => refreshPodatke();
+			datumChanged += () => refreshPodatke();
 
-			backClicked+=(sender, e) => troskoviBackClicked();
+			backClicked+=() => troskoviBackClicked();
 		
 			notebook.ShowAll();
 		}
@@ -252,12 +254,76 @@ namespace Osobni_Troškovnik
 		}
 		private void addTotalTroskove()
 		{
+			notebook.CurrentPage = 2;
+			p = DateTime.Now.AddDays(-DateTime.Now.Day+1);
+			k = DateTime.Now.AddMonths(1).AddDays(-DateTime.Now.Day);
 
+			if (treePresenter == null)
+			{
+				treePresenter = new TrosakTreePresenter();
+
+				treeView.AppendColumn("Kategorija", new CellRendererText(), "text", 0);
+
+				treeView.AppendColumn("Datum", new CellRendererText(), "text", 1);
+
+				treeView.AppendColumn("Cijena", new CellRendererText(), "text", 2);
+
+				treeView.AppendColumn("Opis", new CellRendererText(), "text", 3);
+
+				treeView.Selection.Changed += (sender, e) => treeViewSelectionChanged();
+
+
+			}
+			datumChanged += () => treeViewDatumChanged();
+			datumChanged();
 		}
+		private void treeViewDatumChanged()
+		{
+			datumLabela1.LabelProp = p.ToString("dd.MM.yyyy") + " - " + k.ToString("dd.MM.yyyy");
+			treePresenter.dodaj(p, k);
+			treeView.Model = treePresenter;
+			labelaUkupno.LabelProp = treePresenter.UkupanTrosak;
 
+			labelaKategorija.LabelProp = "";
+			labelaTrosakKategorije.LabelProp = "";
+			progressbarUdio.Fraction = 0;
+			osvjeziBudget();
+		}
+		private void osvjeziBudget()
+		{
+			labelBudzet.LabelProp = treePresenter.BudgetString;
+			var total = treePresenter.total;
+			var budget = treePresenter.Budget;
+			if (total <= budget)
+			{
+				progressbarBudget.Fraction = treePresenter.total / budget;
+				labelaPrekoračeno.LabelProp = "0 kn";
+			}
+			else
+			{
+				progressbarBudget.Fraction = 1;
+				labelaPrekoračeno.LabelProp = (total - budget).ToString("0.00 kn");
+			}
+		}
+		private void treeViewSelectionChanged()
+		{
+			TreeIter iter;
+			if (treeView.Selection.GetSelected(out iter))
+			{
+
+				if (treePresenter.kategorijaChanged(iter, treeView.Model))
+				{
+
+					labelaKategorija.LabelProp = treePresenter.Kategorija;
+					progressbarUdio.Fraction = treePresenter.trosakTrenutneKategorije / treePresenter.total;
+					labelaTrosakKategorije.LabelProp = treePresenter.TrosakTrenutneKategorije;
+				}
+			}
+			
+		}
 		private void addStatisticView()
 		{
-			notebook.CurrentPage = 2;
+			notebook.CurrentPage = 3;
 			if (grafPresenter == null)
 			{
 				grafPresenter = new GrafPresenter();
@@ -271,9 +337,9 @@ namespace Osobni_Troškovnik
 				odabranaGodina.Text = DateTime.Now.Year.ToString();
 				var kP = new KategorijaPresenter(kategorijeCombo);
 			}
-			datumChanged += (sender, e) => 
+			datumChanged += () => 
 				datumLabela.LabelProp = p.ToString("dd.MM.yyyy") + " - " + k.ToString("dd.MM.yyyy");
-			datumChanged(null, null);
+			datumChanged();
 		}
 
 		protected void totalClicked(object sender, EventArgs e)
@@ -376,6 +442,27 @@ namespace Osobni_Troškovnik
 				}
 				else d.Destroy();
 			}
+		}
+
+		protected void datumFilterTreeViewClicked(object sender, EventArgs e)
+		{
+			var dCW = new DatumChooseWindow(p, k, this,false,true);
+			dCW.signaliziraj += (odDatum, doDatum) =>
+			{
+				p = odDatum;
+				k = doDatum;
+				if (datumChanged != null) datumChanged();
+			};
+		}
+
+		protected void budgetButtonClicked(object sender, EventArgs e)
+		{
+			var bw = new BudgetWindow(this);
+			bw.resurs += (budget) =>
+			{
+				treePresenter.Budget = budget;
+				osvjeziBudget();
+			};
 		}
 	}
 }

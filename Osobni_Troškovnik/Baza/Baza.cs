@@ -38,7 +38,7 @@ namespace Osobni_Troškovnik
 
 			con = new SQLiteConnection(connectionString);
 			con.Open();
-
+	
 		}
 		public void closeCon()
 		{
@@ -58,6 +58,19 @@ namespace Osobni_Troškovnik
 				return true;
 			}
 			return false;
+		}
+		public double getBudget()
+		{
+			string sql = "select iznos from budget";
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+			reader.Read();
+			return double.Parse(reader[0].ToString()) ;
+		}
+		public void setBudget(double budget)
+		{
+
+			executeNonQuery(string.Format("update budget set iznos = '{0}'",budget));
 		}
 
 		public void insertTrosak(string kategorija, double cijena, DateTime datum, string opis)

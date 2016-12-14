@@ -16,6 +16,7 @@ namespace Osobni_Troškovnik
 			this.ParentWindow = parent.GdkWindow;
 
 			this.Build();
+			this.Icon = parent.Icon;
 			eventBox.ModifyBg(StateType.Normal, bgColor);
 			trosak = t;
 			cijena.Text = t.Cijena.ToString();
