@@ -294,14 +294,29 @@ namespace Osobni_Troškovnik
 			labelBudzet.LabelProp = treePresenter.BudgetString;
 			var total = treePresenter.total;
 			var budget = treePresenter.Budget;
+			progressbarBudget.Fraction = 0;
 			if (total <= budget)
 			{
-				progressbarBudget.Fraction = treePresenter.total / budget;
+				//progressbarBudget.Fraction = treePresenter.total / budget;
+				GLib.Timeout.Add(5, delegate
+				{
+					if (progressbarBudget.Fraction >= treePresenter.total / budget) return false;
+					progressbarBudget.Fraction += 0.001;
+					return true;
+				});
+
+
 				labelaPrekoračeno.LabelProp = "0 kn";
 			}
 			else
 			{
-				progressbarBudget.Fraction = 1;
+				//progressbarBudget.Fraction = 1;
+				GLib.Timeout.Add(5, delegate
+				{
+					if (progressbarBudget.Fraction <1 ) return false;
+					progressbarBudget.Fraction += 0.001;
+					return true;
+				});
 				labelaPrekoračeno.LabelProp = (total - budget).ToString("0.00 kn");
 			}
 		}
@@ -315,7 +330,15 @@ namespace Osobni_Troškovnik
 				{
 
 					labelaKategorija.LabelProp = treePresenter.Kategorija;
-					progressbarUdio.Fraction = treePresenter.trosakTrenutneKategorije / treePresenter.total;
+					progressbarUdio.Fraction = 0;
+					GLib.Timeout.Add(5, delegate
+					{
+						if (progressbarUdio.Fraction >= treePresenter.trosakTrenutneKategorije / treePresenter.total) return false;
+						progressbarUdio.Fraction += 0.003;
+						return true;
+					});
+					//progressbarUdio.Fraction = treePresenter.trosakTrenutneKategorije / treePresenter.total;
+
 					labelaTrosakKategorije.LabelProp = treePresenter.TrosakTrenutneKategorije;
 				}
 			}
