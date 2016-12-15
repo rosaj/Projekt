@@ -832,6 +832,7 @@ namespace Osobni_Troškovnik
 			this.hbox13 = new global::Gtk.HBox();
 			this.hbox13.Name = "hbox13";
 			this.hbox13.Spacing = 130;
+			this.hbox13.BorderWidth = ((uint)(6));
 			// Container child hbox13.Gtk.Box+BoxChild
 			this.hbox26 = new global::Gtk.HBox();
 			this.hbox26.Name = "hbox26";
@@ -839,6 +840,7 @@ namespace Osobni_Troškovnik
 			// Container child hbox26.Gtk.Box+BoxChild
 			this.label25 = new global::Gtk.Label();
 			this.label25.Name = "label25";
+			this.label25.Xalign = 0.6F;
 			this.label25.LabelProp = global::Mono.Unix.Catalog.GetString("Ukupno utrošeno:");
 			this.hbox26.Add(this.label25);
 			global::Gtk.Box.BoxChild w76 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.label25]));
@@ -918,6 +920,7 @@ namespace Osobni_Troškovnik
 			this.hbox16 = new global::Gtk.HBox();
 			this.hbox16.Name = "hbox16";
 			this.hbox16.Spacing = 115;
+			this.hbox16.BorderWidth = ((uint)(6));
 			// Container child hbox16.Gtk.Box+BoxChild
 			this.hbox27 = new global::Gtk.HBox();
 			this.hbox27.Name = "hbox27";
@@ -925,6 +928,7 @@ namespace Osobni_Troškovnik
 			// Container child hbox27.Gtk.Box+BoxChild
 			this.label21 = new global::Gtk.Label();
 			this.label21.Name = "label21";
+			this.label21.Xalign = 0.6F;
 			this.label21.LabelProp = global::Mono.Unix.Catalog.GetString("Kategorija:");
 			this.hbox27.Add(this.label21);
 			global::Gtk.Box.BoxChild w86 = ((global::Gtk.Box.BoxChild)(this.hbox27[this.label21]));

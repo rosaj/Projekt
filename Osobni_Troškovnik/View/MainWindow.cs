@@ -262,9 +262,13 @@ namespace Osobni_Troškovnik
 
 				treeView.AppendColumn("Kategorija", new CellRendererText(), "text", 0);
 
-				treeView.AppendColumn("Datum", new CellRendererText(), "text", 1);
+				var datumCol = new TreeViewColumn("Datum", new CellRendererText(), "text", 1);
+				datumCol.MinWidth = 100;
+				treeView.AppendColumn(datumCol);
 
-				treeView.AppendColumn("Cijena", new CellRendererText(), "text", 2);
+				var cijenaCol = new TreeViewColumn("Cijena", new CellRendererText(), "text", 2);
+				cijenaCol.MinWidth = 100;
+				treeView.AppendColumn(cijenaCol);
 
 				treeView.AppendColumn("Opis", new CellRendererText(), "text", 3);
 
@@ -299,7 +303,7 @@ namespace Osobni_Troškovnik
 				GLib.Timeout.Add(5, delegate
 				{
 					if (progressbarBudget.Fraction >= treePresenter.total / budget) return false;
-					progressbarBudget.Fraction += 0.001;
+					progressbarBudget.Fraction += 0.01;
 					return true;
 				});
 
@@ -311,8 +315,11 @@ namespace Osobni_Troškovnik
 				//progressbarBudget.Fraction = 1;
 				GLib.Timeout.Add(5, delegate
 				{
-					if (progressbarBudget.Fraction+0.001 >1 ) return false;
-					progressbarBudget.Fraction += 0.001;
+					if (progressbarBudget.Fraction+0.01 >1 ) {
+						progressbarBudget.Fraction = 1;
+						return false;
+					}
+					progressbarBudget.Fraction += 0.01;
 					return true;
 				});
 				labelaPrekoračeno.LabelProp = (total - budget).ToString("0.00 kn");

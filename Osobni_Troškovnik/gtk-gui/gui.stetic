@@ -1917,6 +1917,7 @@ Prosinac</property>
                   <widget class="Gtk.HBox" id="hbox13">
                     <property name="MemberName" />
                     <property name="Spacing">130</property>
+                    <property name="BorderWidth">6</property>
                     <child>
                       <widget class="Gtk.HBox" id="hbox26">
                         <property name="MemberName" />
@@ -1924,6 +1925,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Label" id="label25">
                             <property name="MemberName" />
+                            <property name="Xalign">0.6</property>
                             <property name="LabelProp" translatable="yes">Ukupno utrošeno:</property>
                           </widget>
                           <packing>
@@ -2039,6 +2041,7 @@ Prosinac</property>
                   <widget class="Gtk.HBox" id="hbox16">
                     <property name="MemberName" />
                     <property name="Spacing">115</property>
+                    <property name="BorderWidth">6</property>
                     <child>
                       <widget class="Gtk.HBox" id="hbox27">
                         <property name="MemberName" />
@@ -2046,6 +2049,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Label" id="label21">
                             <property name="MemberName" />
+                            <property name="Xalign">0.6</property>
                             <property name="LabelProp" translatable="yes">Kategorija:</property>
                           </widget>
                           <packing>
