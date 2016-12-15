@@ -8,7 +8,7 @@ namespace Osobni_Troškovnik
 	public partial class UnesiTrosakWindow : Gtk.Window
 	{
 		
-		private Gdk.Color bgColor = Props.bgColor;
+	
 
 		KategorijaPresenter kategorijaPresenter;
 		public UnesiTrosakWindow(Window parent) :base(Gtk.WindowType.Toplevel)
@@ -19,7 +19,7 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = parent.Icon;
 			this.Title = "Novi trošak";
-			eventboxHome.ModifyBg(StateType.Normal,bgColor);
+			eventboxHome.ModifyBg(StateType.Normal,MainWindow.bgColor);
 	
 			kategorijaPresenter = new KategorijaPresenter(listaKategorija);
 			cijena.Text = "";

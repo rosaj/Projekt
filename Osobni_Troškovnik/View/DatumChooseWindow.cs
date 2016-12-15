@@ -17,7 +17,7 @@ namespace Osobni_Troškovnik
 			this.Icon = parent.Icon;
 			this.Title = "Odaberi raspon";
 
-
+			eventboxHome.ModifyBg(StateType.Normal, MainWindow.bgColor);
 			var odMjesec = (uint)(p.Month - 1);
 			var doMjesec = (uint)(k.Month -1);
 

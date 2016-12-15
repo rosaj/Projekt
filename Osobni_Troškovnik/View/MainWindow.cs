@@ -11,8 +11,8 @@ namespace Osobni_Troškovnik
 	//	private string textF14 = "Sans Condensed Not-Rotated 14";
 		//private string defText12 = "Kristen ITC 12";
 	//	private string defText14 = "Kristen ITC 14";
-		private Gdk.Color bgColor = Props.bgColor;
-		private Gdk.Color bojaSlova = Props.getColor("#0017FF");
+		public static  Gdk.Color bgColor;
+		//private Gdk.Color bojaSlova = Props.getColor("#0017FF");
 
 		private DateTime p = DateTime.Now.AddMonths(-1);
 		private DateTime k = DateTime.Now;
@@ -33,6 +33,10 @@ namespace Osobni_Troškovnik
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
 			this.Title = "Osobni troškovnik";
+
+			bgColor = new Gdk.Color();
+			Gdk.Color.Parse("#B9CFDD", ref bgColor);
+
 			eventboxHome.ModifyBg(StateType.Normal, bgColor);
 			eventBoxTroskovi.ModifyBg(StateType.Normal, bgColor);
 			eventBoxStatistika.ModifyBg(StateType.Normal, bgColor);
@@ -40,6 +44,7 @@ namespace Osobni_Troškovnik
 
 			trosakPresenter = new TrosakNodeStore();
 			setupTreeView();
+
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{

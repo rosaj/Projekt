@@ -5,7 +5,6 @@ namespace Osobni_Troškovnik
 	public partial class EditTrosakWindow : Gtk.Window
 	{
 		public EventHandler signal;
-		private Gdk.Color bgColor = Props.bgColor;
 		private TrosakNodeStore presenter;
 		private TrosakNode trosakPresenter;
 		public EditTrosakWindow(TrosakNode tp,TrosakNodeStore t,Window parent) : base(Gtk.WindowType.Toplevel)
@@ -17,7 +16,7 @@ namespace Osobni_Troškovnik
 
 			this.Build();
 			this.Icon = parent.Icon;
-			eventBox.ModifyBg(StateType.Normal, bgColor);
+			eventBox.ModifyBg(StateType.Normal, MainWindow.bgColor);
 			/*	trosak = t;
 				cijena.Text = t.Cijena.ToString();
 				opis.Buffer.Text = t.Opis;

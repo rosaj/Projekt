@@ -4,6 +4,8 @@ namespace Osobni_Troškovnik
 {
 	public partial class DatumChooseWindow
 	{
+		private global::Gtk.EventBox eventboxHome;
+
 		private global::Gtk.VBox vbox3;
 
 		private global::Gtk.HBox hbox4;
@@ -56,12 +58,15 @@ namespace Osobni_Troškovnik
 			this.Title = global::Mono.Unix.Catalog.GetString("DatumChooseWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
-			this.BorderWidth = ((uint)(6));
 			this.Resizable = false;
 			// Container child Osobni_Troškovnik.DatumChooseWindow.Gtk.Container+ContainerChild
+			this.eventboxHome = new global::Gtk.EventBox();
+			this.eventboxHome.Name = "eventboxHome";
+			// Container child eventboxHome.Gtk.Container+ContainerChild
 			this.vbox3 = new global::Gtk.VBox();
 			this.vbox3.Name = "vbox3";
 			this.vbox3.Spacing = 16;
+			this.vbox3.BorderWidth = ((uint)(6));
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox4 = new global::Gtk.HBox();
 			this.hbox4.Name = "hbox4";
@@ -70,7 +75,6 @@ namespace Osobni_Troškovnik
 			this.rangeRadio = new global::Gtk.RadioButton(global::Mono.Unix.Catalog.GetString("Raspon"));
 			this.rangeRadio.CanFocus = true;
 			this.rangeRadio.Name = "rangeRadio";
-			this.rangeRadio.Active = true;
 			this.rangeRadio.DrawIndicator = true;
 			this.rangeRadio.UseUnderline = true;
 			this.rangeRadio.Group = new global::GLib.SList(global::System.IntPtr.Zero);
@@ -277,7 +281,8 @@ namespace Osobni_Troškovnik
 			w21.Position = 2;
 			w21.Expand = false;
 			w21.Fill = false;
-			this.Add(this.vbox3);
+			this.eventboxHome.Add(this.vbox3);
+			this.Add(this.eventboxHome);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
