@@ -45,19 +45,11 @@ namespace Osobni_Troškovnik
 			con.Close();
 		}
 
-		public bool insertKategorija(string s)
+		public void  insertKategorija(string s)
 		{
-			string sql = String.Format("select COUNT(*) from kategorija where LOWER(ime) LIKE LOWER('{0}')", s);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-			int br = Int32.Parse(reader[0].ToString());
-			if (br == 0)
-			{
+			
 				executeNonQuery(String.Format("insert into kategorija(ime) values('{0}')", s));
-				return true;
-			}
-			return false;
+
 		}
 		public double getBudget()
 		{
@@ -73,18 +65,12 @@ namespace Osobni_Troškovnik
 			executeNonQuery(string.Format("update budget set iznos = '{0}'",budget));
 		}
 
-		public void insertTrosak(string kategorija, double cijena, DateTime datum, string opis)
+		public void insertTrosak(Kategorija kategorija,Trosak t)
 		{
-			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-
-			int id = Int32.Parse(reader[0].ToString());
-			var dateString = datum.ToString("s");
+			var dateString = t.Datum.ToString("s");
 
 			executeNonQuery(string.Format(" insert into trosak(id_kategorija, cijena,datum,opis) " +
-										  "values('{0}','{1}','{2}','{3}')", id, cijena, dateString, opis));
+			                              "values('{0}','{1}','{2}','{3}')", kategorija.Id, t.Cijena, dateString, t.Opis));
 
 		}
 
@@ -102,28 +88,30 @@ namespace Osobni_Troškovnik
 			executeNonQuery(string.Format("delete from trosak where id = '{0}' ", t.ID));
 
 		}
-		public void brisiSveTroskoveUKategoriji(string kategorija)
+		public void brisiSveTroskoveUKategoriji(Kategorija kategorija)
 		{
-			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-
-			int id = Int32.Parse(reader[0].ToString());
-
-			executeNonQuery(string.Format("delete from trosak where id_kategorija = '{0}' ", id));
+			executeNonQuery(string.Format("delete from trosak where id_kategorija = '{0}' ",kategorija.Id));
 
 		}
 
-		public List<String> getKategorije()
+		public List<Kategorija> getKategorije()
 		{
-			string sql = "select ime from kategorija";
+			string sql = "select id, ime from kategorija";
 			SQLiteCommand command = new SQLiteCommand(sql, con);
 			SQLiteDataReader reader = command.ExecuteReader();
-			var list = new List<string>();
+			var list = new List<Kategorija>();
 
-			while (reader.Read()) list.Add(reader[0].ToString());
+			while (reader.Read()) list.Add( new Kategorija(Int32.Parse(reader[0].ToString()),reader[1].ToString()));
 			return list;
+		}
+		public Kategorija getKategorija(string kategorija)
+		{
+			string sql = string.Format("select id, ime from kategorija where ime = '{0}' ",kategorija);
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+
+			reader.Read();
+			return new Kategorija(Int32.Parse(reader[0].ToString()), reader[1].ToString());
 		}
 
 
@@ -134,29 +122,22 @@ namespace Osobni_Troškovnik
 			command.ExecuteNonQuery();
 		}
 
-		public List<Trosak> getTroskoveURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		public List<Trosak> getTroskoveURazdoblju(DateTime odDatum, DateTime doDatum,Kategorija kategorija)
 		{
 
 			var lista = new List<Trosak>();
-
-
-			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-			int id = Int32.Parse(reader[0].ToString());
 
 			odDatum = odDatum.AddDays(-1);
 			doDatum = doDatum.AddDays(+1);
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
 
-			sql = string.Format("select id, cijena, datum, opis from trosak " +
+			string	sql = string.Format("select id, cijena, datum, opis from trosak " +
 								"where id_kategorija= '{0}'" +
 								" AND datum > '{1}' AND datum < '{2}' " +
-								"order by datum DESC", id, datumOdString, datumDoString);
-			command = new SQLiteCommand(sql, con);
-			reader = command.ExecuteReader();
+			                    "order by datum DESC", kategorija.Id, datumOdString, datumDoString);
+			var command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
 
 
 			while (reader.Read())
@@ -164,7 +145,7 @@ namespace Osobni_Troškovnik
 				var date = DateTime.Parse(reader[2].ToString());
 
 				var t = new Trosak( Int32.Parse(reader[0].ToString()), 
-				                   kategorija, double.Parse(reader[1].ToString()),
+				                   kategorija.Naziv, double.Parse(reader[1].ToString()),
 								   date, reader[3].ToString());
 				lista.Add(t);
 			}
@@ -201,37 +182,30 @@ namespace Osobni_Troškovnik
 
 		}*/
 
-		public List<Trosak> getGrupiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
+		public List<Trosak> getGrupiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum,Kategorija kategorija)
 		{
 
 			var lista = new List<Trosak>();
-
-
-			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-			int id = Int32.Parse(reader[0].ToString());
 
 			odDatum = odDatum.AddDays(-1);
 			doDatum = doDatum.AddDays(+1);
 
 			var datumOdString = odDatum.ToString("s");
 			var datumDoString = doDatum.ToString("s");
-			sql = string.Format("select SUM(cijena),datum from trosak " +
+			string sql = string.Format("select SUM(cijena),datum from trosak " +
 								"where id_kategorija= '{0}'" +
 								" AND datum > '{1}' AND datum < '{2}' " +
-								"group by datum", id, datumOdString, datumDoString);
-			command = new SQLiteCommand(sql, con);
-			reader = command.ExecuteReader();
+								"group by datum", kategorija.Id, datumOdString, datumDoString);
+			var command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
 
 
 			while (reader.Read())
 			{
 				var date = DateTime.Parse(reader[1].ToString());
 
-				var t = new Trosak(0,	kategorija, double.Parse(reader[0].ToString()),
-								   date, "");
+				var t = new Trosak(0,	kategorija.Naziv, double.Parse(reader[0].ToString()),
+								   date, "opis");
 				lista.Add(t);
 			}
 

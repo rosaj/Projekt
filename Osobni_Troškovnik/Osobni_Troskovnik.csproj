@@ -135,6 +135,7 @@
     <Compile Include="Presenter\TrosakTreePresenter.cs" />
     <Compile Include="View\BudgetWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.BudgetWindow.cs" />
+    <Compile Include="Model\Kategorija.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

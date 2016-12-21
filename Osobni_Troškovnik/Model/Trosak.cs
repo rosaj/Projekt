@@ -12,11 +12,11 @@ namespace Osobni_Troškovnik
 
 		public Trosak(int id, string kategorija, double cijena, DateTime datum, string opis)
 		{
-			this.id = id;
-			this.kategorija = kategorija;
-			this.cijena = cijena;
-			this.datum = datum;
-			this.opis = opis;
+			ID = id;
+			Kategorija = kategorija;
+			Cijena = cijena;
+			Datum = datum;
+			Opis = opis;
 		}
 
 
@@ -52,6 +52,10 @@ namespace Osobni_Troškovnik
 			}
 			set
 			{
+				if (value.CompareTo(0) == 0)
+				{
+					throw new ArgumentException("Cijena mora biti veća od nule");
+				}
 				cijena = value;
 			}
 
@@ -79,6 +83,10 @@ namespace Osobni_Troškovnik
 
 			set
 			{
+				if (value.Length < 1)
+				{
+					throw new ArgumentException("Opis nesmije biti prazan");
+				}
 				opis = value;
 			}
 		}

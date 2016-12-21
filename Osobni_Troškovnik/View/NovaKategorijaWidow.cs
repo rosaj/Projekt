@@ -6,8 +6,9 @@ namespace Osobni_Troškovnik
 
 	public partial class NovaKategorijaWidow : Gtk.Window
 	{
-		public delegate void eventHandler(string ime);
-		public event eventHandler resurs;
+		
+		public KategorijaPresenter kategorijaPresenter;
+
 		public NovaKategorijaWidow(Window parent) : base(Gtk.WindowType.Toplevel)
 		{
 			this.TransientFor = parent;
@@ -21,8 +22,21 @@ namespace Osobni_Troškovnik
 
 		public void spremiKategorijuClicked(object sender, EventArgs e)
 		{
-			if (resurs != null)	resurs(novaKategorija.Text);
-			this.Destroy();
+
+				try
+				{
+				kategorijaPresenter.insertKategorija(novaKategorija.Text);
+					MessageBox.Popout("Kategorija dodana", 1, TransientFor);
+					this.Destroy();
+
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Popout(ex.Message, 2, this);
+				}
+
+
 
 		}
 		protected void KeyPress(object o, KeyReleaseEventArgs args)

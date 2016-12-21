@@ -27,7 +27,7 @@ namespace Osobni_Troškovnik
 		}
 		public void dodajTroskoveURazdoblju(string kategorija, DateTime pocetak, DateTime kraj)
 		{
-			var listaTr = Baza.getInstance.getTroskoveURazdoblju(pocetak, kraj, kategorija);
+			var listaTr = KategorijaPresenter.getKategorija(kategorija).getTroskoveURazdoblju(pocetak,kraj);
 			dodaj(listaTr);
 		}
 		public void brisiTroskove()
@@ -117,6 +117,12 @@ namespace Osobni_Troškovnik
 
 
 		}
+		public void dodajNoviTrosak(string kategorija, double cijena, DateTime datum, string opis)
+		{
+
+			Baza.getInstance.insertTrosak(KategorijaPresenter.getKategorija(kategorija), new Trosak(0, kategorija, cijena, datum, opis));
+			
+		}
 		public void azurirajTrosak(TrosakNode tn)
 		{
 			Baza.getInstance.updateTrosak(tn.trosak);
@@ -141,7 +147,7 @@ namespace Osobni_Troškovnik
 		public void brisiSveTroskove(string kategorija)
 		{
 			this.brisiTroskove();
-			Baza.getInstance.brisiSveTroskoveUKategoriji(kategorija);
+			KategorijaPresenter.getKategorija(kategorija).brisiSveTroskove();
 		}
 
 	}

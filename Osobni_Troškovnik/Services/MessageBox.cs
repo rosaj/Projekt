@@ -7,6 +7,7 @@ namespace Osobni_Troškovnik
 
 
 		private MessageBox() { }
+		private static bool shown = false;
 		public static void Show(Gtk.Window parent_window, DialogFlags flags, MessageType msgtype, ButtonsType btntype, string msg)
 		{
 			MessageDialog md = new MessageDialog(parent_window, flags, msgtype, btntype, msg);
@@ -20,28 +21,32 @@ namespace Osobni_Troškovnik
 			md.Run();
 			md.Destroy();
 		}
-		public static void Popout(string text, int sekundePrikaza,Window parent)
+		public static void Popout(string text, int sekundePrikaza, Window parent)
 		{
-			var popout = new Window(WindowType.Popup);
-
-			popout.Add(new Label(text));
-			popout.SetSizeRequest(200, 100);
-			popout.TransientFor = parent;
-
-			popout.ParentWindow = parent.GdkWindow;
-
-			popout.SetPosition(WindowPosition.CenterOnParent);
-
-			popout.ShowAll();
-
-			var timer = new System.Timers.Timer(sekundePrikaza*1000);
-			timer.Elapsed += (sender1, e1) =>
+			if (!shown)
 			{
-				popout.Destroy();
-				timer.Stop();
-				timer.Dispose();
-			};
-			timer.Start();
+				shown = true;
+				var popout = new Window(WindowType.Popup);
+				popout.Add(new Label(text));
+				popout.SetSizeRequest(200, 100);
+				popout.TransientFor = parent;
+
+				popout.ParentWindow = parent.GdkWindow;
+
+				popout.SetPosition(WindowPosition.CenterOnParent);
+
+				popout.ShowAll();
+
+				var timer = new System.Timers.Timer(sekundePrikaza * 1000);
+				timer.Elapsed += (sender1, e1) =>
+				{
+					popout.Destroy();
+					timer.Stop();
+					timer.Dispose();
+					shown = false;
+				};
+				timer.Start();
+			}
 		}
 
 	}

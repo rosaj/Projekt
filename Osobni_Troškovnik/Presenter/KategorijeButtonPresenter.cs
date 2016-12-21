@@ -8,13 +8,13 @@ namespace Osobni_Troškovnik
 		public VBox Kategorije(Callback c)
 		{
 			var kategorijeBox = new VBox(false, 10);
-			var lista = Baza.getInstance.getKategorije();
+			var lista = Kategorija.kategorije;
 			foreach (var s in lista)
 			{
-				string icon = s;
-				if (!DatabaseCreator.defultLista.Contains(s))
+				string icon = s.Naziv;
+				if (!DatabaseCreator.defultLista.Contains(s.Naziv))
 					icon = "r";
-				var b = ImageButton.imageButton(icon, s);
+				var b = ImageButton.imageButton(icon, s.Naziv);
 
 				b.HeightRequest = 50;
 				b.WidthRequest = 200;

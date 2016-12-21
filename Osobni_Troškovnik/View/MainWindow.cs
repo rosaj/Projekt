@@ -28,7 +28,7 @@ namespace Osobni_Troškovnik
 
 		public MainWindow() : base(Gtk.WindowType.Toplevel)
 		{
-
+			
 			this.Build();
 			notebook.CurrentPage = 0;
 			this.Icon = this.RenderIcon("Icon", IconSize.Menu, null);
@@ -56,7 +56,7 @@ namespace Osobni_Troškovnik
 		protected void noviTrosakClicked(object sender, EventArgs e)
 		{
 			
-				var uT = new UnesiTrosakWindow(this);
+			var uT = new UnesiTrosakWindow(this,trosakPresenter);
 			
 		}
 		protected void popisClicked(object sender, EventArgs e)
@@ -99,7 +99,7 @@ namespace Osobni_Troškovnik
 				var t = selectedTrosak.trosak;
 				editWin.signal += (sender1, e1) =>
 				{
-					//trosakPresenter.azurirajTrosak(selectedTrosak);
+					
 					osvjeziInfo();
 					opisView.Buffer.Text = t.Opis;
 				};
@@ -370,6 +370,7 @@ namespace Osobni_Troškovnik
 				odabranaGodina.Text = DateTime.Now.Year.ToString();
 				var kP = new KategorijaPresenter(kategorijeCombo);
 			}
+
 			datumChanged += () => 
 				datumLabela.LabelProp = p.ToString("dd.MM.yyyy") + " - " + k.ToString("dd.MM.yyyy");
 			datumChanged();

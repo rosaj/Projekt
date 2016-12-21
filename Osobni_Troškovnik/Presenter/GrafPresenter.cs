@@ -52,7 +52,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 		{
 			var items = new List<ColumnItem>();
 			var datums = new List<string>();
-			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
+			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, KategorijaPresenter.getKategorija(kategorija));
 
 			foreach (Trosak t in list)
 			{
@@ -236,11 +236,11 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			myModel.Axes.Add(x);
 			myModel.Axes.Add(y);
 
-			var lista = Baza.getInstance.getKategorije();
+			var lista = Kategorija.kategorije;
 
-			foreach (string s in lista)
+			foreach (var s in lista)
 			{
-				var l = new LineSeries() { Title = s };
+				var l = new LineSeries() { Title = s.Naziv };
 				var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, s);
 				if (list.Count > 0)
 				{
@@ -269,7 +269,7 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			myModel.Axes.Add(x);
 			myModel.Axes.Add(y);
 
-			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum, kategorija);
+			var list = Baza.getInstance.getGrupiraneTroskoveURazdoblju(odDatum, doDatum,KategorijaPresenter.getKategorija( kategorija));
 			var l = new LineSeries() { Title = kategorija };
 			foreach (Trosak t in list)
 			{
@@ -298,7 +298,9 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			var save = new Button(ImageButton.imageButton("gtk-save"));
 			save.Clicked += (sender, e) =>
 			{
-				PlotSaver.saveToFile(null, ime+"_" + odDatum.ToString("dd.MM.yyyy") + "_-_" + doDatum.ToString("dd.MM.yyyy") + ".png", myModel);
+				PlotSaver.saveToFile( ime+"_" + odDatum.ToString("dd.MM.yyyy") + "_-_" + doDatum.ToString("dd.MM.yyyy") + ".png", myModel);
+				MessageBox.Show(null, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, "Grafikon spremljen na radnu površinu");
+
 			};
 
 			v.PackEnd(save, false, false, 10);

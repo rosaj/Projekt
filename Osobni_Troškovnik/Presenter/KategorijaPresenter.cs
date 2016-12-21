@@ -1,27 +1,52 @@
-﻿
-using System;
+﻿using System.Collections.Generic;
 using Gtk;
+using System;
 namespace Osobni_Troškovnik
 {
 	public class KategorijaPresenter 
 
 	{
-		ComboBox combo;
+		private static List< ComboBox> combo= new List<ComboBox>();
+
 		public KategorijaPresenter(ComboBox cb)
 		{
-			var listaKat = Baza.getInstance.getKategorije();
-			foreach (string s in listaKat) cb.AppendText(s);
+			
+			foreach (var s in Kategorija.kategorije) cb.AppendText(s.Naziv);
 			cb.Active = 0;
-			combo = cb;
+			combo.Add(cb);
 		}
-		public bool insertKategorija( string kategorija)
+		public void insertKategorija( string kategorija)
 		{
-			if (Baza.getInstance.insertKategorija(kategorija))
+			bool match = false;
+			kategorija = kategorija.Trim();
+			foreach (var kat in Kategorija.kategorije)
 			{
-				combo.AppendText(kategorija);
-				return true;
+				if (kat.Naziv == kategorija)
+				{
+					match = true;
+					break;
+				}
 			}
-			return false;
+			if (!match)
+			{
+				var nova = new Kategorija(0, kategorija);
+				Baza.getInstance.insertKategorija(nova.Naziv);
+				nova.Id = Baza.getInstance.getKategorija(nova.Naziv).Id;
+				Kategorija.kategorije.Add(nova);
+				combo.ForEach((obj) => (obj as ComboBox).AppendText(nova.Naziv));
+			}
+			else 
+			{
+				throw new ArgumentException("Kategorija već postoji!");
+			}
+		}
+		public static Kategorija getKategorija(string kategorija)
+		{
+			foreach (var kat in Kategorija.kategorije)
+			{
+				if (kat.Naziv == kategorija) return kat;
+			}
+			return null;
 		}
 	
 	}

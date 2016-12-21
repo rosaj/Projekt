@@ -7,11 +7,9 @@ namespace Osobni_Troškovnik
 
 	public partial class UnesiTrosakWindow : Gtk.Window
 	{
-		
-	
-
 		KategorijaPresenter kategorijaPresenter;
-		public UnesiTrosakWindow(Window parent) :base(Gtk.WindowType.Toplevel)
+		TrosakNodeStore trosakPresenter;
+		public UnesiTrosakWindow(Window parent,TrosakNodeStore trosakPesenter) :base(Gtk.WindowType.Toplevel)
 		{
 			this.TransientFor = parent;
 
@@ -20,7 +18,8 @@ namespace Osobni_Troškovnik
 			this.Icon = parent.Icon;
 			this.Title = "Novi trošak";
 			eventboxHome.ModifyBg(StateType.Normal,MainWindow.bgColor);
-	
+
+			this.trosakPresenter = trosakPesenter;
 			kategorijaPresenter = new KategorijaPresenter(listaKategorija);
 			cijena.Text = "";
 		}
@@ -55,48 +54,24 @@ namespace Osobni_Troškovnik
 		protected void novaKategorijaClicked(object sender, EventArgs e)
 		{
 			var nova = new NovaKategorijaWidow(this);
-			nova.resurs += dodajKategoriju;
+			nova.kategorijaPresenter = kategorijaPresenter;
 		}
-		public void dodajKategoriju(string e)
-		{
-			e = e.Trim();
 
-			if (e.Length > 0)
-			{
-				if (kategorijaPresenter.insertKategorija(e))
-				{
-					MessageBox.Popout("Kategorija dodana", 1, this);
-				}
-				else 
-				{
-					MessageBox.Popout("Kategorija već postoji", 2, this);
-				}
-			}
-		}
 		private bool spremi()
 		{
 			double broj;
-			if (!double.TryParse(cijena.Text, out broj))
-			{
-				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti prazna");
-				return false;
-			}
-			else if (broj.CompareTo(0) == 0)
-			{
-				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Cijena nesmije biti nula");
-				return false;
-			}
-		
-			else if (opis.Buffer.Text.Trim() == "")
-			{
-				MessageBox.Show(this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning, Gtk.ButtonsType.Ok, "Opis nesmije biti prazan");
-				return false;
-			}
-			else {
-				
-				Baza.getInstance.insertTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(),opis.Buffer.Text);
+			double.TryParse(cijena.Text, out broj);
+				try
+				{
+					trosakPresenter.dodajNoviTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(), opis.Buffer.Text);
 				return true;
-			}
+				}
+				catch (Exception e)
+				{
+					MessageBox.Popout(e.Message, 2, this);
+				return false;
+				}
+
 		}
 
 

@@ -5,8 +5,8 @@ namespace Osobni_Troškovnik
 	public partial class EditTrosakWindow : Gtk.Window
 	{
 		public EventHandler signal;
-		private TrosakNodeStore presenter;
-		private TrosakNode trosakPresenter;
+		public TrosakNodeStore presenter;
+		public TrosakNode trosakPresenter;
 		public EditTrosakWindow(TrosakNode tp,TrosakNodeStore t,Window parent) : base(Gtk.WindowType.Toplevel)
 		{
 	
@@ -37,19 +37,22 @@ namespace Osobni_Troškovnik
 
 		protected void spremiClicked(object sender, EventArgs e)
 		{
-			/*trosak.Cijena = double.Parse(cijena.Text);
-			trosak.Datum = kalendar.GetDate().ToString("dd.MM.yyyy");
-			trosak.Opis = opis.Buffer.Text;
-			signal(trosak, e);*/
 
-			trosakPresenter.trosak.Cijena = double.Parse(cijena.Text);
-			trosakPresenter.trosak.Datum = kalendar.GetDate();
-			trosakPresenter.trosak.Opis = opis.Buffer.Text;
-			presenter.azurirajTrosak(trosakPresenter);
+			try
+			{
+				trosakPresenter.trosak.Cijena = double.Parse(cijena.Text);
+				trosakPresenter.trosak.Datum = kalendar.GetDate();
+				trosakPresenter.trosak.Opis = opis.Buffer.Text;
+				presenter.azurirajTrosak(trosakPresenter);
+				MessageBox.Popout("Trošak spremljen", 1, TransientFor);
+				if (signal != null) signal(sender, e);
+				OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Popout(ex.Message, 2, this);
+			}
 
-			MessageBox.Popout("Trošak spremljen", 1, TransientFor);
-			if (signal != null) signal(sender,e);
-			OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
 		}
 
 		protected void odustaniClicked(object sender, EventArgs e)
@@ -75,7 +78,7 @@ namespace Osobni_Troškovnik
 
 			if (odgovor == Gtk.ResponseType.Yes)
 			{
-				//brisiTrosak(trosak, e);
+
 				presenter.brisiTrosak(trosakPresenter);
 				d.Destroy();
 				MessageBox.Popout("Trošak izbrisan", 1,TransientFor);
