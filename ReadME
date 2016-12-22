@@ -1,1 +1,2 @@
 //** Ukoliko javlja grešku da System.Runtime ni uključen potrebno je instalirati Windows SDK **\\
+//** file troskovnik.sqlite dodat u Osobni_Troškovnik\Osobni_Troškovnik\bin\Debug\ ako zelite bazu sa testnim podacima **\\
