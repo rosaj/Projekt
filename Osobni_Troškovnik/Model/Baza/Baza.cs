@@ -45,10 +45,12 @@ namespace Osobni_Troškovnik
 			con.Close();
 		}
 
-		public void  insertKategorija(string s)
+		public int insertKategorija(string s)
 		{
-			
-				executeNonQuery(String.Format("insert into kategorija(ime) values('{0}')", s));
+
+			string sql = String.Format("insert into kategorija(ime) values('{0}');SELECT last_insert_rowid(); ", s);
+			var command = new SQLiteCommand(sql, con);
+			return (int)(long)command.ExecuteScalar();
 
 		}
 		public double getBudget()
@@ -104,15 +106,7 @@ namespace Osobni_Troškovnik
 			while (reader.Read()) list.Add( new Kategorija(Int32.Parse(reader[0].ToString()),reader[1].ToString()));
 			return list;
 		}
-		public Kategorija getKategorija(string kategorija)
-		{
-			string sql = string.Format("select id, ime from kategorija where ime = '{0}' ",kategorija);
-			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-
-			reader.Read();
-			return new Kategorija(Int32.Parse(reader[0].ToString()), reader[1].ToString());
-		}
+	
 
 
 
@@ -145,7 +139,7 @@ namespace Osobni_Troškovnik
 				var date = DateTime.Parse(reader[2].ToString());
 
 				var t = new Trosak( Int32.Parse(reader[0].ToString()), 
-				                   kategorija.Naziv, double.Parse(reader[1].ToString()),
+				                   kategorija, double.Parse(reader[1].ToString()),
 								   date, reader[3].ToString());
 				lista.Add(t);
 			}
@@ -204,7 +198,7 @@ namespace Osobni_Troškovnik
 			{
 				var date = DateTime.Parse(reader[1].ToString());
 
-				var t = new Trosak(0,	kategorija.Naziv, double.Parse(reader[0].ToString()),
+				var t = new Trosak(0,	kategorija, double.Parse(reader[0].ToString()),
 								   date, "opis");
 				lista.Add(t);
 			}

@@ -119,8 +119,8 @@ namespace Osobni_Troškovnik
 		}
 		public void dodajNoviTrosak(string kategorija, double cijena, DateTime datum, string opis)
 		{
-
-			Baza.getInstance.insertTrosak(KategorijaPresenter.getKategorija(kategorija), new Trosak(0, kategorija, cijena, datum, opis));
+			var kat = KategorijaPresenter.getKategorija(kategorija);
+			Baza.getInstance.insertTrosak(kat , new Trosak(0, kat, cijena, datum, opis));
 			
 		}
 		public void azurirajTrosak(TrosakNode tn)

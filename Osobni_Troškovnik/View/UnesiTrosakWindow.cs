@@ -7,7 +7,7 @@ namespace Osobni_Troškovnik
 
 	public partial class UnesiTrosakWindow : Gtk.Window
 	{
-		KategorijaPresenter kategorijaPresenter;
+		
 		TrosakNodeStore trosakPresenter;
 		public UnesiTrosakWindow(Window parent,TrosakNodeStore trosakPesenter) :base(Gtk.WindowType.Toplevel)
 		{
@@ -20,7 +20,7 @@ namespace Osobni_Troškovnik
 			eventboxHome.ModifyBg(StateType.Normal,MainWindow.bgColor);
 
 			this.trosakPresenter = trosakPesenter;
-			kategorijaPresenter = new KategorijaPresenter(listaKategorija);
+			KategorijaPresenter.generirajKategorije(listaKategorija);
 			cijena.Text = "";
 		}
 
@@ -54,7 +54,7 @@ namespace Osobni_Troškovnik
 		protected void novaKategorijaClicked(object sender, EventArgs e)
 		{
 			var nova = new NovaKategorijaWidow(this);
-			nova.kategorijaPresenter = kategorijaPresenter;
+
 		}
 
 		private bool spremi()
@@ -77,8 +77,9 @@ namespace Osobni_Troškovnik
 
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
-
+			KategorijaPresenter.otpustiComboBox(listaKategorija);
 			Destroy();
+
 
 		}
 		protected void KeyPress(object o, KeyReleaseEventArgs args)

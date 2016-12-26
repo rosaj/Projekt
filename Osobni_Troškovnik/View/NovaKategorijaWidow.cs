@@ -7,7 +7,7 @@ namespace Osobni_Troškovnik
 	public partial class NovaKategorijaWidow : Gtk.Window
 	{
 		
-		public KategorijaPresenter kategorijaPresenter;
+
 
 		public NovaKategorijaWidow(Window parent) : base(Gtk.WindowType.Toplevel)
 		{
@@ -25,7 +25,7 @@ namespace Osobni_Troškovnik
 
 				try
 				{
-				kategorijaPresenter.insertKategorija(novaKategorija.Text);
+				KategorijaPresenter.insertKategorija(novaKategorija.Text);
 					MessageBox.Popout("Kategorija dodana", 1, TransientFor);
 					this.Destroy();
 

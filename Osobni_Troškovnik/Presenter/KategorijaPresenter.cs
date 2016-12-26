@@ -3,19 +3,23 @@ using Gtk;
 using System;
 namespace Osobni_Troškovnik
 {
-	public class KategorijaPresenter 
+	public static  class KategorijaPresenter 
 
 	{
 		private static List< ComboBox> combo= new List<ComboBox>();
 
-		public KategorijaPresenter(ComboBox cb)
+
+		public static void generirajKategorije(ComboBox cb)
 		{
-			
 			foreach (var s in Kategorija.kategorije) cb.AppendText(s.Naziv);
 			cb.Active = 0;
 			combo.Add(cb);
 		}
-		public void insertKategorija( string kategorija)
+		public static void otpustiComboBox(ComboBox cb)
+		{
+			combo.Remove(cb);
+		}
+		public static void insertKategorija( string kategorija)
 		{
 			bool match = false;
 			kategorija = kategorija.Trim();
@@ -30,10 +34,11 @@ namespace Osobni_Troškovnik
 			if (!match)
 			{
 				var nova = new Kategorija(0, kategorija);
-				Baza.getInstance.insertKategorija(nova.Naziv);
-				nova.Id = Baza.getInstance.getKategorija(nova.Naziv).Id;
+				nova.Id =	Baza.getInstance.insertKategorija(nova.Naziv);
 				Kategorija.kategorije.Add(nova);
 				combo.ForEach((obj) => (obj as ComboBox).AppendText(nova.Naziv));
+				combo.ForEach((obj) => { 
+					Console.WriteLine((obj as ComboBox).Name);});
 			}
 			else 
 			{

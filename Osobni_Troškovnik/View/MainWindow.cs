@@ -307,7 +307,7 @@ namespace Osobni_Troškovnik
 				//progressbarBudget.Fraction = treePresenter.total / budget;
 				GLib.Timeout.Add(5, delegate
 				{
-					if (progressbarBudget.Fraction >= treePresenter.total / budget) return false;
+					if (progressbarBudget.Fraction+ 0.01 > (total / budget)) return false;
 					progressbarBudget.Fraction += 0.01;
 					return true;
 				});
@@ -368,7 +368,7 @@ namespace Osobni_Troškovnik
 				prikazPoBar.Image = new Image("Bar", IconSize.Dnd);
 				prikazPoPie.Image = new Image("Pie", IconSize.Dnd);
 				odabranaGodina.Text = DateTime.Now.Year.ToString();
-				var kP = new KategorijaPresenter(kategorijeCombo);
+				KategorijaPresenter.generirajKategorije	(kategorijeCombo);
 			}
 
 			datumChanged += () => 
