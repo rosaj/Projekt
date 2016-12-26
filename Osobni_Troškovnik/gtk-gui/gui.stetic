@@ -1129,7 +1129,7 @@ Prosinac</property>
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">3</property>
+        <property name="CurrentPage">1</property>
         <property name="ShowBorder">False</property>
         <property name="ShowTabs">False</property>
         <child>
@@ -1376,6 +1376,7 @@ Prosinac</property>
                         <property name="MemberName" />
                         <property name="WidthRequest">0</property>
                         <property name="HeightRequest">0</property>
+                        <property name="Tooltip" translatable="yes">Povratak na glavni izbornik</property>
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
                         <property name="Icon">resource:Osobni_Troškovnik.Pics.smallBack.png</property>
@@ -1417,6 +1418,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Button" id="button7">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Odaberi vremenski raspon</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">resource:Osobni_Troškovnik.Pics.filterDatum.png</property>
@@ -1466,6 +1468,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Button" id="button8">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Obriši sve troškove u trenutnoj kategoriji</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">resource:Osobni_Troškovnik.Pics.brisiSve.png</property>
@@ -1732,6 +1735,7 @@ Prosinac</property>
                                   <widget class="Gtk.Button" id="editButton">
                                     <property name="MemberName" />
                                     <property name="HeightRequest">50</property>
+                                    <property name="Tooltip" translatable="yes">Uredi odabrani trošak</property>
                                     <property name="CanFocus">True</property>
                                     <property name="Type">TextAndIcon</property>
                                     <property name="Icon">resource:Osobni_Troškovnik.Pics.edit.png</property>
@@ -1827,6 +1831,7 @@ Prosinac</property>
                         <property name="MemberName" />
                         <property name="WidthRequest">0</property>
                         <property name="HeightRequest">0</property>
+                        <property name="Tooltip" translatable="yes">Povratak na glavni izbornik</property>
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
                         <property name="Icon">resource:Osobni_Troškovnik.Pics.smallBack.png</property>
@@ -1858,6 +1863,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Button" id="button9">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Odaberi mjesec</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">resource:Osobni_Troškovnik.Pics.filterDatum.png</property>
@@ -1891,6 +1897,7 @@ Prosinac</property>
                     <child>
                       <widget class="Gtk.Button" id="button10">
                         <property name="MemberName" />
+                        <property name="Tooltip" translatable="yes">Odredi budžet</property>
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
                         <property name="Icon">resource:Osobni_Troškovnik.Pics.budget.png</property>
@@ -2200,6 +2207,7 @@ Prosinac</property>
                         <child>
                           <widget class="Gtk.Button" id="button11">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Povratak na glavni izbornik</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">resource:Osobni_Troškovnik.Pics.smallBack.png</property>
@@ -2231,6 +2239,7 @@ Prosinac</property>
                             <child>
                               <widget class="Gtk.Button" id="button12">
                                 <property name="MemberName" />
+                                <property name="Tooltip" translatable="yes">Odaberi vremenski raspon</property>
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
                                 <property name="Icon">resource:Osobni_Troškovnik.Pics.filterDatum.png</property>
@@ -2274,6 +2283,7 @@ Prosinac</property>
                                 <child>
                                   <widget class="Gtk.Button" id="button6">
                                     <property name="MemberName" />
+                                    <property name="Tooltip" translatable="yes">Otvori u novom prozoru</property>
                                     <property name="CanFocus">True</property>
                                     <property name="Type">TextAndIcon</property>
                                     <property name="Icon">resource:Osobni_Troškovnik.Pics.openInNewWindow.png</property>
