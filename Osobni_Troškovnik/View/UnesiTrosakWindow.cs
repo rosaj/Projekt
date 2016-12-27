@@ -22,6 +22,14 @@ namespace Osobni_Troškovnik
 			this.trosakPresenter = trosakPesenter;
 			KategorijaPresenter.generirajKategorije(listaKategorija);
 			cijena.Text = "";
+
+			foreach (Widget w in spremiButton)
+			{
+				if (w is Label)
+				{
+					w.ModifyFont(Pango.FontDescription.FromString("Bold"));
+				}
+			}
 		}
 
 

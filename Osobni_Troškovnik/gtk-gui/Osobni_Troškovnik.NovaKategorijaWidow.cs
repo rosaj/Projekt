@@ -17,7 +17,7 @@ namespace Osobni_Troškovnik
 			this.WidthRequest = 300;
 			this.HeightRequest = 100;
 			this.Name = "Osobni_Troškovnik.NovaKategorijaWidow";
-			this.Title = global::Mono.Unix.Catalog.GetString("NovaKategorijaWidow");
+			this.Title = global::Mono.Unix.Catalog.GetString("Dodaj novu kategoriju");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
 			this.BorderWidth = ((uint)(15));
@@ -46,12 +46,15 @@ namespace Osobni_Troškovnik
 			this.spremi.CanFocus = true;
 			this.spremi.Name = "spremi";
 			this.spremi.UseUnderline = true;
-			this.spremi.Label = global::Mono.Unix.Catalog.GetString("Spremi");
+			this.spremi.Label = global::Mono.Unix.Catalog.GetString("     Spremi");
+			global::Gtk.Image w3 = new global::Gtk.Image();
+			w3.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-save", global::Gtk.IconSize.Menu);
+			this.spremi.Image = w3;
 			this.vbox1.Add(this.spremi);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.spremi]));
-			w3.Position = 1;
-			w3.Expand = false;
-			w3.Fill = false;
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.spremi]));
+			w4.Position = 1;
+			w4.Expand = false;
+			w4.Fill = false;
 			this.Add(this.vbox1);
 			if ((this.Child != null))
 			{

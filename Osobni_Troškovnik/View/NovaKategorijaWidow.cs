@@ -16,8 +16,6 @@ namespace Osobni_Troškovnik
 			this.ParentWindow = parent.GdkWindow;
 			this.Build();
 			this.Icon = parent.Icon;
-			this.Title = "Dodaj novu kategoriju";
-
 		}
 
 		public void spremiKategorijuClicked(object sender, EventArgs e)
@@ -25,7 +23,7 @@ namespace Osobni_Troškovnik
 
 				try
 				{
-				KategorijaPresenter.insertKategorija(novaKategorija.Text);
+					KategorijaPresenter.insertKategorija(novaKategorija.Text);
 					MessageBox.Popout("Kategorija dodana", 1, TransientFor);
 					this.Destroy();
 

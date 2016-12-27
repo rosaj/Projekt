@@ -6,7 +6,7 @@ namespace Osobni_Troškovnik
 		public static void Main(string[] args)
 		{
 			Application.Init();
-			//Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
+			Gtk.Settings.Default.SetLongProperty("gtk-button-images", 1, "");
 			/*	var splash = new Window("Učitavanje");
 					splash.TypeHint = Gdk.WindowTypeHint.Splashscreen;
 
