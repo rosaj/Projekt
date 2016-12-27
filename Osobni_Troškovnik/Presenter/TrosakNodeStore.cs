@@ -123,12 +123,17 @@ namespace Osobni_Troškovnik
 			Baza.getInstance.insertTrosak(kat , new Trosak(0, kat, cijena, datum, opis));
 			
 		}
-		public void azurirajTrosak(TrosakNode tn)
+		public void azurirajTrosak(TrosakNode tn, double cijena, DateTime datum, string opis)
 		{
-			Baza.getInstance.updateTrosak(tn.trosak);
+			tn.trosak.Cijena = cijena;
+			tn.trosak.Datum = datum;
+			tn.trosak.Opis = opis;
+
 			tn.cijena = tn.trosak.Cijena.ToString("0.00 kn");
 			tn.datum = tn.trosak.Datum.ToString("dd.MM.yyyy");
 			tn.opis = tn.trosak.Opis;
+
+			Baza.getInstance.updateTrosak(tn.trosak);
 			suma = 0;broj = 0;
 			foreach (TrosakNode t in this)
 			{

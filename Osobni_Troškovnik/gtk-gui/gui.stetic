@@ -493,7 +493,6 @@
             <property name="Tooltip" translatable="yes">Naziv nove kategorije, do 20 znakova</property>
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
-            <property name="MaxLength">20</property>
             <property name="InvisibleChar">●</property>
           </widget>
           <packing>

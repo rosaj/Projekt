@@ -102,6 +102,7 @@ namespace Osobni_Troškovnik
 
 					osvjeziInfo();
 					opisView.Buffer.Text = t.Opis;
+					nodeView.GrabFocus();
 				};
 
 			}

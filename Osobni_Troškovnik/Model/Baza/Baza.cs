@@ -57,10 +57,10 @@ namespace Osobni_Troškovnik
 		{
 			string sql = "select iznos from budget";
 			SQLiteCommand command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-			return double.Parse(reader[0].ToString()) ;
+			return (double) (decimal) command.ExecuteScalar();
 		}
+
+
 		public void setBudget(double budget)
 		{
 
@@ -149,32 +149,7 @@ namespace Osobni_Troškovnik
 
 
 		}
-		/*public double getSumuTroskovaURazdoblju(DateTime odDatum, DateTime doDatum, string kategorija)
-		{
-
-			string sql = string.Format("select id from kategorija where LOWER(ime) LIKE LOWER('{0}')", kategorija);
-			var command = new SQLiteCommand(sql, con);
-			SQLiteDataReader reader = command.ExecuteReader();
-			reader.Read();
-			int id = Int32.Parse(reader[0].ToString());
-
-			var datumOdString = odDatum.ToString("s");
-			var datumDoString = doDatum.ToString("s");
-			sql = string.Format("select SUM(cijena) from trosak " +
-								"where id_kategorija= '{0}'" +
-								" AND datum >= '{1}' AND datum <= '{2}' " +
-								"order by datum DESC", id, datumOdString, datumDoString);
-			command = new SQLiteCommand(sql, con);
-			reader = command.ExecuteReader();
-			float suma = 0;
-			reader.Read();
-			float.TryParse(reader[0].ToString(), out suma);
-
-			return suma;
-
-
-
-		}*/
+	
 
 		public List<Trosak> getGrupiraneTroskoveURazdoblju(DateTime odDatum, DateTime doDatum,Kategorija kategorija)
 		{

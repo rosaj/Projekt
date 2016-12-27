@@ -17,13 +17,7 @@ namespace Osobni_Troškovnik
 			this.Build();
 			this.Icon = parent.Icon;
 			eventBox.ModifyBg(StateType.Normal, MainWindow.bgColor);
-			/*	trosak = t;
-				cijena.Text = t.Cijena.ToString();
-				opis.Buffer.Text = t.Opis;
-				kategorijaLabel.LabelProp = t.Kategorija;
-				var datum = DateTime.ParseExact(t.Datum, "dd.MM.yyyy", null);
-				kalendar.SelectMonth((uint)datum.Month - 1, (uint)datum.Year);
-				kalendar.SelectDay((uint)datum.Day);*/
+
 			presenter = t;
 			trosakPresenter = tp;
 			cijena.Text = trosakPresenter.trosak.Cijena.ToString();
@@ -40,11 +34,10 @@ namespace Osobni_Troškovnik
 
 			try
 			{
-				trosakPresenter.trosak.Cijena = double.Parse(cijena.Text);
-				trosakPresenter.trosak.Datum = kalendar.GetDate();
-				trosakPresenter.trosak.Opis = opis.Buffer.Text;
-				presenter.azurirajTrosak(trosakPresenter);
+				presenter.azurirajTrosak(trosakPresenter, double.Parse(cijena.Text), kalendar.GetDate(), opis.Buffer.Text);
 				MessageBox.Popout("Trošak spremljen", 1, TransientFor);
+
+			
 				if (signal != null) signal(sender, e);
 				OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
 			}
@@ -80,6 +73,7 @@ namespace Osobni_Troškovnik
 			{
 
 				presenter.brisiTrosak(trosakPresenter);
+
 				d.Destroy();
 				MessageBox.Popout("Trošak izbrisan", 1,TransientFor);
 				Destroy();

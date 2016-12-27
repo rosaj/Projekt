@@ -34,7 +34,6 @@ namespace Osobni_Troškovnik
 			this.novaKategorija.CanFocus = true;
 			this.novaKategorija.Name = "novaKategorija";
 			this.novaKategorija.IsEditable = true;
-			this.novaKategorija.MaxLength = 20;
 			this.novaKategorija.InvisibleChar = '●';
 			this.vbox1.Add(this.novaKategorija);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.novaKategorija]));

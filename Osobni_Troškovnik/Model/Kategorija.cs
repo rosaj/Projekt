@@ -35,9 +35,13 @@ namespace Osobni_Troškovnik
 
 			set
 			{
-				if (value.Length < 1 )
+				if (value.Length < 1)
 				{
 					throw new ArgumentException("Naziv kategorije nesmije biti prazan");
+				}
+				else if (value.Length > 20)
+				{
+					throw new ArgumentException("Naziv kategorije može \nsadržavati do 20 znakova");
 				}
 				naziv = value;
 			}

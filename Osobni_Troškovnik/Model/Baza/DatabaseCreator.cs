@@ -53,7 +53,7 @@ namespace Osobni_Troškovnik
 			}
 			catch (SQLiteException e)
 			{
-				MessageBox.Show("Došlo je do greške spajanja na bazu " + e);
+				MessageBox.Show("Došlo je do greške spajanja na bazu " + e.Message);
 			}
 
 		}

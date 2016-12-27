@@ -47,15 +47,11 @@ namespace Osobni_Troškovnik
 
 				popout.ShowAll();
 
-				var timer = new System.Timers.Timer(sekundePrikaza * 1000);
-				timer.Elapsed += (sender1, e1) =>
-				{
+				GLib.Timeout.Add((uint)(sekundePrikaza * 1000), delegate {
 					popout.Destroy();
-					timer.Stop();
-					timer.Dispose();
 					shown = false;
-				};
-				timer.Start();
+					return false;
+				});
 			}
 		}
 
