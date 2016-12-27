@@ -27,7 +27,15 @@ namespace Osobni_Troškovnik
 			{
 				shown = true;
 				var popout = new Window(WindowType.Popup);
-				popout.Add(new Label(text));
+
+				var w  = new Label(text);
+
+
+				var bgColor = new Gdk.Color();
+				Gdk.Color.Parse("#0017FF", ref bgColor);
+				w.ModifyFg(StateType.Normal, bgColor);
+
+				popout.Add(w);
 				popout.SetSizeRequest(200, 100);
 				popout.TransientFor = parent;
 

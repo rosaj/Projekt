@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using Gtk;
 namespace Osobni_Troškovnik
 {
 	public abstract class Props
 	{
 
-
-		public static readonly Gdk.Color bgColor = Props.getColor("#B9CFDD");
+public static readonly Gdk.Color bgColor = Props.getColor("#B9CFDD");
 
 		public static Gdk.Color getColor(string color)
 		{
@@ -66,5 +65,6 @@ namespace Osobni_Troškovnik
 			w.ModifyFg(StateType.Normal, textColor);
 			return e;
 		}
+
 	}
 }

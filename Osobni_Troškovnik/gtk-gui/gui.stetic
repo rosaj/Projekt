@@ -565,6 +565,7 @@
                 <child>
                   <widget class="Gtk.RadioButton" id="mjeseciRadio">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes" />
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Mjeseci</property>
                     <property name="DrawIndicator">True</property>
@@ -641,6 +642,7 @@
                         <child>
                           <widget class="Gtk.Calendar" id="kalendarOd">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Datum od</property>
                             <property name="CanFocus">True</property>
                             <property name="DisplayOptions">35</property>
                           </widget>
@@ -654,6 +656,7 @@
                         <child>
                           <widget class="Gtk.Calendar" id="kalendarDo">
                             <property name="MemberName" />
+                            <property name="Tooltip" translatable="yes">Datum do</property>
                             <property name="CanFocus">True</property>
                             <property name="DisplayOptions">35</property>
                           </widget>
@@ -801,6 +804,7 @@ Prosinac</property>
                 <child>
                   <widget class="Gtk.Button" id="filtrirajButton">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Filtriraj po odabranim vremenskim rasponu</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Filtriraj</property>
@@ -1059,6 +1063,7 @@ Prosinac</property>
                 <child>
                   <widget class="Gtk.Button" id="odustani">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Odbaci promjene</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Odustani</property>
@@ -1075,6 +1080,7 @@ Prosinac</property>
                 <child>
                   <widget class="Gtk.Button" id="brisi">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Izbriši trošak</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Briši trošak</property>
@@ -1091,6 +1097,7 @@ Prosinac</property>
                 <child>
                   <widget class="Gtk.Button" id="spremi">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Spremi promjene</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Spremi</property>

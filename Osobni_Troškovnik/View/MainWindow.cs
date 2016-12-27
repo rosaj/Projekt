@@ -93,18 +93,19 @@ namespace Osobni_Troškovnik
 			var selectedTrosak = (TrosakNode)nodeView.NodeSelection.SelectedNode;
 			if (selectedTrosak != null)
 			{
-				
-				var editWin = new EditTrosakWindow(selectedTrosak,trosakPresenter,this);
+
+				var editWin = new EditTrosakWindow(selectedTrosak, trosakPresenter, this);
 
 				var t = selectedTrosak.trosak;
 				editWin.signal += (sender1, e1) =>
 				{
-					
+
 					osvjeziInfo();
 					opisView.Buffer.Text = t.Opis;
 				};
 
 			}
+			else MessageBox.Popout("Odaberite trošak koji želite urediti", 2, this);
 		}
 
 	
@@ -452,7 +453,7 @@ namespace Osobni_Troškovnik
 				newWin.Icon = this.Icon;
 				newWin.ShowAll();
 			}
-
+			else MessageBox.Popout("Nema prikaza za otvorit\n u novom prozoru", 2, this);
 		}
 
 		protected void brisiSveClicked(object sender, EventArgs e)
@@ -476,6 +477,7 @@ namespace Osobni_Troškovnik
 				}
 				else d.Destroy();
 			}
+			else MessageBox.Popout("Odaberite kategoriju ukoliko želite\n obrisati sve troškove u kategoriji", 2, this);
 		}
 
 		protected void datumFilterTreeViewClicked(object sender, EventArgs e)

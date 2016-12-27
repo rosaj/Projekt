@@ -117,10 +117,8 @@
     <Compile Include="View\UnesiTrosakWindow.cs" />
     <Compile Include="Model\Trosak.cs" />
     <Compile Include="Services\StringManipulator.cs" />
-    <Compile Include="Services\ImageButton.cs" />
     <Compile Include="Services\MessageBox.cs" />
     <Compile Include="Services\PlotSaver.cs" />
-    <Compile Include="Services\Props.cs" />
     <Compile Include="View\EditTrosakWindow.cs" />
     <Compile Include="gtk-gui\Osobni_Troškovnik.EditTrosakWindow.cs" />
     <Compile Include="Presenter\TrosakNode.cs" />
@@ -136,6 +134,7 @@
     <Compile Include="Model\Kategorija.cs" />
     <Compile Include="Model\Baza\Baza.cs" />
     <Compile Include="Model\Baza\DatabaseCreator.cs" />
+    <Compile Include="Services\ImageButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
