@@ -33,7 +33,9 @@ namespace Osobni_Troškovnik
 
 				var bgColor = new Gdk.Color();
 				Gdk.Color.Parse("#0017FF", ref bgColor);
+
 				w.ModifyFg(StateType.Normal, bgColor);
+
 
 				popout.Add(w);
 				popout.SetSizeRequest(200, 100);
