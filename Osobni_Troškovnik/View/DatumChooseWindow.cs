@@ -26,6 +26,7 @@ namespace Osobni_Troškovnik
 
 			kalendarDo.SelectDay((uint)k.Day);
 			kalendarDo.SelectMonth(doMjesec, (uint)k.Year);
+			godinaSpinButton.Value = DateTime.Now.Year;
 
 			if (!rangeEnabled) 
 			{ 

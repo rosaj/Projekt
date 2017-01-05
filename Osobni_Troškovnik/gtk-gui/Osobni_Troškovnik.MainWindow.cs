@@ -261,7 +261,7 @@ namespace Osobni_Troškovnik
 			this.notebook = new global::Gtk.Notebook();
 			this.notebook.CanFocus = true;
 			this.notebook.Name = "notebook";
-			this.notebook.CurrentPage = 1;
+			this.notebook.CurrentPage = 2;
 			this.notebook.ShowBorder = false;
 			this.notebook.ShowTabs = false;
 			// Container child notebook.Gtk.Notebook+NotebookChild
@@ -286,7 +286,6 @@ namespace Osobni_Troškovnik
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox();
-			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 20;
 			this.hbox1.BorderWidth = ((uint)(10));
 			// Container child hbox1.Gtk.Box+BoxChild
@@ -570,6 +569,7 @@ namespace Osobni_Troškovnik
 			this.nodeView = new global::Gtk.NodeView();
 			this.nodeView.CanFocus = true;
 			this.nodeView.Name = "nodeView";
+			this.nodeView.EnableSearch = false;
 			this.scrolledwindow2.Add(this.nodeView);
 			this.hbox5.Add(this.scrolledwindow2);
 			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.scrolledwindow2]));
@@ -1370,7 +1370,6 @@ namespace Osobni_Troškovnik
 			this.button5.Clicked += new global::System.EventHandler(this.izlazClicked);
 			this.backButton.Clicked += new global::System.EventHandler(this.backButtonClicked);
 			this.button7.Clicked += new global::System.EventHandler(this.datumFilterClicked);
-			this.button8.Clicked += new global::System.EventHandler(this.brisiSveClicked);
 			this.editButton.Clicked += new global::System.EventHandler(this.editTrosakClicked);
 			this.backButton1.Clicked += new global::System.EventHandler(this.backButtonClicked);
 			this.button9.Clicked += new global::System.EventHandler(this.datumFilterTreeViewClicked);

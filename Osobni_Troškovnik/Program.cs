@@ -27,16 +27,18 @@ namespace Osobni_Troškovnik
 						progresBar.Fraction += 0.02;
 						return true;
 					});
-
+					var win = new MainWindow();
+					win.Hide();
 
 					GLib.Timeout.Add(3000,delegate {
-						var win = new MainWindow();
+						
 
 						win.Show();
 
 						splash.Destroy();
 						return false;
-					});*/
+					});
+*/
 
 
 			var win = new MainWindow();

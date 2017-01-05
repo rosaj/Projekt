@@ -4,9 +4,6 @@ namespace Osobni_Troškovnik
 {
 	public partial class MainWindow : Gtk.Window
 	{
-		
-
-
 	//	private string textF12 = "Sans Condensed Not-Rotated 12";
 	//	private string textF14 = "Sans Condensed Not-Rotated 14";
 		//private string defText12 = "Kristen ITC 12";
@@ -22,6 +19,7 @@ namespace Osobni_Troškovnik
 		TrosakNodeStore trosakPresenter;
 		GrafPresenter grafPresenter;
 		TrosakTreePresenter  treePresenter;
+
 		private delegate void promjena();
 		private promjena datumChanged;
 		private promjena backClicked;
@@ -82,34 +80,10 @@ namespace Osobni_Troškovnik
 		protected void keyPressEvent(object o, KeyPressEventArgs args)
 		{
 			uint keyCode = args.Event.KeyValue;
-			if (keyCode == 65480) this.Fullscreen();
+			if (keyCode == 65480) this.Maximize();
 			else if (keyCode == 65307) backButtonClicked(null,null);
 		}
 
-
-		protected void editTrosakClicked(object sender, EventArgs e)
-		{
-
-			var selectedTrosak = (TrosakNode)nodeView.NodeSelection.SelectedNode;
-			if (selectedTrosak != null)
-			{
-
-				var editWin = new EditTrosakWindow(selectedTrosak, trosakPresenter, this);
-
-				var t = selectedTrosak.trosak;
-				editWin.signal += (sender1, e1) =>
-				{
-
-					osvjeziInfo();
-					opisView.Buffer.Text = t.Opis;
-					nodeView.GrabFocus();
-				};
-
-			}
-			else MessageBox.Popout("Odaberite trošak koji želite urediti", 2, this);
-		}
-
-	
 			
 		protected void backButtonClicked(object sender, EventArgs e)
 		{
@@ -134,6 +108,14 @@ namespace Osobni_Troškovnik
 				if (datumChanged != null)datumChanged();
 				};
 		}
+
+
+		/*
+		 * 
+		 * Medote za upravljanje ekranom popis svih troškova
+		 * 
+		 */
+
 		private void prikaziPodatke(string kategorija)
 		{
 				currentKategorija = kategorija;
@@ -243,6 +225,51 @@ namespace Osobni_Troškovnik
 			if (currentKategorija != null) prikaziPodatke(currentKategorija);
 			datumLabel.LabelProp = p.ToString("dd.MM.yyyy") + " - " + k.ToString("dd.MM.yyyy");
 		}
+
+		private void brisiSveClicked(object sender, EventArgs e)
+		{
+
+			if (currentKategorija != null)
+			{
+				Dialog d = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.None, "Time ćete obrisati sve postojeće troškove. Jeste li sigurni da želite obrisati sve troškove u kategoriji " + currentKategorija + "?");
+				d.AddButton("Da", Gtk.ResponseType.Yes);
+				d.AddButton("Ne", Gtk.ResponseType.No);
+
+				var odgovor = (Gtk.ResponseType)d.Run();
+
+
+				if (odgovor == Gtk.ResponseType.Yes)
+				{
+					d.Destroy();
+					trosakPresenter.brisiSveTroskove(currentKategorija);
+					MessageBox.Popout("Izbrisano", 2, this);
+
+				}
+				else d.Destroy();
+			}
+			else MessageBox.Popout("Odaberite kategoriju ukoliko želite\n obrisati sve troškove u kategoriji", 2, this);
+		}
+		protected void editTrosakClicked(object sender, EventArgs e)
+		{
+
+			var selectedTrosak = (TrosakNode)nodeView.NodeSelection.SelectedNode;
+			if (selectedTrosak != null)
+			{
+
+				var editWin = new EditTrosakWindow(selectedTrosak, trosakPresenter, this);
+
+				var t = selectedTrosak.trosak;
+				editWin.signal += (sender1, e1) =>
+				{
+
+					osvjeziInfo();
+					opisView.Buffer.Text = t.Opis;
+					nodeView.GrabFocus();
+				};
+
+			}
+			else MessageBox.Popout("Odaberite trošak koji želite urediti", 2, this);
+		}
 		private void troskoviBackClicked()
 		{
 			infoUkupno.LabelProp = "";
@@ -257,6 +284,14 @@ namespace Osobni_Troškovnik
 			if (nodeView.NodeStore != null) nodeView.NodeStore.Clear();
 
 		}
+
+
+
+		/*
+		 * 
+		 * Medote za upravljanje ekranom mjesečnih troškova
+		 * 
+		 */
 		private void addTotalTroskove()
 		{
 			notebook.CurrentPage = 2;
@@ -356,6 +391,33 @@ namespace Osobni_Troškovnik
 			}
 			
 		}
+
+		protected void datumFilterTreeViewClicked(object sender, EventArgs e)
+		{
+			var dCW = new DatumChooseWindow(p, k, this, false, true);
+			dCW.signaliziraj += (odDatum, doDatum) =>
+			{
+				p = odDatum;
+				k = doDatum;
+				if (datumChanged != null) datumChanged();
+			};
+		}
+
+		protected void budgetButtonClicked(object sender, EventArgs e)
+		{
+			var bw = new BudgetWindow(this);
+			bw.resurs += (budget) =>
+			{
+				treePresenter.Budget = budget;
+				osvjeziBudget();
+			};
+		} 
+
+		/*
+		 * 
+		 * Medote za upravljanje ekranom grafičkog prikaza
+		 * 
+		 */
 		private void addStatisticView()
 		{
 			notebook.CurrentPage = 3;
@@ -444,62 +506,20 @@ namespace Osobni_Troškovnik
 			if (plotBox.Children.Length > 0)
 			{
 				var newWin = new Window("Osobni Troškovnik");
-				var vbox = new VBox();
+
 				var child = plotBox.Children[0];
 
 				plotBox.Remove(child);
 
 				newWin.Add(child);
-				newWin.SetSizeRequest(600, 400);
+				newWin.SetDefaultSize(600,400);
+				newWin.Maximize();
+
 				newWin.Icon = this.Icon;
 				newWin.ShowAll();
 			}
 			else MessageBox.Popout("Nema prikaza za otvorit\n u novom prozoru", 2, this);
 		}
 
-		protected void brisiSveClicked(object sender, EventArgs e)
-		{
-
-			if (currentKategorija != null)
-			{
-				Dialog d = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.None, "Time ćete obrisati sve postojeće troškove. Jeste li sigurni da želite obrisati sve troškove u kategoriji " + currentKategorija + "?");
-				d.AddButton("Da", Gtk.ResponseType.Yes);
-				d.AddButton("Ne", Gtk.ResponseType.No);
-
-				var odgovor = (Gtk.ResponseType)d.Run();
-
-
-				if (odgovor == Gtk.ResponseType.Yes)
-				{
-					d.Destroy();
-					trosakPresenter.brisiSveTroskove(currentKategorija);
-					MessageBox.Popout("Izbrisano", 2, this);
-
-				}
-				else d.Destroy();
-			}
-			else MessageBox.Popout("Odaberite kategoriju ukoliko želite\n obrisati sve troškove u kategoriji", 2, this);
-		}
-
-		protected void datumFilterTreeViewClicked(object sender, EventArgs e)
-		{
-			var dCW = new DatumChooseWindow(p, k, this,false,true);
-			dCW.signaliziraj += (odDatum, doDatum) =>
-			{
-				p = odDatum;
-				k = doDatum;
-				if (datumChanged != null) datumChanged();
-			};
-		}
-
-		protected void budgetButtonClicked(object sender, EventArgs e)
-		{
-			var bw = new BudgetWindow(this);
-			bw.resurs += (budget) =>
-			{
-				treePresenter.Budget = budget;
-				osvjeziBudget();
-			};
-		}
 	}
 }
