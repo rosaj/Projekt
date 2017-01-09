@@ -37,9 +37,9 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			var series = new PieSeries
 			{ StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 
-			foreach (KeyValuePair<string, double> s in Baza.getInstance.getTroskovePoKategorijamaUGodini(godina))
+			foreach (KeyValuePair<int, double> s in Baza.getInstance.getTroskovePoKategorijamaUGodini(godina))
 			{
-				series.Slices.Add(new PieSlice(s.Key, s.Value));
+				series.Slices.Add(new PieSlice(StringManipulator.convertToMjesec(s.Key), s.Value));
 
 			}
 			myModel.Series.Add(series);
@@ -172,12 +172,12 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 			var kat = new List<string>();
 			var list = Baza.getInstance.getTroskovePoKategorijamaUGodini(godina);
 
-			foreach (KeyValuePair<string, double> t in list)
+			foreach (KeyValuePair<int, double> t in list)
 			{
 
 				var b = new ColumnItem(t.Value);
 				items.Add(b);
-				kat.Add(t.Key);
+				kat.Add(StringManipulator.convertToMjesec(t.Key));
 			}
 
 			if (list.Count > 1)
@@ -260,6 +260,37 @@ using System.Collections.Generic;namespace Osobni_Troškovnik
 
 			return dodajOstalo(myModel, odDatum, doDatum, "LineChartKategorije");
 		}
+
+		public VBox PlotSveKategorijePoMjesecima(int godina)
+		{
+			var myModel = new PlotModel { Title = "Statistika za: "+ godina+". godinu", LegendTitle = "Legenda" };
+		//	var x = new DateTimeAxis() { Title = "Datum", TitleColor = OxyColors.AliceBlue };
+			var y = new LinearAxis() { Position = AxisPosition.Left, Minimum = 0, LabelFormatter = StringManipulator.formatter, Title = "Troskovi" };
+		//	myModel.Axes.Add(x);
+			myModel.Axes.Add(y);
+			var x = new LinearAxis() {Position= AxisPosition.Bottom,LabelFormatter=StringManipulator.convertToMjesec,Minimum = 1, Maximum = 12 };
+			myModel.Axes.Add(x);
+			var lista = Kategorija.kategorije;
+
+			foreach (var s in lista)
+			{
+				var l = new LineSeries() { Title = s.Naziv };
+				var list = Baza.getInstance.getTroskovePoMjesecima(s, godina);
+				if (list.Count > 0)
+				{
+					foreach (var t in list)
+					{
+						l.Points.Add(new DataPoint(t.Key, t.Value));
+					}
+
+					myModel.Series.Add(l);
+				}
+			}
+
+
+			return dodajOstalo(myModel, new DateTime(godina,1,1), new DateTime(godina+1,1,1), "LineChartKategorijeMjesecno");
+		}
+
 
 		public VBox PlotKategoriju(DateTime odDatum, DateTime doDatum, string kategorija)
 		{

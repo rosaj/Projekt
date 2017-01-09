@@ -20,7 +20,7 @@ namespace Osobni_Troškovnik
 
 			presenter = t;
 			trosakPresenter = tp;
-			cijena.Text = trosakPresenter.trosak.Cijena.ToString();
+			cijena.Value = trosakPresenter.trosak.Cijena;
 			opis.Buffer.Text = trosakPresenter.opis;
 			kategorijaLabel.LabelProp = trosakPresenter.trosak.Kategorija;
 			var datum = DateTime.ParseExact(trosakPresenter.datum, "dd.MM.yyyy", null);
@@ -34,7 +34,7 @@ namespace Osobni_Troškovnik
 
 			try
 			{
-				presenter.azurirajTrosak(trosakPresenter, double.Parse(cijena.Text), kalendar.GetDate(), opis.Buffer.Text);
+				presenter.azurirajTrosak(trosakPresenter, cijena.Value, kalendar.GetDate(), opis.Buffer.Text);
 				MessageBox.Popout("Trošak spremljen", 1, TransientFor);
 
 			

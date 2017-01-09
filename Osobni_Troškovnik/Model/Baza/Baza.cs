@@ -218,9 +218,9 @@ namespace Osobni_Troškovnik
 
 		}
 
-		public Dictionary<string, double> getTroskovePoKategorijamaUGodini(int godina)
+		public Dictionary<int, double> getTroskovePoKategorijamaUGodini(int godina)
 		{
-			var lista = new Dictionary<string,double>();
+			var lista = new Dictionary<int,double>();
 
 			string sql = string.Format("select strftime('%m',datum) as Mjesec, SUM(cijena) as Cijena " +
 									   "from trosak " +
@@ -236,58 +236,39 @@ namespace Osobni_Troškovnik
 			{
 
 				int mjesec = Int32.Parse(reader[0].ToString());
-				string mjesecString = "NA";
-				switch (mjesec)
-				{
-					case 1:
-						mjesecString = "Siječanj";
-						break;
-					case 2:
-						mjesecString = "Veljača";
-						break;		
-					case 3:
-						mjesecString = "Ožujak";
-						break;
-					case 4:
-						mjesecString = "Travanj";
-						break;	
-					case 5:
-						mjesecString = "Svibanj";
-						break;
-					case 6:
-						mjesecString = "Lipanj";
-						break;
-					case 7:
-						mjesecString = "Srpanj";
-						break;
-					case 8:
-						mjesecString = "Kolovoz";
-						break;
-					case 9:
-						mjesecString = "Rujan";
-						break;
-					case 10:
-						mjesecString = "Listopad";
-						break;
-					case 11:
-						mjesecString = "Studeni";
-						break;
-					case 12:
-						mjesecString = "Prosinac";
-						break;
-				}
 
-				lista.Add(mjesecString, double.Parse(reader[1].ToString()));
+				lista.Add(mjesec, double.Parse(reader[1].ToString()));
 
 			}
-
-
-
 
 			return lista;
 		}
 
+		public Dictionary<double, double> getTroskovePoMjesecima(Kategorija kategorija, int godina)
+		{
+			var lista = new Dictionary<double, double>();
 
+			string sql = string.Format("select strftime('%m',datum) as Mjesec, SUM(cijena) as Cijena " +
+									   "from trosak " +
+			                           "where strftime('%Y',datum) > '{0}' AND strftime('%Y',datum) <'{1}' AND id_kategorija = '{2}' " +
+			                           "group by Mjesec", godina - 1, godina + 1,kategorija.Id);
+
+
+
+			SQLiteCommand command = new SQLiteCommand(sql, con);
+			SQLiteDataReader reader = command.ExecuteReader();
+
+			while (reader.Read())
+			{
+
+				int mjesec = Int32.Parse(reader[0].ToString());
+
+				lista.Add((mjesec), double.Parse(reader[1].ToString()));
+
+			}
+
+			return lista;
+		}
 
 
 	}

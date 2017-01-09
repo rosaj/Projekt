@@ -67,11 +67,10 @@ namespace Osobni_Troškovnik
 
 		private bool spremi()
 		{
-			double broj;
-			double.TryParse(cijena.Text, out broj);
+			
 				try
 				{
-					trosakPresenter.dodajNoviTrosak(listaKategorija.ActiveText, broj, kalendar.GetDate(), opis.Buffer.Text);
+				trosakPresenter.dodajNoviTrosak(listaKategorija.ActiveText, cijena.Value, kalendar.GetDate(), opis.Buffer.Text);
 				return true;
 				}
 				catch (Exception e)

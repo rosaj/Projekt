@@ -228,7 +228,7 @@ namespace Osobni_Troškovnik
 
 		private void brisiSveClicked(object sender, EventArgs e)
 		{
-
+			
 			if (currentKategorija != null)
 			{
 				Dialog d = new Gtk.MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.None, "Time ćete obrisati sve postojeće troškove. Jeste li sigurni da želite obrisati sve troškove u kategoriji " + currentKategorija + "?");
@@ -380,7 +380,7 @@ namespace Osobni_Troškovnik
 					progressbarUdio.Fraction = 0;
 					GLib.Timeout.Add(5, delegate
 					{
-						if (progressbarUdio.Fraction >= treePresenter.trosakTrenutneKategorije / treePresenter.total) return false;
+						if (progressbarUdio.Fraction +0.003 >= (treePresenter.trosakTrenutneKategorije  / treePresenter.total)) return false;
 						progressbarUdio.Fraction += 0.003;
 						return true;
 					});
@@ -431,7 +431,8 @@ namespace Osobni_Troškovnik
 				kategorijaLine.Image = new Image("Line", IconSize.Dnd);
 				prikazPoBar.Image = new Image("Bar", IconSize.Dnd);
 				prikazPoPie.Image = new Image("Pie", IconSize.Dnd);
-				odabranaGodina.Text = DateTime.Now.Year.ToString();
+				prikazGodineLine.Image = new Image("Line", IconSize.Dnd);
+				odabranaGodina.Value = DateTime.Now.Year;
 				KategorijaPresenter.generirajKategorije	(kategorijeCombo);
 			}
 
@@ -484,11 +485,15 @@ namespace Osobni_Troškovnik
 			var b = sender as Button;
 			if (b.Name == prikazPoBar.Name)
 			{
-				plotBox.Add(grafPresenter.BarPlotMjeseceUGodini(Int32.Parse(odabranaGodina.Text)));
+				plotBox.Add(grafPresenter.BarPlotMjeseceUGodini((int)odabranaGodina.Value));
 			}
 			else if (b.Name == prikazPoPie.Name)
 			{
-				plotBox.Add(grafPresenter.PieViewMjeseceUGodini(Int32.Parse(odabranaGodina.Text)));
+				plotBox.Add(grafPresenter.PieViewMjeseceUGodini((int)odabranaGodina.Value));
+			}
+			else if (b.Name == prikazGodineLine.Name)
+			{
+				plotBox.Add(grafPresenter.PlotSveKategorijePoMjesecima((int)odabranaGodina.Value));
 			}
 			plotBox.ShowAll();
 		}

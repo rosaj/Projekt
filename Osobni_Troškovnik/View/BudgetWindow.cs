@@ -19,7 +19,7 @@ namespace Osobni_Troškovnik
 
 		public void spremiBudgetClicked(object sender, EventArgs e)
 		{
-			if (resurs != null) resurs(double.Parse(spinbutton1.Text));
+			if (resurs != null) resurs(spinbutton1.Value);
 			this.Destroy();
 
 		}

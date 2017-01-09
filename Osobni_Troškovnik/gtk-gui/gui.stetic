@@ -1136,9 +1136,8 @@ Prosinac</property>
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">3</property>
         <property name="ShowBorder">False</property>
-        <property name="ShowTabs">False</property>
         <child>
           <widget class="Gtk.EventBox" id="eventboxHome">
             <property name="MemberName" />
@@ -1481,6 +1480,7 @@ Prosinac</property>
                             <property name="Icon">resource:Osobni_Troškovnik.Pics.brisiSve.png</property>
                             <property name="Label" translatable="yes" />
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="brisiSveClicked" />
                           </widget>
                           <packing>
                             <property name="Position">2</property>
@@ -2570,17 +2570,23 @@ Prosinac</property>
                             <property name="MemberName" />
                             <property name="Spacing">6</property>
                             <child>
-                              <widget class="Gtk.Fixed" id="fixed8">
+                              <widget class="Gtk.Button" id="prikazPoBar">
                                 <property name="MemberName" />
-                                <property name="HasWindow">False</property>
+                                <property name="CanFocus">True</property>
+                                <property name="Type">TextAndIcon</property>
+                                <property name="Label" translatable="yes" />
+                                <property name="UseUnderline">True</property>
+                                <signal name="Clicked" handler="prikazPoGrafClicked" />
                               </widget>
                               <packing>
                                 <property name="Position">0</property>
-                                <property name="AutoSize">False</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Button" id="prikazPoBar">
+                              <widget class="Gtk.Button" id="prikazPoPie">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
@@ -2596,7 +2602,7 @@ Prosinac</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Button" id="prikazPoPie">
+                              <widget class="Gtk.Button" id="prikazGodineLine">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
