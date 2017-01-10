@@ -261,8 +261,9 @@ namespace Osobni_Troškovnik
 			this.notebook = new global::Gtk.Notebook();
 			this.notebook.CanFocus = true;
 			this.notebook.Name = "notebook";
-			this.notebook.CurrentPage = 3;
+			this.notebook.CurrentPage = 2;
 			this.notebook.ShowBorder = false;
+			this.notebook.ShowTabs = false;
 			// Container child notebook.Gtk.Notebook+NotebookChild
 			this.eventboxHome = new global::Gtk.EventBox();
 			this.eventboxHome.Name = "eventboxHome";

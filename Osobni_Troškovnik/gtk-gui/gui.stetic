@@ -1136,8 +1136,9 @@ Prosinac</property>
       <widget class="Gtk.Notebook" id="notebook">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">3</property>
+        <property name="CurrentPage">2</property>
         <property name="ShowBorder">False</property>
+        <property name="ShowTabs">False</property>
         <child>
           <widget class="Gtk.EventBox" id="eventboxHome">
             <property name="MemberName" />
