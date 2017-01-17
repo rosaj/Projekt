@@ -4,12 +4,7 @@ namespace Osobni_Troškovnik
 {
 	public partial class MainWindow : Gtk.Window
 	{
-	//	private string textF12 = "Sans Condensed Not-Rotated 12";
-	//	private string textF14 = "Sans Condensed Not-Rotated 14";
-		//private string defText12 = "Kristen ITC 12";
-	//	private string defText14 = "Kristen ITC 14";
 		public static  Gdk.Color bgColor;
-		//private Gdk.Color bojaSlova = Props.getColor("#0017FF");
 
 		private DateTime p = DateTime.Now.AddMonths(-1);
 		private DateTime k = DateTime.Now;

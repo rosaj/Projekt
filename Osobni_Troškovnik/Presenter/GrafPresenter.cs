@@ -4,13 +4,12 @@ using OxyPlot.Series;
 using OxyPlot.GtkSharp;
 using Gtk;
 using OxyPlot.Axes;
-using System.Collections.Generic;namespace Osobni_Troškovnik
+using System.Collections.Generic;
+namespace Osobni_Troškovnik
 {
 	public class GrafPresenter
 	{
-		public GrafPresenter()
-		{
-		}
+		
 
 		public VBox PieViewSveKategorije(DateTime odDatum, DateTime doDatum) 
 		{

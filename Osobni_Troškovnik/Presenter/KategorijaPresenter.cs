@@ -37,8 +37,6 @@ namespace Osobni_Troškovnik
 				nova.Id =	Baza.getInstance.insertKategorija(nova.Naziv);
 				Kategorija.kategorije.Add(nova);
 				combo.ForEach((obj) => (obj as ComboBox).AppendText(nova.Naziv));
-				combo.ForEach((obj) => { 
-					Console.WriteLine((obj as ComboBox).Name);});
 			}
 			else 
 			{
