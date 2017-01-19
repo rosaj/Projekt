@@ -30,14 +30,18 @@ namespace Osobni_Troškovnik
 				foreach (var t in KategorijaPresenter.getKategorija(item.Key).getTroskoveURazdoblju(p,k))
 					
 				{
-					string kraciOpis;
-					if (t.Opis.Length > 5)
+					string opis = t.Opis;
+
+					opis = opis.Replace('\n', ' ');
+
+					if (opis.Length > 15)
 					{
-						kraciOpis = t.Opis.Substring(0, 5)+"...";
+						opis = t.Opis.Substring(0, 15);
+						opis = opis + "...";
 					}
-					else kraciOpis = t.Opis;
-					var i = this.AppendValues(iter, null, t.Datum.ToString("dd.MM.yyyy"),t.Cijena.ToString("0.00 kn"),kraciOpis);
-					if(t.Opis.Length >5 )
+
+					var i = this.AppendValues(iter, null, t.Datum.ToString("dd.MM.yyyy"),t.Cijena.ToString("0.00 kn"),opis);
+					if(t.Opis.Length >15 )
 						this.AppendValues(i, null, null, null, t.Opis);
 
 					ukupanTrosak += t.Cijena;

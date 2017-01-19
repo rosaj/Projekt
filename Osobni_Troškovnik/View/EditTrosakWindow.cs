@@ -4,7 +4,7 @@ namespace Osobni_Troškovnik
 {
 	public partial class EditTrosakWindow : Gtk.Window
 	{
-		public EventHandler signal;
+		
 		public TrosakNodeStore presenter;
 		public TrosakNode trosakPresenter;
 		public EditTrosakWindow(TrosakNode tp,TrosakNodeStore t,Window parent) : base(Gtk.WindowType.Toplevel)
@@ -38,7 +38,7 @@ namespace Osobni_Troškovnik
 				MessageBox.Popout("Trošak spremljen", 1, TransientFor);
 
 			
-				if (signal != null) signal(sender, e);
+
 				OnDeleteEvent(sender, new Gtk.DeleteEventArgs());
 			}
 			catch (Exception ex)

@@ -254,7 +254,7 @@ namespace Osobni_Troškovnik
 				var editWin = new EditTrosakWindow(selectedTrosak, trosakPresenter, this);
 
 				var t = selectedTrosak.trosak;
-				editWin.signal += (sender1, e1) =>
+				editWin.Destroyed += (sender1, e1) =>
 				{
 
 					osvjeziInfo();

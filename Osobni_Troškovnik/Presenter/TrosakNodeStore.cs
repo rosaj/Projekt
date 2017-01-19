@@ -125,6 +125,7 @@ namespace Osobni_Troškovnik
 		}
 		public void azurirajTrosak(TrosakNode tn, double cijena, DateTime datum, string opis)
 		{
+			double staraCijena = tn.trosak.Cijena;
 			tn.trosak.Cijena = cijena;
 			tn.trosak.Datum = datum;
 			tn.trosak.Opis = opis;
@@ -134,18 +135,17 @@ namespace Osobni_Troškovnik
 			tn.opis = tn.trosak.Opis;
 
 			Baza.getInstance.updateTrosak(tn.trosak);
-			suma = 0;broj = 0;
-			foreach (TrosakNode t in this)
-			{
-				suma += t.trosak.Cijena;
-				broj++;
-			}
+			suma -= staraCijena;
+			suma += cijena;
 
 		}
 
 		public void brisiTrosak(TrosakNode tn)
 		{
+			suma -= tn.trosak.Cijena;
+			broj--;
 			this.RemoveNode(tn);
+
 			Baza.getInstance.brisiTrosak(tn.trosak);
 		
 		}
