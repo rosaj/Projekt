@@ -126,15 +126,9 @@ namespace Osobni_Troškovnik
 		public void azurirajTrosak(TrosakNode tn, double cijena, DateTime datum, string opis)
 		{
 			double staraCijena = tn.trosak.Cijena;
-			tn.trosak.Cijena = cijena;
-			tn.trosak.Datum = datum;
-			tn.trosak.Opis = opis;
 
-			tn.cijena = tn.trosak.Cijena.ToString("0.00 kn");
-			tn.datum = tn.trosak.Datum.ToString("dd.MM.yyyy");
-			tn.opis = tn.trosak.Opis;
+			tn.updateTrosak(cijena, datum, opis);
 
-			Baza.getInstance.updateTrosak(tn.trosak);
 			suma -= staraCijena;
 			suma += cijena;
 
