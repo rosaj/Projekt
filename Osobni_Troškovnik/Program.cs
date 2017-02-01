@@ -46,6 +46,7 @@ namespace Osobni_Troškovnik
 			win.Show();
 
 			Application.Run();
+			Baza.getInstance.closeCon();
 		}
 	}
 }

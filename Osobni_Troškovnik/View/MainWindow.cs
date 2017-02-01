@@ -41,7 +41,6 @@ namespace Osobni_Troškovnik
 		}
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 		{
-			Baza.getInstance.closeCon();
 			Application.Quit();
 			a.RetVal = true;
 		}
