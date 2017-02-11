@@ -12,8 +12,7 @@ namespace Osobni_Troškovnik
 			foreach (var s in lista)
 			{
 				string icon = s.Naziv;
-				if (!DatabaseCreator.defultLista.Contains(s.Naziv))
-					icon = "r";
+
 				var b = ImageButton.imageButton(icon, s.Naziv);
 
 				b.HeightRequest = 50;

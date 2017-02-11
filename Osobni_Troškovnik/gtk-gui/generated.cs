@@ -5,13 +5,13 @@ namespace Stetic
 	internal class Gui
 	{
 		private static bool initialized;
-
+		public static Gtk.IconFactory w1;
 		internal static void Initialize(Gtk.Widget iconRenderer)
 		{
 			if ((Stetic.Gui.initialized == false))
 			{
 				Stetic.Gui.initialized = true;
-				global::Gtk.IconFactory w1 = new global::Gtk.IconFactory();
+				w1 = new global::Gtk.IconFactory();
 				global::Gtk.IconSet w2 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.Automobil.png"));
 				w1.Add("Automobil", w2);
 				global::Gtk.IconSet w3 = new global::Gtk.IconSet(global::Gdk.Pixbuf.LoadFromResource("Osobni_Troškovnik.Pics.Gorivo.png"));

@@ -13,6 +13,11 @@ namespace Osobni_Troškovnik
 			box.BorderWidth = 2;
 			var i = new Gtk.Image(image, IconSize.Button);
 
+			var lookup = Stetic.Gui.w1.Lookup(image);
+			if (lookup == null)
+			{
+				i = new Gtk.Image("r", IconSize.Button);
+			}
 			var labela = new Label(label);
 			box.PackStart(i, false, false, 10);
 			box.PackStart(labela, false, false, 5);
