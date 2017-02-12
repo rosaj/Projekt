@@ -12,6 +12,11 @@ namespace Osobni_Troškovnik
 			foreach (var s in lista)
 			{
 				string icon = s.Naziv;
+				var lookup = Stetic.Gui.w1.Lookup(icon);
+				if (lookup == null)
+				{
+					icon = "r";
+				}
 
 				var b = ImageButton.imageButton(icon, s.Naziv);
 

@@ -113,6 +113,11 @@
         <property name="Image">resource:Osobni_Troškovnik.Pics.winico.png</property>
       </source>
     </icon-set>
+    <icon-set id="npva">
+      <source>
+        <property name="Image">resource:Osobni_Troškovnik.Pics.plus.png</property>
+      </source>
+    </icon-set>
   </icon-factory>
   <widget class="Gtk.Window" id="Osobni_Troškovnik.UnesiTrosakWindow" design-size="380 441">
     <property name="MemberName" />
